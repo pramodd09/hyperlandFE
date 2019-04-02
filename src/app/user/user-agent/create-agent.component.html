@@ -1,8 +1,8 @@
 <mat-accordion class="mat-drawer-containe">
   <form (ngSubmit)="onFormSubmit(agentForm.value)" [formGroup]="agentForm">
     <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-      <mat-expansion-panel-header style = "background-color:#5c6bc0;">
-        <mat-panel-title>
+      <mat-expansion-panel-header style = "background-color:#5c6bc0;color : #ffffff">
+        <mat-panel-title style = "color : #ffffff">
           Personal Details
         </mat-panel-title>
         <mat-icon>account_circle</mat-icon>
@@ -100,8 +100,8 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-      <mat-expansion-panel-header style = "background-color:#5c6bc0;">
-        <mat-panel-title>
+      <mat-expansion-panel-header style = "background-color:#5c6bc0; color : #ffffff">
+        <mat-panel-title  style = "color : #ffffff">
           Bank Details
         </mat-panel-title>
 

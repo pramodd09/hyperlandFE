@@ -10,7 +10,7 @@ import { MasterTypeComponent } from './master-type/master-type.component';
 import { MasterPlcComponent } from './master-plc/master-plc.component';
 import { MasterLocationComponent } from './master-location/master-location.component';
 import { MasterAdditionalChargesComponent } from './master-additionalcharges/master-additionalcharges.component';
-
+import { MasterBankComponent } from './master-bank/master-bank.component';
 const masterRoutes: Routes = [
     {path: 'masterfirm', component: MasterFirmComponent , data: { animation: 'masterfirm' }},
     {path: 'mastercity', component: MasterCityComponent , data: { animation: 'mastercity' }},
@@ -19,7 +19,7 @@ const masterRoutes: Routes = [
     {path: 'mastertype', component: MasterTypeComponent , data: { animation: 'mastertype' }},
     {path: 'masterplc', component: MasterPlcComponent , data: { animation: 'masterplc' }},
     {path: 'masterlocation', component: MasterLocationComponent , data: { animation: 'masterlocation' }},
-    {path: 'masterbank', component: MasterBankComponent , data: { animation: 'masterBankComponent' }}
+     {path: 'masterbank', component: MasterBankComponent , data: { animation: 'masterbank' }},
     {path: 'masteradditionalcharges', component: MasterAdditionalChargesComponent , data: { animation: 'masterAdditionalChargesComponent' }}
 ];
 

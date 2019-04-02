@@ -299,6 +299,21 @@ export const menus = [
             }
         ]
     }, */
+      {
+            'name': 'user',
+            'icon': 'widgets',
+            'open': false,
+            'link': false,
+            'sub': [
+                {
+                    'name': 'Associate',
+                    'icon': 'widgets',
+                    'link': 'user/useragent',
+                    'open': false
+                }
+                ]
+         },
+
     {
         'name': 'master',
         'icon': 'widgets',

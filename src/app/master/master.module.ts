@@ -28,7 +28,8 @@ import { DeletePLCConfirmBoxDialog } from './master-plc/master-delete-confirm-bo
 import { DeleteProjectConfirmBoxDialog } from './master-project/master-delete-confirm-box.component';
 import { MasterAdditionalChargesComponent, DialogOverviewAdditionalChargesDialog } from './master-additionalcharges/master-additionalcharges.component';
 import { DeleteAdditionalChargesConfirmBoxDialog } from './master-additionalcharges/master-delete-confirm-box.component';
-
+import { MasterBankComponent, DialogOverviewBankDialog } from './master-bank/master-bank.component';
+import { DeleteBankConfirmBoxDialog } from './master-bank/master-delete-confirm-box.component';
 //8import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 
 
@@ -85,7 +86,9 @@ export function highlightJsFactory(): any {
                       DialogOverviewPlcDialog,
                       DialogOverviewLocationDialog,
                       DeletePLCConfirmBoxDialog,
-                      DialogOverviewAdditionalChargesDialog
+                      DialogOverviewAdditionalChargesDialog,
+                       DialogOverviewBankDialog,
+                        DeleteBankConfirmBoxDialog
                     ],
   declarations: [
     DialogOverviewExampleDialog,
@@ -113,7 +116,10 @@ export function highlightJsFactory(): any {
     DeleteProjectConfirmBoxDialog,
      DialogOverviewAdditionalChargesDialog,
          MasterAdditionalChargesComponent,
-         DeleteAdditionalChargesConfirmBoxDialog
+         DeleteAdditionalChargesConfirmBoxDialog,
+           DeleteBankConfirmBoxDialog,
+            MasterBankComponent,
+               DialogOverviewBankDialog
    // LeafletMapComponent
 ],
 
