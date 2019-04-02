@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Bank Master </h1>
+<div mat-dialog-content>
+    <form class="example-form"[formGroup]="bankForm" (ngSubmit)="onFormSubmit(bankForm.value)">
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput placeholder="Bank Name" formControlName="bankName" [(ngModel)]="bank.bankName">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Branch" formControlName="branch" [(ngModel)]="bank.branch">               
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Account Number" formControlName="accountNumber" [(ngModel)]="bank.accountNumber">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="IFSC Code" formControlName="ifscCode" [(ngModel)]="bank.ifscCode">
+            </mat-form-field>
+
+          
+            <mat-grid-list cols="3" rowHeight="10em">
+                <mat-grid-tile>
+                    <button type="button" mat-raised-button color="primary" [disabled]="!bankForm.dirty || !bankForm.valid" (click)="submitForm();">Submit</button>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <button mat-raised-button color="warn" type="reset">Clear</button>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+        </div>
+
+    </form>
+
+</div>

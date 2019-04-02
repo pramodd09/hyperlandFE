@@ -19,6 +19,7 @@ const masterRoutes: Routes = [
     {path: 'mastertype', component: MasterTypeComponent , data: { animation: 'mastertype' }},
     {path: 'masterplc', component: MasterPlcComponent , data: { animation: 'masterplc' }},
     {path: 'masterlocation', component: MasterLocationComponent , data: { animation: 'masterlocation' }},
+    {path: 'masterbank', component: MasterBankComponent , data: { animation: 'masterBankComponent' }}
     {path: 'masteradditionalcharges', component: MasterAdditionalChargesComponent , data: { animation: 'masterAdditionalChargesComponent' }}
 ];
 

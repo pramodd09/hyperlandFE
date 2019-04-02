@@ -346,7 +346,19 @@ export const menus = [
                 'icon': 'widgets',
                 'link': 'master/masterlocation',
                 'open': false,
-            } 
+            } ,
+            {
+                'name': 'Bank',
+                'icon': 'widgets',
+                'link': 'master/masterbank',
+                'open': false,
+            } ,
+            {
+                'name': 'Additional Charges',
+                'icon': 'widgets',
+                'link': 'master/masteradditionalcharges',
+                'open': false,
+            }
 
         ]
     }
