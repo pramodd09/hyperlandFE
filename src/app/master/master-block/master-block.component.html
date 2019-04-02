@@ -1,0 +1,53 @@
+<mat-card>
+  <button mat-raised-button (click)="openDialog()" color="primary">Create Block</button>
+  </mat-card>
+  <mat-card>
+    <div class="example-container mat-elevation-z8">
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar> 
+        <mat-table #Table [dataSource]="blockDataSource" matSort>  
+            <ng-container matColumnDef="firmName" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> FIRM NAME </mat-header-cell>  
+                <mat-cell *matCellDef="let block"> {{block.firmName}} </mat-cell>   
+            </ng-container>  
+            
+            <ng-container matColumnDef="propertyName" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> PROPERTY NAME </mat-header-cell>  
+              <mat-cell *matCellDef="let block"> {{block.propertyName}} </mat-cell> 
+            </ng-container>  
+
+             <ng-container matColumnDef="propertyType" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> PROPERTY TYPE </mat-header-cell>  
+             <mat-cell *matCellDef="let block"> {{block.propertyType}} </mat-cell>
+            </ng-container>  
+
+            <ng-container matColumnDef="block" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> BLOCK NAME</mat-header-cell>  
+               <mat-cell *matCellDef="let block"> {{block.block}} </mat-cell>  
+             </ng-container> 
+
+            <ng-container matColumnDef="actions" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
+                 <mat-cell *matCellDef="let block">  
+                  <button mat-raised-button color="primary"
+                    matTooltip="Edit Block"
+                    (click)="editBlockDetails(block.id)">
+                    <i class="material-icons">create</i>
+                  </button>
+    
+                  <button mat-raised-button color="warn" 
+                    matTooltip="Delete Firm"
+                    (click)="openConfirmDeleteDialog(block.id)"
+                    style="margin-left: 10px">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </mat-cell>  
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>  
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>  
+        </mat-table>  
+    
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">  
+        </mat-paginator> 
+    </div>
+    </mat-card>

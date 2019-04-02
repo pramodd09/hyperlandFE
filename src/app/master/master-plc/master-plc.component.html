@@ -1,0 +1,58 @@
+<mat-card>
+  <button mat-raised-button (click)="openDialog()" color="primary">Create PLC</button>
+  </mat-card>
+  <mat-card>
+    <div class="example-container mat-elevation-z8">
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+        <mat-table #Table [dataSource]="plcDataSource" matSort>
+            <ng-container matColumnDef="firmName" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> FIRM NAME </mat-header-cell>  
+                <mat-cell *matCellDef="let plc"> {{plc.firmName}} </mat-cell>
+            </ng-container>  
+            
+            <ng-container matColumnDef="propertyName" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Property Name </mat-header-cell>  
+              <mat-cell *matCellDef="let plc"> {{plc.propertyName}} </mat-cell>
+            </ng-container>  
+
+             <ng-container matColumnDef="plcName" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> PLC Name </mat-header-cell>  
+              <mat-cell *matCellDef="let plc"> {{plc.plcName}} </mat-cell>
+            </ng-container>  
+
+            <ng-container matColumnDef="plcCharge" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> PLC Charges </mat-header-cell>  
+              <mat-cell *matCellDef="let plc"> {{plc.plcCharge}} </mat-cell> 
+             </ng-container> 
+
+             <ng-container matColumnDef="chargeType" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Charge Type </mat-header-cell>  
+              <mat-cell *matCellDef="let plc"> {{plc.chargeType}} </mat-cell>
+             </ng-container> 
+
+            <ng-container matColumnDef="actions" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
+                 <mat-cell *matCellDef="let plc">  
+                  <button mat-raised-button color="primary"
+                    matTooltip="Edit PLC"
+                    (click)="editPLCDetails(plc.id)">
+                    <i class="material-icons">create</i>
+                  </button>
+    
+                  <button mat-raised-button color="warn" 
+                    matTooltip="Delete PLC"
+                    (click)="openConfirmDeleteDialog(plc.id)"
+                    style="margin-left: 10px">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </mat-cell>  
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>  
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>  
+        </mat-table>  
+    
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">  
+        </mat-paginator> 
+    </div>
+    </mat-card>
