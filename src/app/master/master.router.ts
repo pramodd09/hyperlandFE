@@ -9,6 +9,7 @@ import { MasterBlockComponent } from './master-block/master-block.component';
 import { MasterTypeComponent } from './master-type/master-type.component';
 import { MasterPlcComponent } from './master-plc/master-plc.component';
 import { MasterLocationComponent } from './master-location/master-location.component';
+import { MasterAdditionalChargesComponent } from './master-additionalcharges/master-additionalcharges.component';
 
 const masterRoutes: Routes = [
     {path: 'masterfirm', component: MasterFirmComponent , data: { animation: 'masterfirm' }},
@@ -18,6 +19,7 @@ const masterRoutes: Routes = [
     {path: 'mastertype', component: MasterTypeComponent , data: { animation: 'mastertype' }},
     {path: 'masterplc', component: MasterPlcComponent , data: { animation: 'masterplc' }},
     {path: 'masterlocation', component: MasterLocationComponent , data: { animation: 'masterlocation' }},
+    {path: 'masteradditionalcharges', component: MasterAdditionalChargesComponent , data: { animation: 'masterAdditionalChargesComponent' }}
 ];
 
 @NgModule({

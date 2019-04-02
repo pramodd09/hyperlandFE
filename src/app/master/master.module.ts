@@ -26,6 +26,9 @@ import { DeleteLocationConfirmBoxDialog } from './master-location/master-delete-
 import { DeleteBlockConfirmBoxDialog } from './master-block/master-delete-confirm-box.component';
 import { DeletePLCConfirmBoxDialog } from './master-plc/master-delete-confirm-box.component';
 import { DeleteProjectConfirmBoxDialog } from './master-project/master-delete-confirm-box.component';
+import { MasterAdditionalChargesComponent, DialogOverviewAdditionalChargesDialog } from './master-additionalcharges/master-additionalcharges.component';
+import { DeleteAdditionalChargesConfirmBoxDialog } from './master-additionalcharges/master-delete-confirm-box.component';
+
 //8import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 
 
@@ -37,7 +40,7 @@ export function highlightJsFactory(): any {
 
 @NgModule({
   imports: [
-  
+
   CommonModule,
     FlexLayoutModule,
     ReactiveFormsModule,
@@ -72,6 +75,7 @@ export function highlightJsFactory(): any {
                       DeleteLocationConfirmBoxDialog,
                       DeleteBlockConfirmBoxDialog,
                       DeleteProjectConfirmBoxDialog,
+                      DeleteAdditionalChargesConfirmBoxDialog,
                       CityDialog,
                       DeleteCityConfirmBoxDialog,
                       DeletePropertyTypeConfirmBoxDialog,
@@ -81,6 +85,7 @@ export function highlightJsFactory(): any {
                       DialogOverviewPlcDialog,
                       DialogOverviewLocationDialog,
                       DeletePLCConfirmBoxDialog,
+                      DialogOverviewAdditionalChargesDialog
                     ],
   declarations: [
     DialogOverviewExampleDialog,
@@ -105,13 +110,16 @@ export function highlightJsFactory(): any {
     MasterFirmComponent,
     MasterLocationComponent,
     DeletePLCConfirmBoxDialog,
-    DeleteProjectConfirmBoxDialog
+    DeleteProjectConfirmBoxDialog,
+     DialogOverviewAdditionalChargesDialog,
+         MasterAdditionalChargesComponent,
+         DeleteAdditionalChargesConfirmBoxDialog
    // LeafletMapComponent
 ],
 
   exports: [
     ],
-    
-      
+
+
 })
 export class MasterModule { }
