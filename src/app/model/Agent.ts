@@ -1,0 +1,31 @@
+export class Agent {
+"id" :"string";
+agentName      : "string";
+panNumber      : "string";
+adhaarNo       : "string";
+address        : "string";
+city           : "string";
+state          : "string";
+pinCode        : "string";
+emailId        : "string";
+phoneNo        : "string";
+dateOfJoining  : "string";
+dateOfBirth    : "string";
+occupation     : "string";
+sponsorId      : "string";
+sponsorName    : "string";
+bank           : "string";
+branch         : "string";
+accountNumber  : "string";
+ifscCode       : "string";
+status         : "string";
+loginId        : "string";
+designation    : "string";
+selfBusiness   : "string";
+chainBusiness  : "string";
+tds            : "string";
+serviceCharge  : "string";
+totalAmount    : "string";
+grandTotal     : "string";
+paidAmount     : "string";;
+}
