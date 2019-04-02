@@ -1,0 +1,61 @@
+<mat-card>
+<button mat-raised-button (click)="openDialog()" color="primary">Add Additional Charges</button>
+</mat-card>
+<mat-card>
+    <div class="example-container mat-elevation-z8">  
+        <mat-table #Table [dataSource]="additionalChargesDataSource" matSort>
+            <!-- For ID -->  
+            <ng-container matColumnDef="id" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>  
+                <mat-cell *matCellDef="let additionalCharges"> {{additionalCharges.id}} </mat-cell>  
+            </ng-container>  
+
+            <!-- For additionalCharges name -->  
+            <ng-container matColumnDef="firmName" sticky>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Firm Name </mat-header-cell>
+                <mat-cell *matCellDef="let additionalCharges"> {{additionalCharges.firmName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="propertyName" sticky>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </mat-header-cell>
+                <mat-cell *matCellDef="let additionalCharges"> {{additionalCharges.propertyName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="additionalCharges" sticky>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Additional Charges </mat-header-cell>
+                <mat-cell *matCellDef="let additionalCharges"> {{additionalCharges.additionalCharges}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="rate" sticky>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Rate </mat-header-cell>
+                <mat-cell *matCellDef="let additionalCharges"> {{additionalCharges.rate}} </mat-cell>
+            </ng-container>
+          <ng-container matColumnDef="chargesType" sticky>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Charges Type </mat-header-cell>
+            <mat-cell *matCellDef="let additionalCharges"> {{additionalCharges.chargesType}} </mat-cell>
+          </ng-container>
+
+            <ng-container matColumnDef="actions" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
+                <mat-cell *matCellDef="let additionalCharges"> 
+                  <button mat-raised-button color="primary"
+                    matTooltip="Edit additionalCharges"
+                    (click)="editAdditionalChargesDetails(additionalCharges.id)">
+                    <i class="material-icons">create</i>
+                  </button>
+    
+                  <button mat-raised-button color="warn" 
+                    matTooltip="Delete additionalCharges"
+                    style="margin-left: 10px"
+                    (click)="openConfirmDeleteDialog(additionalCharges.id)">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </mat-cell>  
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>  
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>  
+        </mat-table>  
+    
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">  
+        </mat-paginator> 
+    </div>
+    </mat-card>
+       

@@ -1,0 +1,154 @@
+<mat-accordion class="mat-drawer-containe">
+  <form (ngSubmit)="onFormSubmit(agentForm.value)" [formGroup]="agentForm">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header style = "background-color:#5c6bc0;">
+        <mat-panel-title>
+          Personal Details
+        </mat-panel-title>
+        <mat-icon>account_circle</mat-icon>
+      </mat-expansion-panel-header>
+
+      <mat-grid-list cols="2" rowHeight="4em">
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Agent Name" formControlName="agentName" [(ngModel)]="agent.agentName">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Address" formControlName="address" [(ngModel)]="agent.address">
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="State" formControlName="state" [(ngModel)]="agent.state">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="City" formControlName="city" [(ngModel)]="agent.city">
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Zip Code" formControlName="pinCode" [(ngModel)]="agent.pinCode">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Phone No" formControlName="phoneNo" [(ngModel)]="agent.phoneNo">
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Email Id" formControlName="emailId" [(ngModel)]="agent.emailId">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="PAN" formControlName="panNumber" [(ngModel)]="agent.panNumber">
+          </mat-form-field>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Sponsor Id" formControlName="sponsorId" [(ngModel)]="agent.sponsorId">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Sponsor Name" formControlName="sponsorName" [(ngModel)]="agent.sponsorName">
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Stage" formControlName="designation" [(ngModel)]="agent.designation">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Occupation" formControlName="occupation" [(ngModel)]="agent.occupation">
+          </mat-form-field>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput [matDatepicker]="dateOfBirth"  placeholder="Date of Birth" >
+            <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+            <mat-datepicker #dateOfBirth></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput [matDatepicker]="dateOfJoining" placeholder="Date of Joining" >
+            <mat-datepicker-toggle matSuffix [for]="dateOfJoining"></mat-datepicker-toggle>
+            <mat-datepicker #dateOfJoining></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header style = "background-color:#5c6bc0;">
+        <mat-panel-title>
+          Bank Details
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="2" rowHeight="4em">
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Bank Name" formControlName="bank" [(ngModel)]="agent.bank">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Branch" formControlName="branch" [(ngModel)]="agent.branch">
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Account Number" formControlName="accountNumber" [(ngModel)]="agent.accountNumber">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="IFSC Code" formControlName="ifscCode" [(ngModel)]="agent.ifscCode">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-grid-list cols="3" rowHeight="10em">
+      <mat-grid-tile>
+        <button type="button" mat-raised-button color="primary"
+                [disabled]="!agentForm.dirty || !agentForm.valid" (click)="submitForm();">
+          Submit
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button color="warn" type="reset">Clear</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</mat-accordion>

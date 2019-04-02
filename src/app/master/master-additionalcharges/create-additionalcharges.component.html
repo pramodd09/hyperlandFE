@@ -1,0 +1,56 @@
+<h1 mat-dialog-title>AdditionalCharges Master </h1>
+<div mat-dialog-content>
+  <form class="example-form" [formGroup]="additionalChargesForm" (ngSubmit)="onFormSubmit(additionalChargesForm.value)">
+    <div class="example-container">
+      <mat-form-field>
+        <mat-label>Firm Name</mat-label>
+        <mat-select formControlName="firmId" (ngModelChange)="onChange($event,'property')" [(ngModel)] = "additionalCharges.firmId">
+          <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
+            {{firm.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Project Name</mat-label>
+        <mat-select formControlName="propertyId" [(ngModel)]="additionalCharges.propertyId">
+          <mat-option *ngFor="let prop of propertyList" [value]="prop.code+'|'+prop.value">
+            {{prop.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <input matInput placeholder="Additional Charges Type" formControlName="additionalCharges"
+               [(ngModel)]="additionalCharges.additionalCharges">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Rate" formControlName="rate" [(ngModel)]="additionalCharges.rate">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Charge Type" formControlName="chargesType"
+               [(ngModel)]="additionalCharges.chargesType">
+      </mat-form-field>
+
+
+      <mat-grid-list cols="3" rowHeight="10em">
+        <mat-grid-tile>
+          <button type="button" mat-raised-button color="primary"
+                  [disabled]="!additionalChargesForm.dirty || !additionalChargesForm.valid" (click)="submitForm();">
+            Submit
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-raised-button color="warn" type="reset">Clear</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    </div>
+
+  </form>
+
+</div>
