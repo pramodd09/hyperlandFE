@@ -9,6 +9,7 @@ import { CityService } from '../../services/city.service';
 import { LocationService } from '../../services/location.service';
 import { ProjectService } from '../../services/project.service';
 import { DeleteProjectConfirmBoxDialog } from './master-delete-confirm-box.component';
+import { SelectorService } from '../../services/selector.service';
 
 @Component({
   selector: 'dialog-overview-project-dialog',
@@ -25,7 +26,7 @@ export class DialogOverviewEProjectDialog implements OnInit{
     public dialogRef: MatDialogRef<DialogOverviewEProjectDialog>,private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private snackBar : MatSnackBar,
-    private locationService : LocationService,
+    private selectorService : SelectorService,
     private projectService : ProjectService) {
 
       this.firmList = data.firmList;
@@ -52,18 +53,21 @@ export class DialogOverviewEProjectDialog implements OnInit{
     this.project.firmId = firm.id; 
   }
 
-  setCity(city : any) : void {
-    console.log("City:",city);
-    this.project.cityId = city.id;
-    this.locationList = [];
-    this.locationService.getAllLocationByCity(city.id).subscribe(
-      res => {  
-        console.log(res);
-        this.locationList = res.result;
-      },  
-      error => {  
-        
-      });
+  onChange(event,type){
+    // console.log(event)
+    var value = event;
+    var code =  value.split('|')[0];
+    var value1 = value.split('|')[1];
+    console.log(value1+"  -- >"+code);
+    this.selectorService.getDependentData(type,code).subscribe(
+      res => {
+         this.locationList=res.result;
+        console.dir(this.locationList);
+      },
+      error => {
+        console.log('There was an error while retrieving Albums !!!' + error);
+      }
+    )
   }
 
   setLocation(location : any)  : void {

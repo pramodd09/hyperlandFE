@@ -4,8 +4,8 @@
   <div class="example-container">
     <mat-form-field class="example-full-width">
         <mat-label>Firm Name</mat-label>
-        <mat-select formControlName="firmName" [(ngModel)]="project.firmName" (selectionChange)="setFirmId($event.value)">
-          <mat-option *ngFor="let firm of firmList" [value]="firm.firmName">
+        <mat-select formControlName="firmName" [(ngModel)]="project.firmName">
+          <mat-option *ngFor="let firm of firmList" [value]="firm.id+'|'+firm.firmName">
             {{firm.firmName}}
           </mat-option>
         </mat-select>
@@ -23,8 +23,8 @@
 
     <mat-form-field class="example-full-width">
         <mat-label>City</mat-label>
-        <mat-select [(value)]="project.cityId" formControlName="cityName" (selectionChange)="setCity($event.value)">
-          <mat-option *ngFor="let city of cityList" [value]="city.id">
+        <mat-select [(value)]="project.cityId" formControlName="cityName" (ngModelChange)="onChange($event,'location')" [(ngModel)] = "project.cityId">
+          <mat-option *ngFor="let city of cityList" [value]="city.id+'|'+city.cityName">
             {{city.city}}
           </mat-option>
         </mat-select>

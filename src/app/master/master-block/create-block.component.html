@@ -4,35 +4,46 @@
   <div class="example-container">
     <mat-form-field class="example-full-width">
         <mat-label>Firm Name</mat-label>
-        <mat-select [(value)] = "block.firmId">
-          <mat-option *ngFor="let firm of firmList" [value]="firm.id">
-            {{firm.firmName}}
+        <mat-select formControlName="firmId" (ngModelChange)="onChange($event,'property')" [(ngModel)] = "block.firmId">
+          <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
+            {{firm.value}}
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-error>  
+        <span *ngIf="!blockForm.get('firmId').valid && blockForm.get('firmId').touched">Please select firm</span>  
+      </mat-error>
 
-    <!-- <mat-form-field class="example-full-width">
-        <mat-label>Project Name</mat-label>
-        <mat-select >
-          <mat-option *ngFor="let project of projectList" [value]="project.value">
-            {{project.projectName}}
+    <mat-form-field class="example-full-width">
+        <mat-label>Property Name</mat-label>
+        <mat-select formControlName="propertyId" [(ngModel)] = "block.propertyId">
+          <mat-option *ngFor="let property of propertyList" [value]="property.code+'|'+property.value">
+            {{property.value}}
           </mat-option>
         </mat-select>
-      </mat-form-field> -->
+    </mat-form-field>
+    <mat-error>  
+      <span *ngIf="!blockForm.get('propertyId').valid && blockForm.get('propertyId').touched">Please select property</span>  
+    </mat-error>
 
       <mat-form-field class="example-full-width">
         <mat-label>Type</mat-label>
-        <mat-select [(value)] = "block.propertyTypeId">
-          <mat-option *ngFor="let type of propertyTypeList" [value]="type.id">
-            {{type.PropertyType}}
+        <mat-select formControlName="propertyTypeId" [(ngModel)] = "block.propertyTypeId">
+          <mat-option *ngFor="let type of propertyTypeList" [value]="type.code+'|'+type.value">
+            {{type.value}}
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-error>  
+        <span *ngIf="!blockForm.get('propertyTypeId').valid && blockForm.get('propertyTypeId').touched">Please select property type</span>  
+      </mat-error>
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Block Name" [(ngModel)] = "block.block">
+        <input matInput placeholder="Block Name" formControlName="blockName" [(ngModel)] = "block.block">
     </mat-form-field>
-
+    <mat-error>  
+      <span *ngIf="!blockForm.get('blockName').valid && blockForm.get('blockName').touched">Please enter block name</span>  
+    </mat-error>
 
     <mat-grid-list cols="3" rowHeight="10em">
         <mat-grid-tile>
