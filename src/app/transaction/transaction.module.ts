@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { UserRouterModule } from './user.router';
+import { TransactionRouterModule } from './transaction.router';
 import { AgmCoreModule } from '@agm/core';
-
+import {MatRadioModule} from '@angular/material/radio';
 import * as hljs from 'highlight.js';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import * as hljsTypescript from 'highlight.js/lib/languages/typescript';
 import { MatButtonModule, MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatProgressBarModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MasterAgentComponent, DialogOverviewAgentDialog } from './user-agent/user-agent.component';
-import { DeleteAgentConfirmBoxDialog } from './user-agent/user-delete-confirm-box.component';
+import { BookingFormComponent } from './booking-form/booking-form.component';
+
 //8import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
@@ -43,6 +43,7 @@ export function highlightJsFactory(): any {
     MatSortModule,
     MatGridListModule,
     MatFormFieldModule,
+    MatRadioModule,
     MatIconModule,
     MatInputModule,
     MatSnackBarModule,
@@ -57,17 +58,15 @@ export function highlightJsFactory(): any {
       provide: HIGHLIGHT_JS,
       useFactory: highlightJsFactory
     }),
-    UserRouterModule
+    TransactionRouterModule
   ],
   entryComponents: [
 
-                      DeleteAgentConfirmBoxDialog,
-                      DialogOverviewAgentDialog
+
                     ],
   declarations: [
-                          DeleteAgentConfirmBoxDialog,
-                          DialogOverviewAgentDialog,
-                          MasterAgentComponent
+
+                          BookingFormComponent
 ],
 
   exports: [
@@ -75,4 +74,4 @@ export function highlightJsFactory(): any {
     
       
 })
-export class UserModule { }
+export class TransactionModule { }

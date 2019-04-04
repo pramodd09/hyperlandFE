@@ -8,7 +8,7 @@ import { CoreModule } from './core/core.module';
 import { FirmService } from './services/firm.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-
+import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material';
 
 
 
@@ -21,10 +21,12 @@ import { HttpClientModule } from '@angular/common/http';
     LazyLoadModule,
     CoreModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatNativeDateModule
   ],
   providers: [ 
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
   ],
   bootstrap: [AppComponent]
 })

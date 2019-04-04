@@ -310,7 +310,13 @@ export const menus = [
                     'icon': 'widgets',
                     'link': 'user/useragent',
                     'open': false
-                }
+                },
+                 {
+                                    'name': 'Booking',
+                                    'icon': 'widgets',
+                                    'link': 'transaction/bookingform',
+                                    'open': false
+                                }
                 ]
          },
 

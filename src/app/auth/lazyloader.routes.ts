@@ -6,6 +6,7 @@ export const appRoutes: Routes = [{
     path: '', component: AuthComponent, children: [
         { path: 'master', loadChildren: '../master/master.module#MasterModule' },
          { path: 'user', loadChildren: '../user/user.module#UserModule' },
+          { path: 'transaction', loadChildren: '../transaction/transaction.module#TransactionModule' },
         { path: 'dashboard', component: DashboardCrmComponent },
         { path: 'material-widgets', loadChildren: '../material-widgets/material-widgets.module#MaterialWidgetsModule' },
         { path: 'tables', loadChildren: '../tables/tables.module#TablesModule' },
