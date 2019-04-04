@@ -16,7 +16,7 @@ export class ProjectService {
   }
 
   createProject(projectRequest : Project) : Observable<any>{
-    var baseURL = 'master/add/location';
+    var baseURL = 'master/add/project';
     return this.http.post(baseURL,projectRequest);
   }
 

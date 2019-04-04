@@ -11,11 +11,14 @@ import { BlockService } from "../../services/block.service";
   })
   export class DeleteBlockConfirmBoxDialog  implements OnInit {
   
+    blockId : any
+
     constructor(
       public dialogRef: MatDialogRef<DeleteBlockConfirmBoxDialog>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private blockService : BlockService,
       private snackBar : MatSnackBar) {
+        this.blockId = data;
       }
       
       ngOnInit() {
@@ -26,8 +29,8 @@ import { BlockService } from "../../services/block.service";
         this.dialogRef.close();
       }
   
-      onYesClick(id : any) : void {
-        this.blockService.deleteBlock(id).subscribe(res => {  
+      onYesClick(data : any) : void {
+        this.blockService.deleteBlock(this.blockId).subscribe(res => {  
           console.log("Result:"+res);
           this.openSnackBar('Block Deleted Successfully','');
           this.dialogRef.close();

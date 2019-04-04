@@ -12,11 +12,13 @@ import { PLCService } from "../../services/plc.service";
   })
   export class DeletePLCConfirmBoxDialog  implements OnInit {
   
+    plcId : any;
     constructor(
       public dialogRef: MatDialogRef<DeletePLCConfirmBoxDialog>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private plcService : PLCService,
       private snackBar : MatSnackBar) {
+        this.plcId = data;
       }
       
       ngOnInit() {
@@ -28,7 +30,7 @@ import { PLCService } from "../../services/plc.service";
       }
   
       onYesClick(id : any) : void {
-        this.plcService.deletePLC(id).subscribe(res => {  
+        this.plcService.deletePLC(this.plcId).subscribe(res => {  
           console.log("Result:"+res);
           this.openSnackBar('PLC Deleted Successfully','');
           this.dialogRef.close();

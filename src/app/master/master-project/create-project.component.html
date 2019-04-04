@@ -4,7 +4,7 @@
   <div class="example-container">
     <mat-form-field class="example-full-width">
         <mat-label>Firm Name</mat-label>
-        <mat-select formControlName="firmName" [(ngModel)]="project.firmName">
+        <mat-select formControlName="firmName" [(ngModel)]="project.firmId" (ngModelChange)="onFirmChange($event,'property')">
           <mat-option *ngFor="let firm of firmList" [value]="firm.id+'|'+firm.firmName">
             {{firm.firmName}}
           </mat-option>
@@ -14,6 +14,18 @@
         <span *ngIf="!projectForm.get('firmName').valid && projectForm.get('firmName').touched">Please Select Firm</span>  
       </mat-error>
 
+      <mat-form-field class="example-full-width">
+        <mat-label>Property</mat-label>
+        <mat-select formControlName="propertyId" [(ngModel)] = "project.propertyId">
+          <mat-option *ngFor="let property of propertyList" [value]="property.code+'|'+property.value">
+            {{property.value}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-error>  
+      <span *ngIf="!projectForm.get('propertyId').valid && projectForm.get('propertyId').touched">Please select property</span>  
+    </mat-error>
+
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Project Name" formControlName="projectName" [(ngModel)]="project.projectName">
     </mat-form-field>
@@ -22,9 +34,21 @@
     </mat-error>
 
     <mat-form-field class="example-full-width">
+      <mat-label>Property Type</mat-label>
+      <mat-select formControlName="propertyTypeId" [(ngModel)]="project.propertyTypeId">
+        <mat-option *ngFor="let type of propertyTypeList" [value]="type.id+'|'+type.PropertyType">
+          {{type.PropertyType}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-error>  
+      <span *ngIf="!projectForm.get('propertyTypeId').valid && projectForm.get('propertyTypeId').touched">Please Select Firm</span>  
+    </mat-error>
+
+    <mat-form-field class="example-full-width">
         <mat-label>City</mat-label>
-        <mat-select [(value)]="project.cityId" formControlName="cityName" (ngModelChange)="onChange($event,'location')" [(ngModel)] = "project.cityId">
-          <mat-option *ngFor="let city of cityList" [value]="city.id+'|'+city.cityName">
+        <mat-select [(ngModel)]="project.cityId" formControlName="cityName" (ngModelChange)="onChange($event,'location')" [(ngModel)] = "project.cityId">
+          <mat-option *ngFor="let city of cityList" [value]="city.id+'|'+city.city">
             {{city.city}}
           </mat-option>
         </mat-select>
@@ -35,9 +59,9 @@
 
     <mat-form-field class="example-full-width">
         <mat-label>Loaction</mat-label>
-        <mat-select [(ngModel)]="project.location" formControlName="location" (selectionChange)="setLocation($event.value)">
-          <mat-option *ngFor="let location of locationList" [value]="location.location">
-            {{location.location}}
+        <mat-select [(ngModel)]="project.locationId" formControlName="location" >
+          <mat-option *ngFor="let location of locationList" [value]="location.code+'|'+location.value">
+            {{location.value}}
           </mat-option>
         </mat-select>
     </mat-form-field>
