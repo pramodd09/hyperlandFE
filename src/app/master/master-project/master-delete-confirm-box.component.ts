@@ -11,11 +11,13 @@ import { ProjectService } from "../../services/project.service";
   })
   export class DeleteProjectConfirmBoxDialog  implements OnInit {
   
+    projectId : any;
     constructor(
       public dialogRef: MatDialogRef<DeleteProjectConfirmBoxDialog>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private projectService: ProjectService,
       private snackBar : MatSnackBar) {
+        this.projectId = data;
       }
       
       ngOnInit() {
@@ -26,9 +28,9 @@ import { ProjectService } from "../../services/project.service";
         this.dialogRef.close();
       }
   
-      onYesClick(projectId : any) : void {
-        console.log("Id is :"+projectId);
-        this.projectService.deleteProjct(projectId).subscribe(res => {  
+      onYesClick() : void {
+        console.log("Id is :"+this.projectId);
+        this.projectService.deleteProjct(this.projectId).subscribe(res => {  
           console.log("Result:"+res);
           this.openSnackBar('Project Deleted Successfully','');
           this.dialogRef.close();

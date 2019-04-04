@@ -1,14 +1,16 @@
 export class Project {
-    id : number;;
-    firmId : number;
+    id : string;;
+    firmId : string;
     firmName : string;
     projectName : string;
-    propertyTypeId : number;
-    propertyType : string;
-    cityId :  number;
+    propertyTypeId : string;
+    PropertyType : string;
+    cityId :  string;
     cityName : string;
-    locationId : number;
+    locationId : string;
     location : string;
     address : string;
     businessValue : number;
+    propertyId: string;
+    propertyName: string;
 }

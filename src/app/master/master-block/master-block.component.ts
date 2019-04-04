@@ -10,6 +10,7 @@ import { Project } from '../../model/Project';
 import { ProjectService } from '../../services/project.service';
 import { PropertytypeService } from '../../services/propertytype.service';
 import { PropertyType } from '../../model/PropertyType';
+import { SelectorService } from '../../services/selector.service';
 
 @Component({
   selector: 'dialog-overview-block-dialog',
@@ -22,15 +23,22 @@ export class DialogOverviewBlockDialog implements OnInit {
   propertyTypeList : any;
   blockForm: FormGroup;
   block : Block;
+  option : any;
+  propertyList : any;
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewBlockDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any,private fb: FormBuilder,
     public blockService : BlockService,
+    public selectorService : SelectorService,
     private snackBar : MatSnackBar) {
 
       this.blockForm= this.fb.group({
-        'firmName': [null , Validators.required ],
+        'firmId': [null , Validators.required ],
+        'propertyId': [null , Validators.required ],
+        'propertyTypeId': [null , Validators.required ],
+        //'projectId': [null , Validators.required ],
+        'blockName': [null , Validators.required ],
         //'address' : [null ,Validators.required ]
       });
     }
@@ -49,13 +57,35 @@ export class DialogOverviewBlockDialog implements OnInit {
     });
   }
 
+  setPropertyType(type :any) {
+    console.log("Type:"+type);
+    this.block.propertyType= type;
+  } 
+
   submitForm() {
+
+        var code =  this.block.firmId.split('|')[0];
+        var value1 = this.block.firmId.split('|')[1];
+        this.block.firmId = code;
+        this.block.firmName = value1;
+
+        var code =  this.block.propertyTypeId.split('|')[0];
+        var value1 = this.block.propertyTypeId.split('|')[1];
+        this.block.propertyTypeId = code;
+        this.block.propertyType = value1;
+
+        var code =  this.block.propertyId.split('|')[0];
+        var value1 = this.block.propertyId.split('|')[1];
+        this.block.propertyId = code;
+        this.block.propertyName = value1;
+
+
     if(this.block.id==undefined || this.block.id==null) {
       // create new block
       this.blockService.createBlock(this.block).subscribe(  
         res => {  
           console.log(res);
-          this.openSnackBar('Location Created Successfully','');
+          this.openSnackBar('Block Created Successfully','');
           this.closePopup();
         },  
         error => {  
@@ -67,7 +97,7 @@ export class DialogOverviewBlockDialog implements OnInit {
       this.blockService.updateBlock(this.block).subscribe(  
         res => {  
           console.log(res);
-          this.openSnackBar('Location Updated Successfully','');
+          this.openSnackBar('Block Updated Successfully','');
           this.closePopup();
         },  
         error => {  
@@ -77,12 +107,43 @@ export class DialogOverviewBlockDialog implements OnInit {
     }
   }
 
+  onChange(event,type){
+    console.log(event.value);
+    var value = event;
+    var code =  value.split('|')[0];
+    var value1 = value.split('|')[1];
+    console.log(value1+"  -- >"+code);
+    this.selectorService.getDependentData(type,code).subscribe(
+      res => {
+         this.propertyList=res.result;
+        console.dir(this.propertyList);
+      },
+      error => {
+        console.log('There was an error while retrieving Albums !!!' + error);
+      }
+    );
+  }
+
   ngOnInit() {
+    
+    
     this.firmList = this.data.firmList;
     this.projectList = this.data.projectList;
     this.propertyTypeList = this.data.propertyTypeList;
-    this.block = new Block();
-    this.block = this.data.blockData;  
+    console.log("Property type List:",this.propertyTypeList);
+    console.log("Firm List:",this.firmList);
+    console.log("ProjectList List:",this.projectList);
+    //this.block = new Block();
+    //this.block = this.data.blockData;
+    if(this.data.blockData !=null || this.data.blockData!==undefined)
+    {
+      this.block = new Block();
+      this.block = this.data.blockData;
+    }
+    else{
+      this.block = new Block();
+    }
+
   }
 }
 
@@ -104,6 +165,7 @@ export class MasterBlockComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               public blockService : BlockService,
+              public selectorService : SelectorService,
               public typeService: PropertytypeService,
               public firmService : FirmService,
               public projectService : ProjectService,
@@ -128,6 +190,8 @@ export class MasterBlockComponent implements OnInit {
     });
   }
 
+  
+
   ngOnInit() {
     this.loading = true;
     this.blockData = new Block();
@@ -144,29 +208,40 @@ export class MasterBlockComponent implements OnInit {
         this.loading = false;
       });
       
-      this.firmService.getAllFirms().subscribe(  
-        res => {  
-          this.firmList = res.result;
-        },  
-        error => {  
-          console.log('There was an error while retrieving Albums !!!' + error);  
+      this.selectorService.getData("firm").subscribe(
+        res => {
+        console.log("dsdsds");
+          console.dir(res);
+
+          this.firmList=res.result;
+        },
+        error => {
+          console.log('There was an error while retrieving Albums !!!' + error);
+        }
+      );
+
+      this.selectorService.getData("project").subscribe(
+        res => {
+        console.log("dsdsds");
+          console.dir(res);
+
+          this.projectList=res.result;
+        },
+        error => {
+          console.log('There was an error while retrieving Albums !!!' + error);
+        }
+      )
+
+      this.selectorService.getData("propertyType").subscribe(
+        res => {
+        console.log("dsdsds");
+          console.dir(res);
+
+          this.propertyTypeList=res.result;
+        },
+        error => {
+          console.log('There was an error while retrieving Albums !!!' + error);
         });
-
-        this.projectService.getAllProjects().subscribe(  
-          res => {  
-            this.projectList = res.result;
-          },  
-          error => {  
-            console.log('There was an error while retrieving Albums !!!' + error);  
-          });
-
-          this.typeService.getAllProperties().subscribe(  
-            res => {  
-              this.propertyTypeList = res.result;
-            },  
-            error => {  
-              console.log('There was an error while retrieving Albums !!!' + error);  
-            });
     }
 
     openConfirmDeleteDialog(blockId : any): void {
@@ -187,13 +262,14 @@ export class MasterBlockComponent implements OnInit {
     this.blockService.getBlockById(blockId).subscribe(res => {  
       console.log("Result:"+res);
       this.blockData =  res.result;
+      console.log("block data:",this.blockData);
 
       const dialogRef = this.dialog.open(DialogOverviewBlockDialog, {
         width: '350px',
-        data : {
+        data: {
           'blockData' : this.blockData,
           'firmList': this.firmList,
-          'projectList': this.projectList,
+          'projectList':this.projectList,
           'propertyTypeList': this.propertyTypeList
         }
       });

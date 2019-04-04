@@ -9,6 +9,9 @@ import { CityService } from '../../services/city.service';
 import { LocationService } from '../../services/location.service';
 import { ProjectService } from '../../services/project.service';
 import { DeleteProjectConfirmBoxDialog } from './master-delete-confirm-box.component';
+import { SelectorService } from '../../services/selector.service';
+import { PropertyType } from '../../model/PropertyType';
+import { PropertytypeService } from '../../services/propertytype.service';
 
 @Component({
   selector: 'dialog-overview-project-dialog',
@@ -19,17 +22,20 @@ export class DialogOverviewEProjectDialog implements OnInit{
   firmList : any;
   cityList : any;
   locationList : any;
+  propertyList: any;
+  propertyTypeList : any;
   project : Project;
   projectForm: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewEProjectDialog>,private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private snackBar : MatSnackBar,
-    private locationService : LocationService,
+    private selectorService : SelectorService,
     private projectService : ProjectService) {
 
       this.firmList = data.firmList;
       this.cityList = data.cityList;
+      this.propertyTypeList=data.propertyTypeList;
       //this.locationList = data.locationList;
       console.log("Firm List:",this.firmList);
       console.log("City List:",this.cityList);
@@ -39,7 +45,9 @@ export class DialogOverviewEProjectDialog implements OnInit{
         'projectName': [null ,Validators.required ],
         'cityName' : [null, Validators.required ],
         'location' : [null, Validators.required ],
-        'businessValue' : [null, Validators.required ]
+        'businessValue' : [null, Validators.required ],
+        'propertyId' : [null , Validators.required],
+        'propertyTypeId' : [null , Validators.required]
       });
     }
 
@@ -52,18 +60,38 @@ export class DialogOverviewEProjectDialog implements OnInit{
     this.project.firmId = firm.id; 
   }
 
-  setCity(city : any) : void {
-    console.log("City:",city);
-    this.project.cityId = city.id;
-    this.locationList = [];
-    this.locationService.getAllLocationByCity(city.id).subscribe(
-      res => {  
-        console.log(res);
-        this.locationList = res.result;
-      },  
-      error => {  
-        
-      });
+  onFirmChange(event,type){
+    console.log(event.value);
+    var value = event;
+    var code =  value.split('|')[0];
+    var value1 = value.split('|')[1];
+    console.log(value1+"  -- >"+code);
+    this.selectorService.getDependentData(type,code).subscribe(
+      res => {
+         this.propertyList=res.result;
+        console.log(this.propertyList);
+      },
+      error => {
+        console.log('There was an error while retrieving Albums !!!' + error);
+      }
+    );
+  }
+
+  onChange(event,type){
+    // console.log(event)
+    var value = event;
+    var code =  value.split('|')[0];
+    var value1 = value.split('|')[1];
+    console.log(value1+"  -- >"+code);
+    this.selectorService.getDependentData(type,code).subscribe(
+      res => {
+         this.locationList=res.result;
+        console.dir(this.locationList);
+      },
+      error => {
+        console.log('There was an error while retrieving Albums !!!' + error);
+      }
+    )
   }
 
   setLocation(location : any)  : void {
@@ -91,6 +119,34 @@ export class DialogOverviewEProjectDialog implements OnInit{
   }
 
   submitForm() {
+    
+    var code =  this.project.firmId.split('|')[0];
+    var value1 = this.project.firmId.split('|')[1];
+    this.project.firmId = code;
+    this.project.firmName = value1;
+    
+    console.log()
+    var code =  this.project.cityId.split('|')[0];
+    var value1 = this.project.cityId.split('|')[1];
+    this.project.cityId = code;
+    this.project.cityName = value1;
+
+    var code =  this.project.locationId.split('|')[0];
+    var value1 = this.project.locationId.split('|')[1];
+    this.project.locationId = code;
+    this.project.location = value1;
+
+    var code =  this.project.propertyId.split('|')[0];
+    var value1 = this.project.propertyId.split('|')[1];
+    this.project.propertyId = code;
+    this.project.propertyName = value1;
+
+    var code =  this.project.propertyTypeId.split('|')[0];
+    var value1 = this.project.propertyTypeId.split('|')[1];
+    this.project.propertyTypeId = code;
+    this.project.PropertyType = value1;
+
+
     if(this.project.id==undefined || this.project.id==null) {
       // create new firm
       this.projectService.createProject(this.project).subscribe(  
@@ -131,26 +187,30 @@ export class MasterProjectComponent implements OnInit {
   cityList : City[];
   locationList : Location[];
   projectList : Project[];
+  propertyTypeList : PropertyType[];
   projectDataSource: any;
   loading : boolean =false;
+  projectData : Project;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
   constructor(public dialog: MatDialog,public firmService : FirmService,
     public cityService : CityService,public locationService : LocationService,
-    public projectService : ProjectService) { }
+    public projectService : ProjectService,public propertyTypeService : PropertytypeService) { }
 
   displayedColumns = ['firmName','projectName','PropertyType','cityName','location','address','businessValue','actions']; 
 
-  openDialog(): void {
+  openDialog(projectid): void {
     console.log(this.firmList);
     const dialogRef = this.dialog.open(DialogOverviewEProjectDialog, {
       width: '450px',
       data: {
+       "projectId": projectid,
        "firmList": this.firmList,
        "locationList": this.locationList,
-       "cityList": this.cityList
+       "cityList": this.cityList,
+       "propertyTypeList": this.propertyTypeList
       }
     });
 
@@ -199,6 +259,14 @@ export class MasterProjectComponent implements OnInit {
       },  
       error => {  
         console.log('There was an error while retrieving !!!' + error);  
+    });
+
+    this.propertyTypeService.getAllProperties().subscribe(
+      res => {  
+        this.propertyTypeList = res.result;
+      },  
+      error => {  
+        console.log('There was an error while retrieving !!!' + error);
     });
 
   }

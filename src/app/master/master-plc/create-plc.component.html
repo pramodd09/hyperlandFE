@@ -4,50 +4,65 @@
   <div class="example-container">
     <mat-form-field class="example-full-width">
         <mat-label>Firm Name</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let firm of firmList" [value]="firm.firmName">
-            {{firm.firmName}}
+        <mat-select formControlName="firmName" [(ngModel)]="plc.firmId" (ngModelChange)="onFirmChange($event,'property')">
+          <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
+            {{firm.value}}
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-error>  
+        <span *ngIf="!plcForm.get('firmName').valid && plcForm.get('firmName').touched">Please Select Firm</span>  
+      </mat-error>
 
-    <mat-form-field class="example-full-width">
-        <mat-label>Project Name</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let project of projectList" [value]="project.value">
-            {{project.viewValue}}
+      <mat-form-field class="example-full-width">
+        <mat-label>Property</mat-label>
+        <mat-select formControlName="propertyName" [(ngModel)] = "plc.propertyId">
+          <mat-option *ngFor="let property of propertyList" [value]="property.code+'|'+property.value">
+            {{property.value}}
           </mat-option>
         </mat-select>
     </mat-form-field>
+    <mat-error>  
+      <span *ngIf="!plcForm.get('propertyName').valid && plcForm.get('propertyName').touched">Please select property</span>  
+    </mat-error>
 
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="PLC Name">
+    <mat-form-field  class="example-full-width">
+        <input matInput formControlName="plcName" [(ngModel)]="plc.plcName" placeholder="PLC Name">
     </mat-form-field>
+    <mat-error>  
+      <span *ngIf="!plcForm.get('plcName').valid && plcForm.get('plcName').touched">Please enter plc name</span>  
+    </mat-error>
 
   <mat-form-field class="example-full-width">
-      <input matInput placeholder="PLC Charges">
+      <input matInput formControlName="plcCharge" [(ngModel)] = "plc.plcCharge" placeholder="PLC Charges">
   </mat-form-field>
+  <mat-error>  
+    <span *ngIf="!plcForm.get('plcCharge').valid && plcForm.get('plcCharge').touched">Please enter plc charge</span>  
+  </mat-error>
 
   <mat-form-field class="example-full-width">
       <mat-label>Charging Type</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let chargingType of chargingTypeList" [value]="chargingType.value">
-            {{chargingType.viewValue}}
+        <mat-select formControlName="chargingType" [(ngModel)] = "plc.chargeType">
+          <mat-option *ngFor="let chargingType of chargingTypeList" [value]="chargingType">
+            {{chargingType}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+  </mat-form-field>
+  <mat-error>  
+    <span *ngIf="!plcForm.get('chargingType').valid && plcForm.get('chargingType').touched">Please select charging type</span>  
+  </mat-error>
 
-      <mat-grid-list cols="3" rowHeight="10em">
-          <mat-grid-tile>
-            <button type="button" mat-raised-button color="primary" [disabled]="!plcForm.dirty || !plcForm.valid" (click)="submitForm();">Submit</button>
-          </mat-grid-tile>
-          <mat-grid-tile>  
-            <button mat-raised-button color="warn" type="reset">Clear</button>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
-          </mat-grid-tile>
-      </mat-grid-list>
+  <mat-grid-list cols="3" rowHeight="10em">
+      <mat-grid-tile>
+        <button type="button" mat-raised-button color="primary" [disabled]="!plcForm.dirty || !plcForm.valid" (click)="submitForm();">Submit</button>
+      </mat-grid-tile>
+      <mat-grid-tile>  
+        <button mat-raised-button color="warn" type="reset">Clear</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+      </mat-grid-tile>
+  </mat-grid-list>
 </div>
 </form>
 
