@@ -100,7 +100,16 @@ export class DialogOverviewEProjectDialog implements OnInit{
   }
 
   ngOnInit() {
-    this.project = new Project();
+    if(this.data.projectData!=null || this.data.projectData!==undefined)
+    {
+      this.project = new Project();
+      this.project = this.data.projectData;
+    }
+    else{
+      this.project = new Project();
+    }
+
+    
   }
   
   onFormSubmit(form: NgForm)  
@@ -206,6 +215,7 @@ export class MasterProjectComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogOverviewEProjectDialog, {
       width: '450px',
       data: {
+       "projectData" : this.projectData,
        "projectId": projectid,
        "firmList": this.firmList,
        "locationList": this.locationList,
@@ -216,23 +226,13 @@ export class MasterProjectComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.refresh();
     });
   }
 
   ngOnInit() {
-    this.loading = true;
-    this.projectService.getAllProjects().subscribe(
-      res => {  
-        this.loading = false;
-        this.projectList = res.result;
-        console.log(this.projectList);
-        this.projectDataSource = new MatTableDataSource();  
-        this.projectDataSource.data = res.result;
-      },  
-      error => {  
-        this.loading =false;
-        console.log('There was an error while retrieving !!!' + error);
-    });
+    
+    this.refresh();
 
     this.firmService.getAllFirms().subscribe(
       res => {  
@@ -271,6 +271,48 @@ export class MasterProjectComponent implements OnInit {
 
   }
 
+  editprojectDetails(projectId) {
+
+    this.projectService.getProjectById(projectId).subscribe(res => {  
+      console.log("Result:"+res);
+      this.projectData =  res.result;
+      const dialogRef = this.dialog.open(DialogOverviewEProjectDialog, {
+        width: '350px',
+        data : {
+          "projectData": this.projectData,
+          "firmList": this.firmList,
+          "locationList": this.locationList,
+          "cityList": this.cityList,
+          "propertyTypeList": this.propertyTypeList
+        }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.refresh();
+      });
+
+    },  
+    error => {  
+      console.log('There was an error while retrieving Albums !!!' + error);  
+    });
+  }
+
+  refresh() {
+    this.loading = true;
+    this.projectService.getAllProjects().subscribe(
+      res => {  
+        this.loading = false;
+        this.projectList = res.result;
+        console.log(this.projectList);
+        this.projectDataSource = new MatTableDataSource();  
+        this.projectDataSource.data = res.result;
+      },  
+      error => {  
+        this.loading =false;
+        console.log('There was an error while retrieving !!!' + error);
+    });
+  }
   openConfirmDeleteDialog(projectId : any): void {
     console.log("ProjectId:",projectId);
     const confirmDeleteProjectDialog = this.dialog.open(DeleteProjectConfirmBoxDialog, {

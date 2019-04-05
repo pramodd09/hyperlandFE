@@ -28,6 +28,10 @@ export class MasterCityComponent implements OnInit {
   displayedColumns = ['id', 'city','actions'];
 
   ngOnInit() {
+    this.refresh();
+  }
+
+  refresh() {
     this.loading = true;
     this.cityService.getAllCities().subscribe(
       res => {  
@@ -41,9 +45,7 @@ export class MasterCityComponent implements OnInit {
       error => {  
         console.log('There was an error while retrieving Albums !!!' + error);  
         this.loading = false;
-      }
-    );
-
+      });
   }
 
   openDialog(): void {
@@ -55,6 +57,7 @@ export class MasterCityComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.refresh();
     });
   }
 
@@ -72,6 +75,7 @@ export class MasterCityComponent implements OnInit {
   
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        this.refresh();
       });
 
     },  

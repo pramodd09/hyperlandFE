@@ -126,15 +126,17 @@ export class MasterFirmComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.refresh();
     });
   }
 
   ngOnInit() {
-    this.loading = true;
-    this.firmDataSource = new MatTableDataSource();  
-    //this.firmService.get();
+    this.refresh();
+  }
 
-    console.log("Getting all firms");
+  refresh() {
+    this.firmDataSource = new MatTableDataSource();
+    this.loading = true;
     this.firmService.getAllFirms().subscribe(  
       res => {  
         this.firmList = res.result;
@@ -163,6 +165,7 @@ export class MasterFirmComponent implements OnInit {
   
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        this.refresh();
       });
 
     },  

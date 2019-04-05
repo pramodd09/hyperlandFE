@@ -148,12 +148,11 @@ export class MasterPlcComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.refresh();
     });
   }
 
-
-  ngOnInit() {
-
+  refresh() {
     this.loading = true;
     this.plcService.getAllPLC().subscribe(  
       res => {  
@@ -167,7 +166,10 @@ export class MasterPlcComponent implements OnInit {
         console.log('There was an error while retrieving Albums !!!' + error);  
         this.loading = false;
       });
+  }
 
+  ngOnInit() {
+    this.refresh();
       this.selectorService.getData("firm").subscribe(
         res => {
         console.log("dsdsds");
@@ -192,5 +194,4 @@ export class MasterPlcComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-
 }

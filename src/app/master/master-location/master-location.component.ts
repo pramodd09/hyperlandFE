@@ -165,13 +165,12 @@ export class MasterLocationComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.refresh();
     });
   }
 
-  ngOnInit() {
-
+  refresh() {
     this.locationDataSource = new MatTableDataSource();  
-    //this.firmService.get();
     this.loading = true;
     console.log("Getting all location");
     this.locationService.getAllLocations().subscribe(  
@@ -186,7 +185,11 @@ export class MasterLocationComponent implements OnInit {
         console.log('There was an error while retrieving Albums !!!' + error);  
         this.loading = false;
       });
+  }
 
+  ngOnInit() {
+
+      this.refresh();
       this.cityService.getAllCities().subscribe(  
         res => {  
           this.cityList = res.result;

@@ -114,10 +114,15 @@ export class MasterTypeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.refresh();
     });
   }
 
   ngOnInit() {
+    this.refresh();
+  }
+
+  refresh() {
     this.loading = true;
     this.propertyTypeDataSource = new MatTableDataSource();  
     //this.firmService.get();
@@ -151,6 +156,7 @@ export class MasterTypeComponent implements OnInit {
   
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        this.refresh();
       });
 
     },  

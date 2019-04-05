@@ -187,26 +187,13 @@ export class MasterBlockComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.refresh();
     });
   }
 
-  
-
   ngOnInit() {
-    this.loading = true;
-    this.blockData = new Block();
-    this.blockService.getAllBlocks().subscribe(  
-      res => {  
-        this.loading = false;
-        this.blockList = res.result;
-        console.log(this.blockList);
-        this.blockDataSource = new MatTableDataSource();  
-        this.blockDataSource.data = res.result;
-      },  
-      error => {  
-        console.log('There was an error while retrieving Albums !!!' + error);  
-        this.loading = false;
-      });
+    
+      this.refresh();
       
       this.selectorService.getData("firm").subscribe(
         res => {
@@ -244,6 +231,23 @@ export class MasterBlockComponent implements OnInit {
         });
     }
 
+    refresh() {
+      this.loading = true;
+      this.blockData = new Block();
+      this.blockService.getAllBlocks().subscribe(  
+        res => {  
+          this.loading = false;
+          this.blockList = res.result;
+          console.log(this.blockList);
+          this.blockDataSource = new MatTableDataSource();  
+          this.blockDataSource.data = res.result;
+        },  
+        error => {  
+          console.log('There was an error while retrieving Albums !!!' + error);  
+          this.loading = false;
+        });
+    }
+
     openConfirmDeleteDialog(blockId : any): void {
       console.log("blockId:",blockId);
       const confirmDeleteBlockDialog = this.dialog.open(DeleteBlockConfirmBoxDialog, {
@@ -276,6 +280,7 @@ export class MasterBlockComponent implements OnInit {
   
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        this.refresh();
       });
 
     },  
