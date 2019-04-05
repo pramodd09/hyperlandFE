@@ -382,6 +382,32 @@ export const menus = [
             }
 
         ]
-    }
+    },
+    {        
+        'name': 'Report',
+        'icon': 'widgets',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'Booking Report',
+                'icon': 'widgets',
+                'link': 'report/bookingreport',
+                'open': false,
+            },
+            {
+                'name': 'Customer Report',
+                'icon': 'widgets',
+                'link': 'report/customerreport',
+                'open': false,
+            },
+            {
+                'name': 'Transaction Report',
+                'icon': 'widgets',
+                'link': 'report/transactionreport',
+                'open': false,
+            }
+        ]
+}
 
 ];
