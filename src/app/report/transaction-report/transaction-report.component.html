@@ -1,0 +1,70 @@
+<mat-card>
+  <form (ngSubmit)="onFormSubmit(reportForm.value)" [formGroup]="reportForm">
+      <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+        <div fxFlex="0 1 calc(33.3% - 32px)">
+          <mat-form-field>
+            <mat-label>Firm Name</mat-label>
+            <mat-select panelClass="myselect" formControlName="firmId" (selectionChange)="onChange($event,'project')">
+              <mat-option *ngFor="let firm of firms" [value]="firm.code">
+                {{firm.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="0 1 calc(33.3% - 32px)">
+          <mat-form-field>
+            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+            <mat-label>Project Name</mat-label>
+            <mat-select formControlName="projectId" (selectionChange)="onChange($event,'block')">
+              <mat-option *ngFor="let prop of property" [value]="prop.code">
+                {{prop.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="0 1 calc(33.3% - 32px)">
+          <mat-form-field>
+            <mat-label>Block Name</mat-label>
+            <mat-select formControlName="blockId" (selectionChange)="onChange($event,'plot')">
+              <mat-option *ngFor="let block of blocks" [value]="block.value">
+                {{block.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="0 1 calc(33.3% - 32px)">
+          <mat-form-field>
+            <mat-label>Plot</mat-label>
+            <mat-select formControlName="plotId">
+              <mat-option *ngFor="let plot of plots" [value]="plot.value">
+                {{plot.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="0 1 calc(33.3% - 32px)">
+          <mat-form-field>
+            <input matInput [matDatepicker]="pickerFrom" placeholder="From Date" formControlName="bookingDateFrom">
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxFlex="0 1 calc(33.3% - 32px)">
+          <mat-form-field>
+            <input matInput [matDatepicker]="pickerTo" placeholder="To Date">
+            <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTo></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxFlex="0 1 calc(33.3% - 32px)">
+          <button type="submit" mat-raised-button color="primary">Submit</button>
+        </div>
+
+      </div>
+    </form>
+
+</mat-card>
+
+<mat-card>
+  <app-transaction-table [reportData]="reportData" [columns]="columns"></app-transaction-table>
+</mat-card>
