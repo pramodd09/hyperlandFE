@@ -316,7 +316,13 @@ export const menus = [
                                     'icon': 'widgets',
                                     'link': 'transaction/bookingform',
                                     'open': false
-                                }
+                },
+                {
+                    'name': 'Expenses',
+                    'icon': 'widgets',
+                    'link': 'user/dailyexpense',
+                    'open': false
+                },
                 ]
          },
 

@@ -1,0 +1,62 @@
+<mat-card>
+<button mat-raised-button (click)="openDialog()" color="primary">Add Agent</button>
+</mat-card>
+<mat-card>
+    <div class="example-container mat-elevation-z8">
+        <mat-table #Table [dataSource]="agentDataSource" matSort>
+            <!-- For ID -->
+            <ng-container matColumnDef="id" sticky>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                <mat-cell *matCellDef="let agent"> {{agent.id}} </mat-cell>
+            </ng-container>
+
+            <!-- For agent name -->
+            <ng-container matColumnDef="agentName" sticky>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Agent Name </mat-header-cell>
+                <mat-cell *matCellDef="let agent"> {{agent.agentName}} </mat-cell>
+            </ng-container>
+          <ng-container matColumnDef="stage" sticky>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Level </mat-header-cell>
+            <mat-cell *matCellDef="let agent"> {{agent.stage}} </mat-cell>
+          </ng-container>
+
+            <ng-container matColumnDef="sponsor" sticky>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Sponsor Name </mat-header-cell>
+                <mat-cell *matCellDef="let agent"> {{agent.sponsor}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="panNumber" sticky>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Pan Number </mat-header-cell>
+                <mat-cell *matCellDef="let agent"> {{agent.panNumber}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="phoneNo" sticky>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </mat-header-cell>
+                <mat-cell *matCellDef="let agent"> {{agent.phoneNo}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions" sticky>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+                <mat-cell *matCellDef="let agent">
+                  <button mat-raised-button color="primary"
+                    matTooltip="Edit agent"
+                    (click)="editAgentDetails(agent.id)">
+                    <i class="material-icons">create</i>
+                  </button>
+
+                  <button mat-raised-button color="warn"
+                    matTooltip="Delete agent"
+                    style="margin-left: 10px"
+                    (click)="openConfirmDeleteDialog(agent.id)">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">
+        </mat-paginator>
+    </div>
+    </mat-card>
+
