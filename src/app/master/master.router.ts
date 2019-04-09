@@ -11,6 +11,12 @@ import { MasterPlcComponent } from './master-plc/master-plc.component';
 import { MasterLocationComponent } from './master-location/master-location.component';
 import { MasterAdditionalChargesComponent } from './master-additionalcharges/master-additionalcharges.component';
 import { MasterBankComponent } from './master-bank/master-bank.component';
+import { MasterInvestorComponent } from './master-investor/master-investor.component';
+import { MasterInvestmentComponent } from './master-investment/master-investment.component';
+import { ExpenseCategoryComponent } from './expense-category/expense-category.component';
+import { MasterFarmerComponent } from './master-farmer/master-farmer.component';
+import { MasterLandComponent } from './master-land/master-land.component';
+
 const masterRoutes: Routes = [
     {path: 'masterfirm', component: MasterFirmComponent , data: { animation: 'masterfirm' }},
     {path: 'mastercity', component: MasterCityComponent , data: { animation: 'mastercity' }},
@@ -19,8 +25,14 @@ const masterRoutes: Routes = [
     {path: 'mastertype', component: MasterTypeComponent , data: { animation: 'mastertype' }},
     {path: 'masterplc', component: MasterPlcComponent , data: { animation: 'masterplc' }},
     {path: 'masterlocation', component: MasterLocationComponent , data: { animation: 'masterlocation' }},
-     {path: 'masterbank', component: MasterBankComponent , data: { animation: 'masterbank' }},
-    {path: 'masteradditionalcharges', component: MasterAdditionalChargesComponent , data: { animation: 'masterAdditionalChargesComponent' }}
+    {path: 'masterbank', component: MasterBankComponent , data: { animation: 'masterbank' }},
+    {path: 'masteradditionalcharges', component: MasterAdditionalChargesComponent , data: { animation: 'masterAdditionalChargesComponent' }},
+	{path: 'masterinvestor', component: MasterInvestorComponent , data: { animation: 'masterinvestor' }},
+    {path: 'masterinvestment', component: MasterInvestmentComponent , data: { animation: 'masterinvestment' }},
+    {path: 'expensecategory', component: ExpenseCategoryComponent , data: { animation: 'expensecategory' }},
+    {path: 'farmer', component: MasterFarmerComponent , data: { animation: 'farmer' }},
+    {path: 'land', component: MasterLandComponent , data: { animation: 'land' }}
+    
 ];
 
 @NgModule({

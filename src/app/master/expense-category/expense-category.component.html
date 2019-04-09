@@ -1,0 +1,47 @@
+<mat-card>
+  <button mat-raised-button (click)="openDialog()"color="primary" >Create Expense Category</button>
+  </mat-card>
+  <mat-card>
+      <div class="example-container mat-elevation-z8">  
+          <mat-table #Table [dataSource]="categoryDataSource" matSort>  
+      
+              <!-- For ID -->  
+              <ng-container matColumnDef="id" sticky>  
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>  
+                  <mat-cell *matCellDef="let category"> {{category.id}} </mat-cell>  
+              </ng-container>  
+      
+              <!-- For Firm name -->  
+              <ng-container matColumnDef="categoryName" sticky>  
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>  
+                  <mat-cell *matCellDef="let c"> {{c.expenseCategory}} </mat-cell>  
+              </ng-container>  
+              
+              <ng-container matColumnDef="actions" sticky>  
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
+                  <mat-cell *matCellDef="let category"> 
+                    <button mat-raised-button color="primary"
+                      matTooltip="Edit Category"
+                      (click)="editCategoryDetails(category.id)"
+                    >
+                      <i class="material-icons">create</i>
+                    </button>
+      
+                    <button mat-raised-button color="warn" 
+                      matTooltip="Delete Category"
+                      style="margin-left: 10px"
+                      (click)="openConfirmDeleteDialog(category.id)"
+                      >
+                      <i class="material-icons">delete</i>
+                    </button>
+                  </mat-cell>  
+              </ng-container>
+  
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>  
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>  
+          </mat-table>  
+      
+          <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">  
+          </mat-paginator> 
+      </div>
+      </mat-card>

@@ -1,0 +1,63 @@
+<h4 mat-dialog-title>Associate Payment Details</h4>
+  <div mat-dialog-content>
+      <form class="example-form"[formGroup]="associatePaymentDetailsForm" (ngSubmit)="onFormSubmit(farmerPaymentDetailsForm.value)">
+      <div class="example-container">
+
+
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Amount To Pay" formControlName="amtToPay" [(ngModel)]="assocaitePayment.amtToPay">
+          </mat-form-field>
+          <mat-error>  
+              <span *ngIf="!associatePaymentDetailsForm.get('amtToPay').valid && associatePaymentDetailsForm.get('amtToPay').touched">Please enter city</span>  
+          </mat-error>
+
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Paid Amount " formControlName="paidAmt" [(ngModel)]="assocaitePayment.paidAmt">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+              <input matInput [matDatepicker]="picker" placeholder="Payment Date" formControlName="paymentDate" [(ngModel)]="assocaitePayment.paymentDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+              <mat-label>Payment Mode</mat-label>
+              <mat-select formControlName="mode" [(ngModel)]="assocaitePayment.mode">
+                  <mat-option value="cheque">Cheque</mat-option>
+                  <mat-option value="cash">Cash</mat-option>
+                  <mat-option value="DD">DD</mat-option>
+                  <mat-option value="RTGS/NEFT">RTGS/NEFT</mat-option>
+                </mat-select>
+        </mat-form-field>
+
+
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Cheque No" formControlName="chequeNo" [(ngModel)]="assocaitePayment.chequeNo">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="picker1" placeholder="Cheque Date" formControlName="chequeDate" [(ngModel)]="assocaitePayment.chequeDate">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Bank Details " formControlName="bankDetail" [(ngModel)]="assocaitePayment.bankName">
+      </mat-form-field>
+ 
+
+        <mat-grid-list cols="3" rowHeight="10em">
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="primary" [disabled]="!associatePaymentDetailsForm.dirty || !associatePaymentDetailsForm.valid" (click)="submitForm();">Submit</button>
+            </mat-grid-tile>
+            <mat-grid-tile>  
+              <button mat-raised-button color="warn" type="reset">Clear</button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+        </div>
+      </form>
+  </div>

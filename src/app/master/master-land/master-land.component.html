@@ -1,0 +1,52 @@
+<mat-card>
+  <button mat-raised-button (click)="openDialog()"color="primary">Create Land</button>
+  </mat-card>
+  <mat-card>
+      <div class="example-container mat-elevation-z8">  
+          <mat-table #Table [dataSource]="landDataSource" matSort>  
+        
+              <!-- For Land name -->  
+              <ng-container matColumnDef="khasraNumber" sticky>  
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Khasra Number </mat-header-cell>  
+                  <mat-cell *matCellDef="let l"> {{l.khasraNumber}} </mat-cell>  
+              </ng-container> 
+
+              <ng-container matColumnDef="landAmount" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Land Amount </mat-header-cell>  
+                <mat-cell *matCellDef="let l"> {{l.landAmount}} </mat-cell>  
+              </ng-container> 
+
+
+             <ng-container matColumnDef="farmerName" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> IFSC Number </mat-header-cell>  
+              <mat-cell *matCellDef="let l"> {{l.farmerName}} </mat-cell>  
+            </ng-container>  
+
+              <ng-container matColumnDef="actions" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
+                <mat-cell *matCellDef="let l"> 
+                  <button mat-raised-button color="primary"
+                    matTooltip="Edit Land"
+                    (click)="editLandDetails(l.id)"
+                  >
+                    <i class="material-icons">create</i>
+                  </button>
+    
+                  <button mat-raised-button color="warn" 
+                    matTooltip="Delete Land"
+                    style="margin-left: 10px"
+                    (click)="openConfirmDeleteDialog(l.id)"
+                    >
+                    <i class="material-icons">delete</i>
+                  </button>
+                </mat-cell>  
+            </ng-container>
+  
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>  
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>  
+          </mat-table>  
+      
+          <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">  
+          </mat-paginator> 
+      </div>
+      </mat-card>

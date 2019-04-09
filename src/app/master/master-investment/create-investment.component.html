@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>Investment Master </h1>
+  <div mat-dialog-content>
+  <form class="example-form">
+  <div class="example-container">
+    <mat-form-field>
+        <mat-label>Select Investor</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let investor of investorList" [value]="investor.value">
+            {{investor.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Select Project</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let project of projectList" [value]="project.value">
+            {{project.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Select Product</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let product of productList" [value]="product.value">
+            {{product.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Amount">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Investment Date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-raised-button  color="primary">Save</button>
+</div>
+</form>
+
+  </div>

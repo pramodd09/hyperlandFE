@@ -1,0 +1,86 @@
+<h4 mat-dialog-title> Farmer Payment Details </h4>
+  <div mat-dialog-content>
+      <form class="example-form"[formGroup]="farmerPaymentDetailsForm" (ngSubmit)="onFormSubmit(farmerPaymentDetailsForm.value)">
+      <div class="example-container">
+          <mat-form-field class="example-full-width">
+              <mat-label>Farmer Name</mat-label>
+              <mat-select [(ngModel)]="farmerPayment.farmerId" formControlName="farmerName">
+                <mat-option *ngFor="let farmer of farmerList" [value]="farmer.id+'|'+farmer.farmerName">
+                  {{farmer.farmerName}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+                <mat-label>Village Name</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let village of villageList" [value]="village.villageName">
+                    {{village.villageName}}
+                  </mat-option>
+                </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+                <mat-label>Khasra number</mat-label>
+                <mat-select [(ngModel)]= "farmerPayment.landId" formControlName="landId">
+                  <mat-option *ngFor="let Khasra of landList" [value]="Khasra.khasraNumber">
+                    {{Khasra.khasraNumber}}
+                  </mat-option>
+                </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+              <input matInput [matDatepicker]="picker" placeholder="Date" formControlName="date" [(ngModel)]="farmerPayment.paymentDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="payment amount" formControlName="paymentAmt" [(ngModel)]="farmerPayment.paymentAmount">
+        </mat-form-field>
+        <mat-error>  
+          <span *ngIf="!farmerPaymentDetailsForm.get('paymentAmt').valid && farmerPaymentDetailsForm.get('paymentAmt').touched">Please enter city</span>  
+        </mat-error>
+
+         <mat-form-field class="example-full-width">
+            <mat-label>Payment Mode</mat-label>
+            <mat-select formControlName="paymentMode" [(ngModel)]="farmerPayment.paymentMode">
+                <mat-option value="cheque">Cheque</mat-option>
+                <mat-option value="cash">Cash</mat-option>
+                <mat-option value="DD">DD</mat-option>
+                <mat-option value="RTGS/NEFT">RTGS/NEFT</mat-option>
+              </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Cheque No/DD no./trans Id " formControlName="transId" [(ngModel)]="farmerPayment.transactionId">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Bank Details " formControlName="bankDetail" [(ngModel)]="farmerPayment.bankName">
+      </mat-form-field>
+
+      <!-- <mat-form-field class="example-full-width">
+        <input matInput placeholder="Cheque No " formControlName="chequeNo" [(ngModel)]="farmerPayment.chequeNo" >
+      </mat-form-field> -->
+ 
+      <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="picker1" placeholder="Date" formControlName="chequeDate" [(ngModel)]="farmerPayment.chequeDate">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+        <mat-grid-list cols="3" rowHeight="10em">
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="primary" [disabled]="!farmerPaymentDetailsForm.dirty || !farmerPaymentDetailsForm.valid" (click)="submitForm();">Submit</button>
+            </mat-grid-tile>
+            <mat-grid-tile>  
+              <button mat-raised-button color="warn" type="reset">Clear</button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+        </div>
+      </form>
+  </div>

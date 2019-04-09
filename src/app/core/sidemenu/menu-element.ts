@@ -385,7 +385,37 @@ export const menus = [
                 'icon': 'widgets',
                 'link': 'master/masteradditionalcharges',
                 'open': false,
-            }
+            },
+			 {
+                'name': 'Investor-master',
+                'icon': 'widgets',
+                'link': 'master/masterinvestor',
+                'open': false,
+            },
+            {
+                'name': 'Investment-master',
+                'icon': 'widgets',
+                'link': 'master/masterinvestment',
+                'open': false,
+            },
+            {
+                'name': 'Expense-Category',
+                'icon': 'widgets',
+                'link': 'master/expensecategory',
+                'open': false,
+            },
+            {
+                'name': 'Farmer-master',
+                'icon': 'widgets',
+                'link': 'master/farmer',
+                'open': false,
+            },
+            {
+                'name': 'Land-master',
+                'icon': 'widgets',
+                'link': 'master/land',
+                'open': false,
+            }    
 
         ]
     },
@@ -414,6 +444,28 @@ export const menus = [
                 'open': false,
             }
         ]
-}
+	},
+	 {
+        'name': 'Accounts',
+        'icon': 'widgets',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'farmer-payment-deatils',
+                'icon': 'widgets',
+                'link': 'accounts/farmer-payment-details',
+                'open': false,
+            },
+            {
+                'name': 'associate-payment-details',
+                'icon': 'widgets',
+                'link': 'accounts/associate-payment-details',
+                'open': false,
+            }
+           
+
+        ]
+    }
 
 ];

@@ -1,0 +1,62 @@
+<h4 mat-dialog-title>Farmer Master </h4>
+  <div mat-dialog-content>
+      <form class="example-form"[formGroup]="farmerForm" (ngSubmit)="onFormSubmit(farmerForm.value)">
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+
+            <input matInput placeholder="Farmer Name" formControlName="farmerName" [(ngModel)]="farmer.farmerName">
+        </mat-form-field>
+        <mat-error>  
+          <span *ngIf="!farmerForm.get('farmerName').valid && farmerForm.get('farmerName').touched">Please enter farmer name</span>  
+        </mat-error>
+
+           <mat-form-field class="example-full-width">
+            <input matInput placeholder="AAdhar Number" formControlName="adhaarNo" [(ngModel)]="farmer.adhaarNo">
+        </mat-form-field>
+        <mat-error>  
+            <span *ngIf="!farmerForm.get('adhaarNo').valid && farmerForm.get('adhaarNo').touched">Please enter aadhar number</span>  
+        </mat-error>
+
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Pancard Number" formControlName="panNumber" [(ngModel)]="farmer.panNumber">
+        </mat-form-field>
+        <mat-error>  
+          <span *ngIf="!farmerForm.get('panNumber').valid && farmerForm.get('panNumber').touched">Please enter pancar number</span>  
+        </mat-error>
+
+         <mat-form-field class="example-full-width">
+          <input matInput placeholder="Bank Name" formControlName="bank" [(ngModel)]="farmer.bank">
+      </mat-form-field>
+      <mat-error>  
+        <span *ngIf="!farmerForm.get('bank').valid && farmerForm.get('bank').touched">Please enter bank name</span>  
+      </mat-error>
+
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Branch Name" formControlName="branch" [(ngModel)]="farmer.branch">
+      </mat-form-field>
+      <mat-error>  
+          <span *ngIf="!farmerForm.get('branch').valid && farmerForm.get('branch').touched">Please enter branch name</span>  
+      </mat-error>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="IFSC Number" formControlName="ifscCode" [(ngModel)]="farmer.ifscCode">
+      </mat-form-field>
+      <mat-error>  
+        <span *ngIf="!farmerForm.get('ifscCode').valid && farmerForm.get('ifscCode').touched">Please enter ifsc number</span>  
+      </mat-error>
+
+        <mat-grid-list cols="3" rowHeight="10em">
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="primary" [disabled]="!farmerForm.dirty || !farmerForm.valid" (click)="submitForm();">Submit</button>
+            </mat-grid-tile>
+            <mat-grid-tile>  
+              <button mat-raised-button color="warn" type="reset">Clear</button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+        
+        </div>
+      </form>
+  </div>
