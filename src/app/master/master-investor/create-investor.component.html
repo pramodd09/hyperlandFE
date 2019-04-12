@@ -1,22 +1,41 @@
 <h1 mat-dialog-title>Investor Master </h1>
   <div mat-dialog-content>
-  <form class="example-form">
+      <form class="example-form"[formGroup]="investerForm" (ngSubmit)="onFormSubmit(investerForm.value)">
   <div class="example-container">
  
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Investor Name">
+        <input matInput placeholder="Investor Name" formControlName="investorName" [(ngModel)]="invester.investorName">
     </mat-form-field>
+    <mat-error>  
+        <span *ngIf="!investerForm.get('investorName').valid && investerForm.get('investorName').touched">Please enter invester name</span>  
+    </mat-error>
 
     <mat-form-field class="example-full-width">
-         <input matInput placeholder="Contact">
+         <input matInput placeholder="Contact" formControlName="phoneNumber" [(ngModel)]="invester.phoneNumber">
     </mat-form-field>
+    <mat-error>  
+        <span *ngIf="!investerForm.get('phoneNumber').valid && investerForm.get('phoneNumber').touched">Please enter contact number</span>  
+    </mat-error>
 
     <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Address"></textarea>
+        <textarea matInput placeholder="Address" formControlName="address" [(ngModel)]="invester.address" ></textarea>
     </mat-form-field>
+    <mat-error>  
+        <span *ngIf="!investerForm.get('address').valid && investerForm.get('address').touched">Please enter address</span>  
+    </mat-error>
 
-    <button mat-raised-button  color="primary">Save</button>
+    <mat-grid-list cols="3" rowHeight="10em">
+        <mat-grid-tile>
+          <button type="button" mat-raised-button color="primary" [disabled]="!investerForm.dirty || !investerForm.valid" (click)="submitForm();">Submit</button>
+        </mat-grid-tile>
+        <mat-grid-tile>  
+          <button mat-raised-button color="warn" type="reset">Clear</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
 </form>
 

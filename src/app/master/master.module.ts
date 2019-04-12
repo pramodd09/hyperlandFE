@@ -41,6 +41,7 @@ import { DeleteFarmerConfirmBoxDialog } from './master-farmer/master-delete-conf
 import { MasterLandComponent } from './master-land/master-land.component';
 import { LandDialog } from './master-land/create-land.component';
 import { DeleteLandConfirmBoxDialog } from './master-land/master-delete-confirm-box.component';
+import { DeleteInvestorMasterConfirmBoxDialog } from './master-investor/master-delete-investor-confirm-box.component';
 //8import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 
 
@@ -89,6 +90,7 @@ export function highlightJsFactory(): any {
                       DeleteBlockConfirmBoxDialog,
                       DeleteProjectConfirmBoxDialog,
                       DeleteAdditionalChargesConfirmBoxDialog,
+                      DeleteInvestorMasterConfirmBoxDialog,
                       CityDialog,
                       DeleteCityConfirmBoxDialog,
                       DeletePropertyTypeConfirmBoxDialog,
@@ -101,19 +103,20 @@ export function highlightJsFactory(): any {
                       DialogOverviewAdditionalChargesDialog,
                       DialogOverviewBankDialog,
                       DeleteBankConfirmBoxDialog,
-					  DialogOverviewInvestorDialog,
-					  DialogOverviewInvestmentDialog,
-					  ExpenseCategoryComponent,
-					  ExpenseCategoryDialog,
-					  DeleteCategoryConfirmBoxDialog,
-					  FarmerDialog,
-					  DeleteFarmerConfirmBoxDialog,
-					  LandDialog,
-					  DeleteLandConfirmBoxDialog
+                      DialogOverviewInvestorDialog,
+                      DialogOverviewInvestmentDialog,
+                      ExpenseCategoryComponent,
+                      ExpenseCategoryDialog,
+                      DeleteCategoryConfirmBoxDialog,
+                      FarmerDialog,
+                      DeleteFarmerConfirmBoxDialog,
+                      LandDialog,
+                      DeleteLandConfirmBoxDialog
                     ],
   declarations: [
     DialogOverviewExampleDialog,
     DeleteMasterConfirmBoxDialog,
+    DeleteInvestorMasterConfirmBoxDialog,
     CityDialog,
     DeleteCityConfirmBoxDialog,
     DeleteLocationConfirmBoxDialog,
@@ -141,7 +144,7 @@ export function highlightJsFactory(): any {
     DeleteBankConfirmBoxDialog,
     MasterBankComponent,
     DialogOverviewBankDialog,
-	MasterInvestorComponent,
+	  MasterInvestorComponent,
     MasterInvestmentComponent,
     DialogOverviewInvestorDialog,
     DialogOverviewInvestmentDialog,

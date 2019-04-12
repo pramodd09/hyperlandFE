@@ -317,12 +317,18 @@ export const menus = [
                                     'link': 'transaction/bookingform',
                                     'open': false
                 },
-                {
+                /* {
                     'name': 'Expenses',
                     'icon': 'widgets',
                     'link': 'user/dailyexpense',
                     'open': false
-                },
+                }, */
+                {
+                    'name': 'Verify Transaction',
+                    'icon': 'widgets',
+                    'link': 'transaction/verifytransaction',
+                    'open': false
+                }
                 ]
          },
 

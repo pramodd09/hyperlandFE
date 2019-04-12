@@ -20,7 +20,6 @@ export const appRoutes: Routes = [{
         { path: 'forms', loadChildren: '../forms/forms.module#FormModule' }, //fix this
         { path: 'guarded-routes', loadChildren: '../guarded-routes/guarded-routes.module#GuardedRoutesModule' },
         // { path: 'editor', loadChildren: '../editor/editor.module#EditorModule' }, 
-        
         { path: 'scrumboard', loadChildren: '../scrumboard/scrumboard.module#ScrumboardModule' },
     ]
 }];

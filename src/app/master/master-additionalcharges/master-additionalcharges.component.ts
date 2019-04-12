@@ -65,7 +65,7 @@ export class DialogOverviewAdditionalChargesDialog  implements OnInit {
         duration: 2000,
       });
     }
-  onChange(event,type){
+    onChange(event,type){
     // console.log(event)
     var value = event;
     var code =  value.split('|')[0];
@@ -169,9 +169,7 @@ export class MasterAdditionalChargesComponent implements OnInit {
   ngOnInit() {
        this.selectorService.getData("firm").subscribe(
         res => {
-        console.log("dsdsds");
           console.dir(res);
-
           this.firmList=res.result;
         },
         error => {
