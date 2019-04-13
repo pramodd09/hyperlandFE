@@ -3,48 +3,48 @@
   </mat-card>
   <mat-card>
     <div class="example-container mat-elevation-z8">  
-        <mat-table #Table [dataSource]="firmDataSource" matSort>  
+        <mat-table #Table [dataSource]="investmentmDataSource" matSort>  
     
             <!-- For ID -->  
     
             <!-- For Firm name -->  
-            <ng-container matColumnDef="investorName" sticky>  
+            <ng-container matColumnDef="firmName" sticky>  
                 <mat-header-cell *matHeaderCellDef mat-sort-header> FIRM NAME </mat-header-cell>  
-              <!--   <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>   --> 
+                <mat-cell *matCellDef="let investment"> {{investment.firmName}} </mat-cell>
             </ng-container>  
             
-            <ng-container matColumnDef="projectName" sticky>  
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </mat-header-cell>  
-            <!--   <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>  -->
+            <ng-container matColumnDef="propertyName" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Property Name </mat-header-cell>  
+              <mat-cell *matCellDef="let investment"> {{investment.propertyName}} </mat-cell>
             </ng-container>  
 
-             <ng-container matColumnDef="productName" sticky>  
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </mat-header-cell>  
-            <!--  <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell> -->
+             <ng-container matColumnDef="investorName" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Investor Name </mat-header-cell>  
+              <mat-cell *matCellDef="let investment"> {{investment.investorName}} </mat-cell>
             </ng-container>  
 
             <ng-container matColumnDef="amount" sticky>  
               <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>  
-              <!--  <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>   -->
+              <mat-cell *matCellDef="let investment"> {{investment.amount}} </mat-cell>
              </ng-container> 
 
-             <ng-container matColumnDef="investmentDate" sticky>  
+             <!-- <ng-container matColumnDef="investmentDate" sticky>  
               <mat-header-cell *matHeaderCellDef mat-sort-header> Investment Date </mat-header-cell>  
-              <!--  <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>   -->
-             </ng-container> 
-             
-
+              <mat-cell *matCellDef="let investment"> {{investment.investmentDate}} </mat-cell>
+             </ng-container>  -->
+            
             <ng-container matColumnDef="actions" sticky>  
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
-                 <mat-cell *matCellDef="let firm">  
+                 <mat-cell *matCellDef="let investment">  
                   <button mat-raised-button color="primary"
-                    matTooltip="Edit Firm"
-                    (click)="editFirmDetails(firm.id)">
+                    matTooltip="Edit Investment"
+                    (click)="editInvestmentDetail(investment.id)">
                     <i class="material-icons">create</i>
                   </button>
     
                   <button mat-raised-button color="warn" 
-                    matTooltip="Delete Firm"
+                    matTooltip="Delete Investment"
+                    (click) ="openConfirmDeleteDialog(investment.id)"
                     style="margin-left: 10px">
                     <i class="material-icons">delete</i>
                   </button>

@@ -3,7 +3,7 @@
       <form class="example-form" [formGroup]="investmentForm" (ngSubmit)="onFormSubmit(investmentForm.value)">
   <div class="example-container">
     
-    <mat-form-field>
+    <mat-form-field class="example-full-width">
         <mat-label>Investor Name</mat-label>
         <mat-select formControlName="investorId" [(ngModel)] = "investment.investorId">
           <mat-option *ngFor="let investor of investorList" [value]="investor.code+'|'+investor.value">
@@ -12,7 +12,7 @@
         </mat-select>
     </mat-form-field>
     
-    <mat-form-field>
+    <mat-form-field class="example-full-width">
         <mat-label>Firm Name</mat-label>
         <mat-select formControlName="firmId" (ngModelChange)="onChange($event,'property')" [(ngModel)] = "investment.firmId">
           <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
@@ -21,7 +21,7 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="example-full-width"> 
         <mat-label>Property Name</mat-label>
         <mat-select formControlName="propertyId" [(ngModel)]="investment.propertyId">
           <mat-option *ngFor="let prop of propertyList" [value]="prop.code+'|'+prop.value">
@@ -34,7 +34,7 @@
         <input matInput formControlName="amount" placeholder="Amount" [(ngModel)]="investment.amount">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="example-full-width">
       <input matInput formControlName="investmentDate" [matDatepicker]="picker" placeholder="Investment Date" [(ngModel)]="investment.investmentDate" >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -42,7 +42,7 @@
 
     <mat-grid-list cols="3" rowHeight="10em">
         <mat-grid-tile>
-          <button type="button" mat-raised-button color="primary"
+          <button mat-raised-button type="button" mat-raised-button color="primary"
                   [disabled]="!investmentForm.dirty || !investmentForm.valid" (click)="submitForm();">
             Submit
           </button>
@@ -51,7 +51,7 @@
           <button mat-raised-button color="warn" type="reset">Clear</button>
         </mat-grid-tile>
         <mat-grid-tile>
-          <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+          <button mat-raised-button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
         </mat-grid-tile>
     </mat-grid-list>
 </div>
