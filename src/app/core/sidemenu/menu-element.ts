@@ -300,7 +300,7 @@ export const menus = [
         ]
     }, */
       {
-            'name': 'user',
+            'name': 'User',
             'icon': 'widgets',
             'open': false,
             'link': false,
@@ -333,31 +333,31 @@ export const menus = [
          },
 
     {
-        'name': 'master',
+        'name': 'Master',
         'icon': 'widgets',
         'open': false,
         'link': false,
         'sub': [
             {
-                'name': 'firm-master',
+                'name': 'Firm-master',
                 'icon': 'widgets',
                 'link': 'master/masterfirm',
                 'open': false,
             },
             {
-                'name': 'city-master',
+                'name': 'City-master',
                 'icon': 'widgets',
                 'link': 'master/mastercity',
                 'open': false,
             },
             {
-                'name': 'project-master',
+                'name': 'Project-master',
                 'icon': 'widgets',
                 'link': 'master/masterproject',
                 'open': false,
             },
             {
-                'name': 'block-master',
+                'name': 'Block-master',
                 'icon': 'widgets',
                 'link': 'master/masterblock',
                 'open': false,
@@ -375,13 +375,13 @@ export const menus = [
                 'open': false,
             },
             {
-                'name': 'Location',
+                'name': 'Location-master',
                 'icon': 'widgets',
                 'link': 'master/masterlocation',
                 'open': false,
             } ,
             {
-                'name': 'Bank',
+                'name': 'Bank-master',
                 'icon': 'widgets',
                 'link': 'master/masterbank',
                 'open': false,
