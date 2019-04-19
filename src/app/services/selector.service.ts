@@ -23,4 +23,9 @@ export class SelectorService {
     var  baseURL = 'search/booking';
     return this.http.post(baseURL,form);
   }
+
+  getReportDataByType(form,type):Observable<any>{
+    var  baseURL = 'search/'+type;
+    return this.http.post(baseURL,form);
+  }
 }

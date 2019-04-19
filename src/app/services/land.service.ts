@@ -16,7 +16,8 @@ export class LandService {
   }
 
   createLand(landRequest : Land) : Observable<any>{
-    var baseURL = 'master/add/land';
+    var baseURL = 'master/addLand'
+    ;
     return this.http.post(baseURL,landRequest);
   }
 
@@ -26,7 +27,7 @@ export class LandService {
   } 
 
   getLandById(landId : any) : Observable<any>{
-    var  baseURL = 'master/get/land/'+landId; 
+    var  baseURL = 'master/getLand/'+landId;
     return this.http.get(baseURL);
   }
 

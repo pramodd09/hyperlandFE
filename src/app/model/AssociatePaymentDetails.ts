@@ -1,11 +1,15 @@
 export class AssociatePaymentDetails {
     id : string;
-    amtToPay : number;
-    paidAmt: string;
+    dueAmount : number;
+    paymentAmount:number;
+    paidAmount: number;
     paymentDate : Date;
-    mode : string;
-    chequeNo: string;
-    chequeDate : Date;
-    BankDetail : string;
+    paymentMode : string;
+    transactionId: string;
+    transactionDate : Date;
+    bankName : string;
+    totalAmount:number;
+     agentId:string;
+    agentName:string;
 
 }

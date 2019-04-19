@@ -1,19 +1,36 @@
 <h4 mat-dialog-title>Associate Payment Details</h4>
   <div mat-dialog-content>
-      <form class="example-form"[formGroup]="associatePaymentDetailsForm" (ngSubmit)="onFormSubmit(farmerPaymentDetailsForm.value)">
+      <form class="example-form"[formGroup]="associatePaymentDetailsForm" (ngSubmit)="onFormSubmit(associatePaymentDetailsForm.value)">
       <div class="example-container">
 
+        <mat-form-field class="example-full-width">
+          <input #agentInput (keyup)="0" matInput placeholder="Agent" aria-label="Agent" [matAutocomplete]="auto" [formControl]="agentCtrl" formControlName="agentId" [(ngModel)]="assocaitePayment.agentId">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option (onSelectionChange)="agentInput.value !=undefined && onEnter($event)" *ngFor="let agent of filteredAgent | async" [value]="agent.id+'|'+agent.agentName">
+              <span>{{ agent.agentName }}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
 
-          <mat-form-field class="example-full-width">
-              <input matInput placeholder="Amount To Pay" formControlName="amtToPay" [(ngModel)]="assocaitePayment.amtToPay">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Total Amount" formControlName="totalAmount" [(ngModel)]="assocaitePayment.totalAmount">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Paid Amount " formControlName="paidAmt" [(ngModel)]="assocaitePayment.paidAmount">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Due Amount " formControlName="dueAmount" [(ngModel)]="assocaitePayment.dueAmount">
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width">
+              <input matInput placeholder="Payment" formControlName="paymentAmount" [(ngModel)]="assocaitePayment.paymentAmount">
           </mat-form-field>
           <mat-error>  
-              <span *ngIf="!associatePaymentDetailsForm.get('amtToPay').valid && associatePaymentDetailsForm.get('amtToPay').touched">Please enter city</span>  
+              <span *ngIf="!associatePaymentDetailsForm.get('paymentAmount').valid && associatePaymentDetailsForm.get('paymentAmount').touched">Please enter Amount</span>
           </mat-error>
-
-          <mat-form-field class="example-full-width">
-              <input matInput placeholder="Paid Amount " formControlName="paidAmt" [(ngModel)]="assocaitePayment.paidAmt">
-          </mat-form-field>
 
           <mat-form-field class="example-full-width">
               <input matInput [matDatepicker]="picker" placeholder="Payment Date" formControlName="paymentDate" [(ngModel)]="assocaitePayment.paymentDate">
@@ -23,33 +40,38 @@
 
           <mat-form-field class="example-full-width">
               <mat-label>Payment Mode</mat-label>
-              <mat-select formControlName="mode" [(ngModel)]="assocaitePayment.mode">
-                  <mat-option value="cheque">Cheque</mat-option>
-                  <mat-option value="cash">Cash</mat-option>
+              <mat-select formControlName="mode" [(ngModel)]="assocaitePayment.paymentMode">
+                  <mat-option value="Cheque">Cheque</mat-option>
+                  <mat-option value="Cash">Cash</mat-option>
                   <mat-option value="DD">DD</mat-option>
-                  <mat-option value="RTGS/NEFT">RTGS/NEFT</mat-option>
+                  <mat-option value="NEFT">RTGS/NEFT</mat-option>
                 </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width"  *ngIf = "assocaitePayment.paymentMode == 'Cheque' || assocaitePayment.paymentMode == 'DD' || assocaitePayment.paymentMode == 'NEFT'">
+          <mat-label>Bank Name</mat-label>
+          <mat-select formControlName="bankName" [(ngModel)]="assocaitePayment.bankName">
+            <mat-option *ngFor="let bank of bankList" [value]="bank.code+''+bank.value">
+              {{bank.value}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
 
-      <mat-form-field class="example-full-width">
-          <input matInput placeholder="Cheque No" formControlName="chequeNo" [(ngModel)]="assocaitePayment.chequeNo">
+        <mat-form-field class="example-full-width"  *ngIf = "assocaitePayment.paymentMode == 'Cheque' || assocaitePayment.paymentMode == 'DD' || assocaitePayment.paymentMode == 'NEFT'">
+          <input matInput placeholder="Cheque No/Transaction Id/DD No" formControlName="transactionId" [(ngModel)]="assocaitePayment.transactionId">
       </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-          <input matInput [matDatepicker]="picker1" placeholder="Cheque Date" formControlName="chequeDate" [(ngModel)]="assocaitePayment.chequeDate">
+      <mat-form-field class="example-full-width"  *ngIf = "assocaitePayment.paymentMode == 'Cheque' || assocaitePayment.paymentMode == 'DD' || assocaitePayment.paymentMode == 'NEFT'">
+          <input matInput [matDatepicker]="picker1" placeholder="Cheque Date/Transaction Date/DD Date" formControlName="transactionDate" [(ngModel)]="assocaitePayment.transactionDate">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-          <input matInput placeholder="Bank Details " formControlName="bankDetail" [(ngModel)]="assocaitePayment.bankName">
-      </mat-form-field>
- 
+
 
         <mat-grid-list cols="3" rowHeight="10em">
             <mat-grid-tile>
-              <button type="button" mat-raised-button color="primary" [disabled]="!associatePaymentDetailsForm.dirty || !associatePaymentDetailsForm.valid" (click)="submitForm();">Submit</button>
+              <button type="submit" mat-raised-button color="primary" [disabled]="!associatePaymentDetailsForm.dirty || !associatePaymentDetailsForm.valid">Submit</button>
             </mat-grid-tile>
             <mat-grid-tile>  
               <button mat-raised-button color="warn" type="reset">Clear</button>

@@ -7,7 +7,7 @@ import { AgmCoreModule } from '@agm/core';
 import * as hljs from 'highlight.js';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import * as hljsTypescript from 'highlight.js/lib/languages/typescript';
-import { MatButtonModule, MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatNativeDateModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatNativeDateModule,  MatAutocompleteModule, } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AccountsRouterModule } from './accounts.router';
 import { FarmerPaymentDetailsComponent } from './farmer-payment-details/farmer-payment-details.component';
@@ -15,6 +15,7 @@ import { FarmerPaymentDetailsDialog } from './farmer-payment-details/create-farm
 import { AssociatePaymentDetailsComponent } from './associate-payment-details/associate-payment-details.component';
 import { AssociatePaymentDetailsDialog } from './associate-payment-details/create-associate-payment.component';
 
+import { FarmerPaymentTableComponent } from './farmer-payment-details/farmer-payment-table/farmer-payment-table.component';
 
 
 
@@ -45,6 +46,7 @@ export function highlightJsFactory(): any {
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+  MatAutocompleteModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAXTJwhYqJ6Pc7VXGRMTv40N1WRLqzuSNs'
     }),
@@ -62,8 +64,9 @@ export function highlightJsFactory(): any {
     FarmerPaymentDetailsComponent,
     FarmerPaymentDetailsDialog,
     AssociatePaymentDetailsComponent,
-    AssociatePaymentDetailsDialog
-   // LeafletMapComponent
+    AssociatePaymentDetailsDialog,
+    FarmerPaymentTableComponent
+
 ],
 
   exports: [

@@ -9,7 +9,6 @@
           </mat-panel-title>
           <mat-icon>account_circle</mat-icon>
         </mat-expansion-panel-header>
-
         <mat-grid-list cols="2" rowHeight="4em">
           <mat-grid-tile>
             <mat-form-field>
@@ -17,6 +16,23 @@
                      [(ngModel)]="booking.customerDetails.customerName">
             </mat-form-field>
           </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field>
+              <mat-label>Relation</mat-label>
+              <mat-select formControlName="relationType" [(ngModel)] = "booking.relationType">
+                <mat-option value="Spouse">
+                  Spouse
+                </mat-option>
+                <mat-option value="Father">
+                  Father
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder = "Name" formControlName="relativeName" [(ngModel)]="booking.relativeName">
+            </mat-form-field>
+          </mat-grid-tile>
+
           <mat-grid-tile>
             <mat-form-field>
               <input matInput placeholder="Address" formControlName="address"
@@ -72,16 +88,9 @@
 
           <mat-grid-tile>
             <mat-form-field>
-              <input matInput [matDatepicker]="dateOfBirth" placeholder="Date of Birth">
+              <input matInput [matDatepicker]="dateOfBirth" placeholder="Date of Birth"  [(ngModel)]="booking.customerDetails.dateOfBirth">
               <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
               <mat-datepicker #dateOfBirth></mat-datepicker>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input matInput [matDatepicker]="dateOfJoining" placeholder="Date of Joining">
-              <mat-datepicker-toggle matSuffix [for]="dateOfJoining"></mat-datepicker-toggle>
-              <mat-datepicker #dateOfJoining></mat-datepicker>
             </mat-form-field>
           </mat-grid-tile>
 
@@ -107,29 +116,58 @@
         </button>
         <div *ngFor="let coApplicant of coApplicantDetailsForm.controls; let i=index;">
           <div class="panel-heading">
-            <span>CoApplicant {{i + 1}}</span>
+            <span color="primary">CoApplicant {{i + 1}}</span>
           </div>
           <div class="panel-body" [formGroupName]="i">
           <mat-grid-list cols="2" rowHeight="4em">
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput placeholder="Customer Name" formControlName="customerName" [(ngModel)]="customerName">
-              </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <mat-form-field>
-                <input matInput placeholder="Date of Birth" formControlName="dateOfBirth">
+                <input matInput placeholder="CoApplicant Name" formControlName="customerName" [(ngModel)]="i.customerName">
               </mat-form-field>
             </mat-grid-tile>
 
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput placeholder="Pan Number" formControlName="panNumber">
+                <mat-label>Relation</mat-label>
+                <mat-select formControlName="relationType" [(ngModel)] = "i.relationType">
+                  <mat-option value="Son">
+                    Son
+                  </mat-option>
+                  <mat-option value="Daughter">
+                    Daughter
+                  </mat-option>
+                  <mat-option value="Spouse">
+                    Spouse
+                  </mat-option>
+                  <mat-option value="Father">
+                    Father
+                  </mat-option>
+                  <mat-option value="Mother">
+                    Mother
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder = "Name" formControlName="relativeName" [(ngModel)]="i.relativeName">
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput [matDatepicker]="dateOfBirth" placeholder="Date of Birth"  [(ngModel)]="i.dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+                <mat-datepicker #dateOfBirth></mat-datepicker>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput placeholder="Pan Number" formControlName="panNumber" [(ngModel)]="i.panNumber">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput placeholder="Adhaar Number" formControlName="adhaarNo" >
+                <input matInput placeholder="Adhaar Number" formControlName="adhaarNo" [(ngModel)]="i.adhaarNo">
               </mat-form-field>
             </mat-grid-tile>
           </mat-grid-list>
@@ -150,10 +188,8 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-grid-list cols="2" rowHeight="4em">
-
-
           <mat-grid-tile>
-            <mat-radio-group  [(ngModel)]="booking.bookingType"  #radioGroup="matRadioGroup">
+            <mat-radio-group placeholder ="Payment Plan" [(ngModel)]="booking.bookingType"  #radioGroup="matRadioGroup" formControlName = "bookingType">
               <mat-radio-button value="Traditional" radioGroup="matRadioGroup">Traditional</mat-radio-button>
               <mat-radio-button value="MLM" radioGroup="matRadioGroup">MLM</mat-radio-button>
             </mat-radio-group>
@@ -177,49 +213,17 @@
             <mat-form-field>
               <mat-label>Payment Plan</mat-label>
               <mat-select formControlName="paymentType" [(ngModel)] = "booking.paymentType">
-                <mat-option [value]="Installment">
+                <mat-option value="Installment">
                   Installment
                 </mat-option>
-                <mat-option [value]="DownPayment">
+                <mat-option value="DownPayment">
                   Down Payment
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </mat-grid-tile>
 
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Number of Installment</mat-label>
-              <mat-select formControlName="numberOfInstallment" [(ngModel)] = "booking.numberOfInstallment">
-                <mat-option [value]="12">
-                  12
-                </mat-option>
-                <mat-option [value]="24">
-                  24
-                </mat-option>
-                <mat-option [value]="36">
-                  36
-                </mat-option>
-                <mat-option [value]="48">
-                  48
-                </mat-option>
-
-              </mat-select>
-            </mat-form-field>
-          </mat-grid-tile>
-
-          <mat-grid-tile>
-            <mat-form-field>
-              <input matInput [matDatepicker]="installmentStartDate" placeholder="Installment start Date">
-              <mat-datepicker-toggle matSuffix [for]="installmentStartDate"></mat-datepicker-toggle>
-              <mat-datepicker #installmentStartDate></mat-datepicker>
-            </mat-form-field>
-          </mat-grid-tile>
-
-
-
-
-          <mat-grid-tile>
+        <mat-grid-tile>
             <mat-form-field>
               <mat-label>Firm Name</mat-label>
               <mat-select formControlName="firmId" (ngModelChange)="onChange($event,'property')" [(ngModel)] = "booking.firmId">
@@ -282,17 +286,29 @@
           </mat-grid-tile>
 
           <mat-grid-tile>
-              <mat-radio-group  [(ngModel)]="booking.plcChargesType"   #radioGroup="matRadioGroup">
+              <mat-radio-group  [(ngModel)]="booking.plcChargesType"   #radioGroup="matRadioGroup" formControlName = "plcChargesType">
                 <mat-radio-button value="Percent" radioGroup="matRadioGroup">Percent</mat-radio-button>
                 <mat-radio-button value="Fixed" radioGroup="matRadioGroup">Fixed</mat-radio-button>
               </mat-radio-group>
           </mat-grid-tile>
 
-
           <mat-grid-tile>
             <mat-form-field>
               <input matInput placeholder="Base Selling Price" formControlName="baseSellingPrice" [(ngModel)]="booking.baseSellingPrice">
             </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile *ngIf = "booking.bookingType == 'Traditional'">
+            <mat-form-field>
+              <input matInput placeholder="Discount" formControlName="discount" [(ngModel)]="booking.discount" (blur)="updateDiscount()">
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile *ngIf = "booking.bookingType == 'Traditional'">
+            <mat-radio-group  [(ngModel)]="booking.discountType"     #radioGroup="matRadioGroup" formControlName = "discountType">
+              <mat-radio-button value="Percent" radioGroup="matRadioGroup" (change)="applyDiscount($event)">Percent</mat-radio-button>
+              <mat-radio-button value="Fixed" radioGroup="matRadioGroup" (change)="applyDiscount($event)">Fixed</mat-radio-button>
+            </mat-radio-group>
           </mat-grid-tile>
 
           <mat-grid-tile>
@@ -301,12 +317,13 @@
             </mat-form-field>
           </mat-grid-tile>
 
-          <mat-grid-tile>
 
-              <mat-form-field class="example-full-width">
+          <!--  <mat-grid-tile>
+
+               <mat-form-field class="example-full-width">
                 <input matInput placeholder="Choose Associate" [matAutocomplete]="auto" formControlName='agentName'>
               </mat-form-field>
-            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
               <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
               <ng-container *ngIf="!isLoading">
                 <mat-option *ngFor="let user of filteredUsers" [value]="user">
@@ -315,59 +332,95 @@
                 </mat-option>
               </ng-container>
             </mat-autocomplete>
-          </mat-grid-tile>
-          <mat-grid-tile>
+          </mat-grid-tile>-->
+          <mat-grid-tile >
             <mat-form-field>
               <input type = number matInput placeholder="Booking Amount" formControlName="bookingAmount" [(ngModel)]="booking.bookingAmount" (blur)="calculateInstallment()">
             </mat-form-field>
           </mat-grid-tile>
 
-          <mat-grid-tile>
+          <mat-grid-tile *ngIf = "booking.paymentType == 'Installment'">
+            <mat-form-field >
+              <mat-label>Number of Installment</mat-label>
+              <mat-select formControlName="numberOfInstallment" (ngModelChange)="reCalculateInstallment($event)" [(ngModel)] = "booking.numberOfInstallment">
+                <mat-option value="12">
+                  12
+                </mat-option>
+                <mat-option value="24">
+                  24
+                </mat-option>
+                <mat-option value="36">
+                  36
+                </mat-option>
+                <mat-option value="48">
+                  48
+                </mat-option>
+
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile *ngIf = "booking.paymentType == 'Installment'">
+            <mat-form-field>
+              <input matInput [matDatepicker]="installmentStartDate" placeholder="Installment start Date">
+              <mat-datepicker-toggle matSuffix [for]="installmentStartDate"></mat-datepicker-toggle>
+              <mat-datepicker #installmentStartDate></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+
+
+          <mat-grid-tile *ngIf = "booking.paymentType == 'Installment'">
             <mat-form-field>
               <input matInput placeholder="Installment Amount" formControlName="installmentAmount" [(ngModel)]="booking.installmentAmount">
             </mat-form-field>
           </mat-grid-tile>
+
           <mat-grid-tile>
-            <mat-grid-tile>
-              <mat-form-field>
-                <input  matInput placeholder="Bank" formControlName="bank" [(ngModel)]="booking.bank">
-              </mat-form-field>
-            </mat-grid-tile>
             <mat-form-field>
               <mat-label>Payment Mode</mat-label>
               <mat-select formControlName="paymentMode" [(ngModel)] = "booking.paymentMode">
-                <mat-option [value]="Cheque">
+                <mat-option value ="Cash">
+                  Cash
+                </mat-option>
+                <mat-option value ="DD">
+                  DD
+                </mat-option>
+                <mat-option value ="Cheque">
                   Cheque
                 </mat-option>
-                <mat-option [value]="NEFT">
+                <mat-option value ="NEFT">
                   NEFT/RTGS
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </mat-grid-tile>
-          <mat-grid-tile>
+          <mat-grid-tile *ngIf = "booking.paymentMode == 'Cheque' || booking.paymentMode == 'DD' || booking.paymentMode == 'NEFT'">
             <mat-form-field>
-              <input matInput placeholder="Cheque Number" formControlName="chequeNumber" [(ngModel)]="booking.chequeNumber">
+              <input  matInput placeholder="Bank" formControlName="bank" [(ngModel)]="booking.bank">
             </mat-form-field>
           </mat-grid-tile>
-          <mat-grid-tile [hidden]>
+          <mat-grid-tile *ngIf = "booking.paymentMode == 'Cheque' || booking.paymentMode == 'DD'">
+            <mat-form-field>
+              <input matInput placeholder="Cheque/DD Number" formControlName="chequeNumber" [(ngModel)]="booking.chequeNumber">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile *ngIf = "booking.paymentMode == 'Cheque' || booking.paymentMode == 'DD'">
             <mat-form-field >
-              <input  matInput placeholder="Cheque Date" formControlName="chequeDate" [(ngModel)]="booking.chequeDate">
+              <input  matInput placeholder="Cheque/DD Date" formControlName="chequeDate" [(ngModel)]="booking.chequeDate">
             </mat-form-field>
           </mat-grid-tile>
-          <mat-grid-tile>
+          <mat-grid-tile *ngIf = "booking.paymentMode == 'NEFT'">
             <mat-form-field>
               <input  matInput placeholder="TransactionId" formControlName="transactionId" [(ngModel)]="booking.transactionId">
             </mat-form-field>
           </mat-grid-tile>
-          <mat-grid-tile>
+          <mat-grid-tile *ngIf = "booking.paymentMode == 'NEFT'">
+
+
             <mat-form-field>
-              <input  matInput placeholder="Transaction Date" formControlName="transactionDate" [(ngModel)]="booking.transactionDate">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input  matInput placeholder="Cheque Date" formControlName="chequeDate" [(ngModel)]="booking.chequeDate">
+              <input matInput  formControlName="transactionDate" [matDatepicker]="transactionDate"  placeholder="Transaction Date" [(ngModel)] = "booking.transactionDate">
+              <mat-datepicker-toggle matSuffix [for]="transactionDate"></mat-datepicker-toggle>
+              <mat-datepicker #bookingDate></mat-datepicker>
             </mat-form-field>
           </mat-grid-tile>
 

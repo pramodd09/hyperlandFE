@@ -1,0 +1,40 @@
+
+<div class="example-container " #TABLE>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <table mat-table [dataSource]="reportDataSource" matSort #table class="mat-elevation-z8" id="toPDF">
+      <ng-container matColumnDef="khasraNumber" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Khasra Number</th>
+        <td mat-cell *matCellDef="let element" (click)="cellClicked(element)">{{element.khasraNumber}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="landValue" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Land Amount</th>
+      <td mat-cell *matCellDef="let element">{{element.landValue}} </td>
+    </ng-container>
+
+
+      <ng-container matColumnDef="paidAmount" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Paid Amount</th>
+        <td mat-cell *matCellDef="let element">{{element.paidAmount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="remainingAmount" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Due Amount</th>
+        <td mat-cell *matCellDef="let element">{{element.remainingAmount}} </td>
+      </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+        <button mat-raised-button color="primary" (click)="exportAsExcel()">Export as Excel</button>
+        <button mat-raised-button color="primary" (click)="generatePDF()">Generate PDF</button>
+</div>

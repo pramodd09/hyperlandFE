@@ -13,17 +13,37 @@
           <input matInput placeholder="Land Amount" formControlName="landAmount" [(ngModel)]="land.landAmount">
       </mat-form-field>
       <mat-error>  
-          <span *ngIf="!landForm.get('landAmount').valid && landForm.get('landAmount').touched">Please enter lan amount</span>  
+          <span *ngIf="!landForm.get('landAmount').valid && landForm.get('landAmount').touched">Please enter loan amount</span>
       </mat-error>
+       <div formArrayName="farmers">
+          <button style="margin-top:5px; margin-bottom:5px;" type="button" mat-raised-button color="primary"
+                  (click)="addNewFarmer()">
+            Add New Farmer
+          </button>
+          <div *ngFor="let farmer of farmerForm.controls; let i=index;">
+            <div class="panel-heading">
+              <span color="primary">Farmer {{i + 1}}</span>
+            </div>
+            <div class="panel-body" [formGroupName]="i">
+              <mat-grid-list cols="2" rowHeight="4em">
+                <mat-grid-tile>
+                  <mat-form-field>
+                    <input matInput placeholder="Farmer Name" formControlName="farmerName" [(ngModel)]="i.farmerName">
+                  </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field>
+                    <input matInput placeholder="PAN Number" formControlName="panNumber" [(ngModel)]="i.panNumber">
+                  </mat-form-field>
+                </mat-grid-tile>
 
-        <mat-form-field>
-          <mat-label>Select Asociacted Farmer</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let farmer of farmerList" [value]="farmer.farmerName">
-              {{farmer.farmerName}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+
+
+        </mat-grid-list>
+            </div>
+          </div>
+        </div>
+
 
         <mat-grid-list cols="3" rowHeight="10em">
             <mat-grid-tile>

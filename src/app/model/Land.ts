@@ -1,6 +1,9 @@
+import { Farmer } from "../model/Farmer";
 export class Land {
     id : string;
     khasraNumber : string;
-    landAmount: number;
+    landValue: number;
     farmerName : string;
+    farmers : Farmer[];
+    paidAmount : number;
 }

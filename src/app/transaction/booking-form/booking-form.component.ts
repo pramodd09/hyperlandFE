@@ -26,6 +26,7 @@ propertyList: any[];
 blockList: any[];
 plotNumberList:any[];
 isLoading = false;
+totalFixedAmount = 0;
 
 setStep(index: number) {
           this.step = index;
@@ -79,10 +80,10 @@ setStep(index: number) {
         transactionDate : [null],
         chequeDate :[null],
         installmentAmount : [null],
-
-         customerDetails : this.initCustomerDetails(),
-
-         coApplicantDetails : this.fb.array([])
+        discount : [null],
+        discountType : [null],
+        customerDetails : this.initCustomerDetails(),
+        coApplicantDetails : this.fb.array([])
       });
         this.selectorService.getData("firm").subscribe(
         res => {
@@ -111,7 +112,7 @@ setStep(index: number) {
 addNewCoApplicant(){
 
     const coApplicantDetails = this.bookingForm.get('coApplicantDetails') as FormArray;
-console.dir(coApplicantDetails);
+    console.dir(coApplicantDetails);
     coApplicantDetails.push(this.fb.group({
         'customerName':[null],
         'panNumber':[null],
@@ -149,11 +150,10 @@ initCustomerDetails(){
         'pinCode':[null],
         'emailId':[null],
         'phoneNo':[null],
-        'dateOfBooking':[null],
         'dateOfBirth':[null],
         'occupation':[null],
-         'relationType':[null],
-         'relativeName':[null],
+        'relationType':[null],
+        'relativeName':[null],
    });
   }
 
@@ -170,7 +170,26 @@ initCustomerDetails(){
          this.booking.sqftRate = parseFloat(res.result.sqftRate);
          this.booking.plotSize = parseFloat(res.result.plotSize);
          this.booking.baseSellingPrice = this.booking.sqftRate * this.booking.plotSize ;
+
     //     this.booking.plcChargesType  = 'Fixed';
+      if(this.booking.plcCharges)
+      {
+        if(this.booking.plcChargesType == 'Fixed')
+        {
+             this.booking.totalAmount = this.booking.baseSellingPrice + this.booking.plcCharges ;
+
+        }
+        else{
+             this.booking.totalAmount = this.booking.baseSellingPrice + (this.booking.baseSellingPrice * this.booking.plcCharges ) / 100;
+        }
+      }
+      else
+      {
+         this.booking.totalAmount = this.booking.baseSellingPrice  ;
+         this.booking.plcCharges = 0;
+         this.booking.plcChargesType  = 'Fixed';
+      }
+      this.totalFixedAmount =  this.booking.totalAmount;
       },
       error => {
         console.log('There was an error while retrieving data !!!' + error);
@@ -215,25 +234,60 @@ initCustomerDetails(){
         bookingDetails.blockId = code;
         bookingDetails.blockName = value1;
         }
-
-    /*   this.transactionService.createBooking(bookingDetails).subscribe(
+      console.log(bookingDetails);
+       this.transactionService.createBooking(bookingDetails).subscribe(
           res => {
             console.log(res);
-            this.openSnackBar('Booking Created Successfully','');
-            this.closePopup();
-            // this.refresh();
-
           },
           error => {
             console.log('There was an error while retrieving Albums !!!' + error);
-            this.openSnackBar('Error while creating additionalCharges, Please contact your adminstrator','');
-          });*/
+           // this.openSnackBar('Error while creating additionalCharges, Please contact your adminstrator','');
+          });
       }
 
-calculateInstallment(){
+reCalculateInstallment(event){
+
+     var value;
+     console.log('reCalculateInstallment -- '+value)
+    if(event)
+       value = parseInt(event);
+    this.calculateInstallment(value);
+
+}
+calculateInstallment(numberOfInstallment){
+    if(numberOfInstallment == undefined)
+        numberOfInstallment = this.booking.numberOfInstallment;
    console.log(this.booking.totalAmount);
-console.log(this.booking.bookingAmount);
-    this.booking.installmentAmount = parseFloat(((this.booking.totalAmount - this.booking.bookingAmount)/this.booking.numberOfInstallment).toFixed(2));
-console.log(  this.booking.installmentAmount);
+   console.log(this.booking.bookingAmount +" --- "+this.booking.numberOfInstallment);
+   if(numberOfInstallment)
+      this.booking.installmentAmount = (Math.ceil((this.booking.totalAmount - this.booking.bookingAmount)/numberOfInstallment));
+   console.log(  this.booking.installmentAmount);
+ }
+
+
+updateDiscount()
+{
+    if(this.booking.discountType)
+    {
+         if(this.booking.discountType == 'Fixed')
+        {
+          this.booking.totalAmount = this.totalFixedAmount - this.booking.discount;
+        }
+        else{
+          this.booking.totalAmount = this.totalFixedAmount - (this.booking.totalAmount * this.booking.discount /100);
+        }
+    }
+}
+applyDiscount(event)
+{
+  console.log(event.value);
+
+   if(event.value == 'Fixed')
+   {
+      this.booking.totalAmount = this.totalFixedAmount - this.booking.discount;
+    }
+  else{
+      this.booking.totalAmount =  this.totalFixedAmount - (this.totalFixedAmount * this.booking.discount /100);
+    }
  }
 }

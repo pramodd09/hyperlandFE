@@ -15,7 +15,7 @@ export class AssociatePaymentDetailsService {
   }
 
   createAssociatePaymentDetails(associatePaymentRequest : AssociatePaymentDetails) : Observable<any>{
-    var baseURL = 'master/add/agentPayment';
+    var baseURL = 'transaction/add/agentPayment';
     return this.http.post(baseURL,associatePaymentRequest);
   }
 

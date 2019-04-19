@@ -16,7 +16,7 @@ export class FarmerPaymentDetailsService {
   }
 
   createFarmerPaymentDetails(farmerPaymentRequest : FarmerPaymentDetails) : Observable<any>{
-    var baseURL = 'master/add/farmerPayment';
+    var baseURL = 'transaction/add/farmerPayment';
     return this.http.post(baseURL,farmerPaymentRequest);
   }
 

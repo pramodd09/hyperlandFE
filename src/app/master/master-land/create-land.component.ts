@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from "@angular/material";
-import { FormBuilder, Validators, FormGroup, NgForm } from "@angular/forms";
+import { FormBuilder,FormArray, Validators, FormGroup, NgForm } from "@angular/forms";
 import { Land } from "../../model/Land";
 import { LandService } from "../../services/land.service";
 import { Farmer } from "../../model/Farmer";
@@ -9,7 +9,7 @@ import { FarmerService } from './../../services/farmer.service';
 @Component({
     selector: 'land-dialog',
     templateUrl: './create-land.component.html',
-    styleUrls: [ './create-land.component.scss']
+    styleUrls: ['./create-land.component.scss']
   })
   export class LandDialog  implements OnInit {
   
@@ -21,21 +21,22 @@ import { FarmerService } from './../../services/farmer.service';
       private snackBar : MatSnackBar,
       private farmerService : FarmerService) {
   
-        this.landForm= this.fb.group({
-          'khasraNumber': [null , Validators.required ],
-          'landAmount' : [null ,Validators.required ]
-        });
+
       }
+
       
       landForm: FormGroup;
       farmerList : Farmer[];
-  
       land : Land;
-  
       ngOnInit() {
-
+        this.land = new Land();
+        this.landForm= this.fb.group({
+          'khasraNumber': [null , Validators.required ],
+          'landAmount' : [null ,Validators.required ],
+          farmers : this.fb.array([])
+        });
         this.farmerService.getAllFarmers().subscribe(
-          res => {  
+          res => {
             this.farmerList = res.result;
           },  
           error => {  
@@ -74,11 +75,26 @@ import { FarmerService } from './../../services/farmer.service';
           duration: 2000,
         });
       }
-  
+get farmerForm() {
+   return this.landForm.get('farmers') as FormArray
+}
+  addNewFarmer(){
+
+    const farmer = this.landForm.get('farmers') as FormArray;
+    console.dir(farmer);
+    farmer.push(this.fb.group({
+        'farmerName':[null],
+        'panNumber':[null],
+        'adhaarNo':[null]
+
+  }));
+
+ }
       submitForm() {
-        if(this.land.id==undefined || this.land.id==null) {
+        var landDetails = this.landForm.value;
+        if(landDetails.id==undefined || landDetails.id==null) {
           // create new city
-          this.landService.createLand(this.land).subscribe(  
+          this.landService.createLand(landDetails).subscribe(
             res => {  
               console.log(res);
               this.openSnackBar('land Created Successfully','');

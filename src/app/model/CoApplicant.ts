@@ -1,6 +1,6 @@
 export class CoApplicant {
-  customerName    : "string";
-dateOfBirth     : "string";
+customerName    : "string";
+dateOfBirth     : "any";
 panNumber      : "string";
 adhaarNo       : "string";
 relationType   :"string";

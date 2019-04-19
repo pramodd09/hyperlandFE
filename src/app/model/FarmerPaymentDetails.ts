@@ -6,10 +6,13 @@ export class FarmerPaymentDetails {
     villageName : string;
     dueAmt: string;
     paymentAmount: string;
-    paymentDate : string;
+    paymentDate : any;
     paymentMode: string;
     transactionId : string;
-    bankDetail : string;
-    chequeDate: string;
-    chequeNo : string;
+    transactionDate : any;
+    bankName : string;
+    landAmount:number;
+    paidAmount:number;
+    farmerPaidAmount : number;
+
 }

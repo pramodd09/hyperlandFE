@@ -25,7 +25,7 @@ export class MasterLandComponent implements OnInit {
 
   landDataSource: any;
 
-  displayedColumns = ['khasraNumber','landAmount','farmerName','actions'];
+  displayedColumns = ['khasraNumber','landValue','farmerName','actions'];
 
 
   ngOnInit() {
@@ -46,7 +46,6 @@ export class MasterLandComponent implements OnInit {
 
   }
 
-
   openDialog(): void {
     this.landData = new Land();
     const dialogRef = this.dialog.open(LandDialog, {
@@ -59,9 +58,9 @@ export class MasterLandComponent implements OnInit {
     });
   }
 
-  editCityDetails(farmerId : any) {
+  editLandDetails(farmerId : any) {
 
-    console.log('City Id:'+farmerId);
+    console.log('farmerId :'+farmerId);
 
     this.landService.getLandById(farmerId).subscribe(res => {  
       console.log("Result:"+res);
@@ -72,7 +71,7 @@ export class MasterLandComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+      console.log('The dialog was closed');
       });
 
     },  
