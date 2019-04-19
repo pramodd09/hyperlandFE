@@ -6,7 +6,7 @@ import { MasterAgentComponent } from './user-agent/user-agent.component';
 import { MasterDailyExpenseComponent } from './dailyexpense/dailyexpense.component';
 const userRoutes: Routes = [
     {path: 'useragent', component: MasterAgentComponent , data: { animation: 'userAgentComponent' }},
-    {path: 'dailyexpense', component: MasterDailyExpenseComponent , data: { animation: 'dailyExpenseComponent' }}
+    {path: 'daily-expenses', component: MasterDailyExpenseComponent , data: { animation: 'dailyExpenseComponent' }}
 ];
 
 @NgModule({

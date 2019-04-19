@@ -311,6 +311,12 @@ export const menus = [
                     'link': 'user/useragent',
                     'open': false
                 },
+                {
+                    'name': 'Daily Expenses',
+                    'icon': 'widgets',
+                    'link': 'user/daily-expenses',
+                    'open': false
+                },
                  {
                                     'name': 'Booking',
                                     'icon': 'widgets',

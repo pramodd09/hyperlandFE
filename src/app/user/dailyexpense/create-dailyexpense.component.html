@@ -1,53 +1,93 @@
-<mat-accordion class="mat-drawer-containe">
+<h1 mat-dialog-title>Project Master </h1>
+  <div mat-dialog-content>
+  <form class="example-form"[formGroup]="dailyExpenseForm" (ngSubmit)="onFormSubmit(dailyExpenseForm.value)">
+  <div class="example-container">
+    <mat-form-field class="example-full-width">
+      <mat-label>Firm Name</mat-label>
+      <mat-select formControlName="firmId" [(ngModel)] = "dailyExpense.firmId">
+        <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
+          {{firm.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+      <mat-label>Category Name</mat-label>
+      <mat-select formControlName="expenseCategory" [(ngModel)] = "dailyExpense.expenseCategory">
+        <mat-option *ngFor="let category of categoryList" [value]="category.value">
+          {{category.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <form (ngSubmit)="onFormSubmit(dailyExpenseForm.value)" [formGroup]="dailyExpenseForm">
-        <mat-form-field>
-          <mat-label>Firm Name</mat-label>
-          <mat-select formControlName="firmId" [(ngModel)] = "dailyExpense.firmId">
-            <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
-              {{firm.value}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        
-        <mat-form-field>
-          <mat-label>Category Name</mat-label>
-          <mat-select formControlName="categoryId" [(ngModel)] = "dailyExpense.categoryId">
-            <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
-              {{firm.value}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        
-        <mat-form-field>
-          <input matInput [matDatepicker]="dateFrom" formControlName="dateFrom" placeholder="From" >
-          <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
-          <mat-datepicker #dateFrom></mat-datepicker>
-        </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Expense Name" formControlName="expenseName" [(ngModel)]="dailyExpense.expenseName">
+    </mat-form-field>
 
-        <mat-form-field>
-          <input matInput [matDatepicker]="dateFrom" formControlName="dateTo"  placeholder="To" >
-          <mat-datepicker-toggle matSuffix [for]="dateTo"></mat-datepicker-toggle>
-          <mat-datepicker #dateTo></mat-datepicker>
-        </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Amount" formControlName="amount" [(ngModel)]="dailyExpense.amount">
+    </mat-form-field>
 
-        <mat-form-field>
-          <input matInput placeholder="Expense" formControlName="expense" [(ngModel)]="dailyExpense.expense">
-        </mat-form-field>
-  
-        <mat-grid-list cols="3" rowHeight="10em">
-          <mat-grid-tile>
-            <button type="button" mat-raised-button color="primary"
-                    [disabled]="!dailyExpenseForm.dirty || !dailyExpenseForm.valid" (click)="submitForm();">
-              Submit
-            </button>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <button mat-raised-button color="warn" type="reset">Clear</button>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
-          </mat-grid-tile>
-        </mat-grid-list>
-    </form>
-</mat-accordion>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Paid To" formControlName="paidTo" [(ngModel)]="dailyExpense.paidTo">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Payment Mode</mat-label>
+      <mat-select formControlName="paymentMode" [(ngModel)]="dailyExpense.paymentMode">
+        <mat-option value="Cheque">Cheque</mat-option>
+        <mat-option value="Cash">Cash</mat-option>
+        <mat-option value="DD">DD</mat-option>
+        <mat-option value="NEFT">RTGS/NEFT</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Bank Name</mat-label>
+      <mat-select formControlName="bankName" [(ngModel)] = "dailyExpense.bankName">
+        <mat-option *ngFor="let bank of bankList" [value]="bank.value">
+          {{bank.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Cheque No" formControlName="chequeNo" [(ngModel)]="dailyExpense.chequeNo">
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker" placeholder="Cheque Date" formControlName="chequeDate" [(ngModel)]="dailyExpense.chequeDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="expenseDate" formControlName="expenseDate"  placeholder="Expense Date" [(ngModel)]="dailyExpense.expenseDate">
+      <mat-datepicker-toggle matSuffix [for]="expenseDate"></mat-datepicker-toggle>
+      <mat-datepicker #expenseDate></mat-datepicker>
+    </mat-form-field>
+
+    
+ <mat-form-field class="example-full-width">
+  <textarea matInput placeholder="Narration" [(ngModel)]="dailyExpense.narration" formControlName="narration"></textarea>
+</mat-form-field>
+
+    <mat-grid-list cols="3" rowHeight="10em">
+      <mat-grid-tile>
+        <button type="button" mat-raised-button color="primary"
+                [disabled]="!dailyExpenseForm.dirty || !dailyExpenseForm.valid" (click)="submitForm();">
+          Submit
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button color="warn" type="reset">Clear</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+</div>
+</form>
+</div>
+
