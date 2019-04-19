@@ -2,8 +2,7 @@
     <div class="example-container mat-elevation-z8">
         <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>  
         <mat-table #Table [dataSource]="expenseCategoryDataSource" matSort>  
-    
-            <ng-container matColumnDef="select">
+              <ng-container matColumnDef="select">
                 <th mat-header-cell *matHeaderCellDef>
                   <mat-checkbox (change)="$event ? masterToggle() : null"
                                 [checked]="selection.hasValue() && isAllSelected()"
@@ -39,14 +38,14 @@
                   <button mat-raised-button color="primary"
                     matTooltip="Accept Expense Category"
                     (click)="editFirmDetails(expenseCategory.id)">
-                    <i class="material-icons">create</i>
+                    <i class="material-icons">done</i>
                   </button>
     
                   <button mat-raised-button color="warn" 
                     matTooltip="Reject Expense Category"
                     style="margin-left: 10px"
                     (click)="openConfirmDeleteDialog(expenseCategory.id)">
-                    <i class="material-icons">delete</i>
+                    <i class="material-icons">close</i>
                   </button>
                 </mat-cell>  
             </ng-container>

@@ -114,7 +114,7 @@ export class MasterFirmComponent implements OnInit {
 
   firmData : Firm; 
 
-  displayedColumns = ['id', 'expenseCategory','actions']; 
+  displayedColumns = ['id', 'firmName','actions']; 
 
   openDialog(): void {
     this.firmData = new Firm();
