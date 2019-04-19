@@ -1,6 +1,6 @@
 export class Investor {
     id : string;
     investorName : string;
-    conatct : string;
+    phoneNumber : string;
     address : string;
 }

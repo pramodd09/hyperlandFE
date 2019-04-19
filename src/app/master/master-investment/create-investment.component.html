@@ -1,45 +1,59 @@
 <h1 mat-dialog-title>Investment Master </h1>
   <div mat-dialog-content>
-  <form class="example-form">
+      <form class="example-form" [formGroup]="investmentForm" (ngSubmit)="onFormSubmit(investmentForm.value)">
   <div class="example-container">
-    <mat-form-field>
-        <mat-label>Select Investor</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let investor of investorList" [value]="investor.value">
-            {{investor.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-    <mat-form-field>
-        <mat-label>Select Project</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let project of projectList" [value]="project.value">
-            {{project.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Select Product</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let product of productList" [value]="product.value">
-            {{product.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
+    
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Amount">
+        <mat-label>Investor Name</mat-label>
+        <mat-select formControlName="investorId" [(ngModel)] = "investment.investorId">
+          <mat-option *ngFor="let investor of investorList" [value]="investor.code+'|'+investor.value">
+            {{investor.value}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+        <mat-label>Firm Name</mat-label>
+        <mat-select formControlName="firmId" (ngModelChange)="onChange($event,'property')" [(ngModel)] = "investment.firmId">
+          <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
+            {{firm.value}}
+          </mat-option>
+        </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Investment Date">
+    <mat-form-field class="example-full-width"> 
+        <mat-label>Property Name</mat-label>
+        <mat-select formControlName="propertyId" [(ngModel)]="investment.propertyId">
+          <mat-option *ngFor="let prop of propertyList" [value]="prop.code+'|'+prop.value">
+            {{prop.value}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput formControlName="amount" placeholder="Amount" [(ngModel)]="investment.amount">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="investmentDate" [matDatepicker]="picker" placeholder="Investment Date" [(ngModel)]="investment.investmentDate" >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <button mat-raised-button  color="primary">Save</button>
+    <mat-grid-list cols="3" rowHeight="10em">
+        <mat-grid-tile>
+          <button mat-raised-button type="button" mat-raised-button color="primary"
+                  [disabled]="!investmentForm.dirty || !investmentForm.valid" (click)="submitForm();">
+            Submit
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-raised-button color="warn" type="reset">Clear</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-raised-button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
 </form>
 

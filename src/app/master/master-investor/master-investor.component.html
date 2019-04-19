@@ -2,38 +2,36 @@
   <button mat-raised-button (click)="openDialog()" color="primary">Create Investor</button>
   </mat-card>
   <mat-card>
-    <div class="example-container mat-elevation-z8">  
-        <mat-table #Table [dataSource]="investorDataSource" matSort>  
-    
-            <!-- For ID -->  
-    
-            <!-- For Firm name -->  
+    <div class="example-container mat-elevation-z8"> 
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+        <mat-table #Table [dataSource]="investorDataSource" matSort> 
             <ng-container matColumnDef="investorName" sticky>  
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Investor NAME </mat-header-cell>  
-              <!--   <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>   --> 
+                <mat-cell *matCellDef="let investor"> {{investor.investorName}} </mat-cell>  
             </ng-container>  
             
             <ng-container matColumnDef="conatct" sticky>  
               <mat-header-cell *matHeaderCellDef mat-sort-header> Contact </mat-header-cell>  
-            <!--   <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>  -->
+              <mat-cell *matCellDef="let investor"> {{investor.phoneNumber}} </mat-cell> 
             </ng-container>  
 
              <ng-container matColumnDef="address" sticky>  
               <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>  
-            <!--  <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell> -->
+             <mat-cell *matCellDef="let investor"> {{investor.address}} </mat-cell>
             </ng-container>  
 
             <ng-container matColumnDef="actions" sticky>  
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
-                 <mat-cell *matCellDef="let firm">  
+                 <mat-cell *matCellDef="let investor">  
                   <button mat-raised-button color="primary"
-                    matTooltip="Edit Firm"
-                    (click)="editFirmDetails(firm.id)">
+                    matTooltip="Edit Investor"
+                    (click)="editFirmDetails(investor.id)">
                     <i class="material-icons">create</i>
                   </button>
     
                   <button mat-raised-button color="warn" 
-                    matTooltip="Delete Firm"
+                    matTooltip="Delete Investor"
+                    (click)="openConfirmDeleteDialog(investor.id)"
                     style="margin-left: 10px">
                     <i class="material-icons">delete</i>
                   </button>

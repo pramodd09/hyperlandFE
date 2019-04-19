@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '../model/Location';
+import { Investment } from '../model/Investment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,12 @@ export class InvestmentService {
     return this.http.get(baseURL);
   }
 
-  createInvestment(investmentRequest : Location) : Observable<any>{
+  createInvestment(investmentRequest : Investment) : Observable<any>{
     var baseURL = 'master/add/investment';
     return this.http.post(baseURL,investmentRequest);
   }
 
-  updateInvestment(investmentRequest: Location) : Observable<any> {
+  updateInvestment(investmentRequest: Investment) : Observable<any> {
     var  baseURL = 'master/update/investment/'+ investmentRequest.id; 
     return this.http.post(baseURL,investmentRequest);
   } 
