@@ -1,0 +1,71 @@
+<mat-card>
+    <button tpye = "button" mat-raised-button (click)="openDialog()" color="primary" >Installment</button>
+      <div mat-dialog-content>
+    <form (ngSubmit)="onFormSubmit(reportForm.value)" [formGroup]="reportForm">
+      <div class="example-container">
+          <mat-grid-list cols="2" rowHeight="4em">
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Firm Name</mat-label>
+            <mat-select formControlName="firmId" (ngModelChange)="onChange($event,'property')" [(ngModel)] = "reportForm.firmId">
+              <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
+                {{firm.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Project Name</mat-label>
+            <mat-select formControlName="projectId" (ngModelChange)="onChange($event,'block')" [(ngModel)]="reportForm.projectId" >
+              <mat-option *ngFor="let prop of propertyList" [value]="prop.code+'|'+prop.value">
+                {{prop.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Block Name</mat-label>
+            <mat-select formControlName="blockId" (ngModelChange)="onChange($event,'availablePlot')" [(ngModel)]="reportForm.blockId">
+              <mat-option *ngFor="let block of blockList" [value]="block.code+'|'+block.value">
+                {{block.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Plot Number</mat-label>
+            <mat-select formControlName="plotNumber"  (ngModelChange)="onChange($event,'plotdetails')" [(ngModel)]="reportForm.plotNumber">
+              <mat-option *ngFor="let plotNo of plotNumberList" [value]="plotNo.code+'|'+plotNo.value">
+                {{plotNo.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+          </mat-grid-list>
+        <mat-grid-list cols="6" rowHeight="3em">
+            <mat-grid-tile aria-colspan="3">               
+              </mat-grid-tile>
+          <mat-grid-tile>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!reportForm.dirty || !reportForm.valid">Search</button>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <button mat-raised-button color="warn" type="reset">Reset</button>
+          </mat-grid-tile>
+         
+            
+        </mat-grid-list>
+      </div>
+
+    </form>
+
+  </div>
+</mat-card>
+<mat-card>
+ <app-customer-installment-table [reportData]="reportData" [columns]="columns"></app-customer-installment-table>
+</mat-card>

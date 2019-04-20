@@ -15,7 +15,8 @@ import { BookingFormComponent } from './booking-form/booking-form.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { ViewtransactionComponent } from './viewtransaction/viewtransaction.component';
+import { ExpensecategoryComponent } from './expensecategory/expensecategory.component';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 
@@ -72,9 +73,7 @@ export function highlightJsFactory(): any {
   declarations: [
 
                           BookingFormComponent,
-
                           ViewtransactionComponent,
-
                           ExpensecategoryComponent
 ],
 

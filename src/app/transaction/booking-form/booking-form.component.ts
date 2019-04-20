@@ -7,6 +7,11 @@ import {Payment}from '../../model/Booking';
 import {FormControl,FormGroup, FormArray,FormBuilder, Validators, NgForm}from '@angular/forms';
 import { SelectorService } from '../../services/selector.service';
 import { MasterService } from '../../services/master.service';
+import { AgentService } from '../../services/agent.service';
+import { Agent } from '../../model/Agent';
+import {Observable} from 'rxjs/Observable';
+import {startWith} from 'rxjs/operators/startWith';
+import {map} from 'rxjs/operators/map';
 @Component({
 selector: 'app-booking-form',
 templateUrl: './booking-form.component.html',
@@ -27,7 +32,9 @@ blockList: any[];
 plotNumberList:any[];
 isLoading = false;
 totalFixedAmount = 0;
-
+agentCtrl :FormControl;
+filteredAgent: Observable<any[]>;
+agents:Agent[];
 setStep(index: number) {
           this.step = index;
         }
@@ -42,9 +49,11 @@ setStep(index: number) {
   constructor(  private fb: FormBuilder,public transactionService : TransactionService,
                   private changeDetectorRefs: ChangeDetectorRef,
                   private selectorService: SelectorService,
-                  private masterService: MasterService) {
+                  private masterService: MasterService,
+                  private agentService : AgentService
+                  ) {
 
-
+      this.agentCtrl = new FormControl();
     }
 
   ngOnInit() {
@@ -96,6 +105,20 @@ setStep(index: number) {
           console.log('There was an error while retrieving Albums !!!' + error);
         }
   )
+        this.agentService.getAllAgent().subscribe(
+        res => {
+          console.log(res);
+          this.agents = res.result;
+        this.filteredAgent = this.agentCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        map(agent => agent ? this.filterAgent(agent) : this.agents.slice())
+      );
+
+        },
+        error => {
+          console.log('There was an error while retrieving report data' + error);
+        });
      /* this.bookingForm.get('agentName')
             .valueChanges
             .pipe(
@@ -159,7 +182,9 @@ initCustomerDetails(){
 
  onChange(event,type){
     // console.log(event)
+
     var value = event;
+  if(value){
     var code =  value.split('|')[0];
     var value1 = value.split('|')[1];
 
@@ -202,7 +227,7 @@ initCustomerDetails(){
           this.blockList = res.result;
         else if (type == 'property')
            this.propertyList=res.result;
-        else if(type == 'plot')
+        else if(type == 'availablePlot')
           this.plotNumberList = res.result;
         console.dir(this.propertyList);
       },
@@ -210,6 +235,7 @@ initCustomerDetails(){
         console.log('There was an error while retrieving Albums !!!' + error);
       }
     )
+   }
    }
   }
 
@@ -234,7 +260,19 @@ initCustomerDetails(){
         bookingDetails.blockId = code;
         bookingDetails.blockName = value1;
         }
-      console.log(bookingDetails);
+      if(bookingDetails.agentId){
+         var code =  bookingDetails.agentId.split('|')[0];
+        var value1 = bookingDetails.agentId.split('|')[1];
+        bookingDetails.agentId = code;
+        bookingDetails.agentName = value1;
+       }
+      if(bookingDetails.plotNumber){
+         var code =  bookingDetails.plotNumber.split('|')[0];
+        var value1 = bookingDetails.plotNumber.split('|')[1];
+        bookingDetails.plotId = code;
+        bookingDetails.plotNumber = value1;
+       }
+       console.log(bookingDetails);
        this.transactionService.createBooking(bookingDetails).subscribe(
           res => {
             console.log(res);
@@ -290,4 +328,26 @@ applyDiscount(event)
       this.booking.totalAmount =  this.totalFixedAmount - (this.totalFixedAmount * this.booking.discount /100);
     }
  }
+ filterAgent(agent1: string) {
+        return this.agents.filter(agent =>
+          agent.agentName.toLowerCase().indexOf(agent1.toLowerCase()) === 0);
+      }
+
+ onEnter(evt){
+         console.dir(evt) ;
+         var value = evt.source.value;
+         if(value){
+
+         //this.booking.agent = value.split("|")[1];
+
+        }
+      }
+ displayFn(agent: string) {
+   if(agent)
+   {
+     return agent ? agent.split("|")[1] : undefined;
+    }
+  }
 }
+
+

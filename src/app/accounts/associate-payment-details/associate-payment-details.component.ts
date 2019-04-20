@@ -9,6 +9,7 @@ import { FormBuilder, FormControl,Validators, FormGroup, NgForm } from "@angular
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
+import { columnList } from '../report-column-list';
 @Component({
   selector: 'app-associate-payment-details',
   templateUrl: './associate-payment-details.component.html',
@@ -26,6 +27,7 @@ export class AssociatePaymentDetailsComponent implements OnInit {
     });
 
    }
+  columns=columnList["agentPayment"];
   agentCtrl :FormControl;
    filteredAgent: Observable<any[]>;
    agents:Agent[];
