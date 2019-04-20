@@ -15,7 +15,5 @@ export class CustomerInstallmentDetails {
    customerId:string;
    paymentMode:string;
    paymentDate:any;
-
-
   }
   
