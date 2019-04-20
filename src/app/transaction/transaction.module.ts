@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { ViewtransactionComponent } from './viewtransaction/viewtransaction.component';
 import { TransactionRouterModule } from './transaction.router';
 import { AgmCoreModule } from '@agm/core';
 import {MatRadioModule} from '@angular/material/radio';
@@ -15,10 +15,11 @@ import { BookingFormComponent } from './booking-form/booking-form.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { ViewtransactionComponent } from './viewtransaction/viewtransaction.component';
 import { ExpensecategoryComponent } from './expensecategory/expensecategory.component';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
+
+
 
 
 
@@ -75,6 +76,8 @@ export function highlightJsFactory(): any {
                           BookingFormComponent,
                           ViewtransactionComponent,
                           ExpensecategoryComponent
+     
+
 ],
 
   exports: [
