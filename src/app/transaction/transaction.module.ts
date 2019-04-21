@@ -18,6 +18,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import { ExpensecategoryComponent } from './expensecategory/expensecategory.component';
+import { RegistryComponent } from './registry/registry.component';
 
 
 
@@ -74,7 +75,8 @@ export function highlightJsFactory(): any {
 
       BookingFormComponent,
       ViewtransactionComponent,
-      ExpensecategoryComponent
+      ExpensecategoryComponent,
+      RegistryComponent
 
 ],
 

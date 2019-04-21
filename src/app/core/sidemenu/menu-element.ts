@@ -478,6 +478,21 @@ export const menus = [
            
 
         ]
+    },
+    {
+        'name': 'Transaction',
+        'icon': 'widgets',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'registry-form',
+                'icon': 'widgets',
+                'link': 'transaction/registryform',
+                'open': false,
+            }
+           
+        ]
     }
 
 ];
