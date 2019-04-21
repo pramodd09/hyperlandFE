@@ -88,7 +88,7 @@
 
           <mat-grid-tile>
             <mat-form-field>
-              <input matInput [matDatepicker]="dateOfBirth" placeholder="Date of Birth"  [(ngModel)]="booking.customerDetails.dateOfBirth">
+              <input matInput [matDatepicker]="dateOfBirth" formControlName = "dateOfBirth"  placeholder="Date of Birth"  [(ngModel)]="booking.customerDetails.dateOfBirth">
               <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
               <mat-datepicker #dateOfBirth></mat-datepicker>
             </mat-form-field>
@@ -102,83 +102,83 @@
       </mat-expansion-panel>
     </fieldset>
     <fieldset>
-    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-      <mat-expansion-panel-header style="background-color:#5c6bc0; color : #ffffff">
-        <mat-panel-title style="color : #ffffff">
-          CoApplicant
-        </mat-panel-title>
+      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+        <mat-expansion-panel-header style="background-color:#5c6bc0; color : #ffffff">
+          <mat-panel-title style="color : #ffffff">
+            CoApplicant
+          </mat-panel-title>
 
-      </mat-expansion-panel-header>
+        </mat-expansion-panel-header>
         <div formArrayName="coApplicantDetails">
-        <button style="margin-top:5px; margin-bottom:5px;" type="button" mat-raised-button color="primary"
-                (click)="addNewCoApplicant()">
-          Add New CoApplicant
-        </button>
-        <div *ngFor="let coApplicant of coApplicantDetailsForm.controls; let i=index;">
-          <div class="panel-heading">
-            <span color="primary">CoApplicant {{i + 1}}</span>
+          <button style="margin-top:5px; margin-bottom:5px;" type="button" mat-raised-button color="primary"
+                  (click)="addNewCoApplicant()">
+            Add New CoApplicant
+          </button>
+          <div *ngFor="let coApplicant of coApplicantDetailsForm.controls; let i=index;">
+            <div class="panel-heading">
+              <span color="primary">CoApplicant {{i + 1}}</span>
+            </div>
+            <div class="panel-body" [formGroupName]="i">
+              <mat-grid-list cols="2" rowHeight="4em">
+                <mat-grid-tile>
+                  <mat-form-field>
+                    <input matInput placeholder="CoApplicant Name" formControlName="customerName" [(ngModel)]="i.customerName">
+                  </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                  <mat-form-field>
+                    <mat-label>Relation</mat-label>
+                    <mat-select formControlName="relationType" [(ngModel)] = "i.relationType">
+                      <mat-option value="Son">
+                        Son
+                      </mat-option>
+                      <mat-option value="Daughter">
+                        Daughter
+                      </mat-option>
+                      <mat-option value="Spouse">
+                        Spouse
+                      </mat-option>
+                      <mat-option value="Father">
+                        Father
+                      </mat-option>
+                      <mat-option value="Mother">
+                        Mother
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput placeholder = "Name" formControlName="relativeName" [(ngModel)]="i.relativeName">
+                  </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="dateOfBirth" formControlName = "dateOfBirth"  placeholder="Date of Birth"  [(ngModel)]="i.dateOfBirth">
+                    <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+                    <mat-datepicker #dateOfBirth></mat-datepicker>
+                  </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                  <mat-form-field>
+                    <input matInput placeholder="Pan Number" formControlName="panNumber" [(ngModel)]="i.panNumber">
+                  </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field>
+                    <input matInput placeholder="Adhaar Number" formControlName="adhaarNo" [(ngModel)]="i.adhaarNo">
+                  </mat-form-field>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
           </div>
-          <div class="panel-body" [formGroupName]="i">
-          <mat-grid-list cols="2" rowHeight="4em">
-            <mat-grid-tile>
-              <mat-form-field>
-                <input matInput placeholder="CoApplicant Name" formControlName="customerName" [(ngModel)]="i.customerName">
-              </mat-form-field>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-              <mat-form-field>
-                <mat-label>Relation</mat-label>
-                <mat-select formControlName="relationType" [(ngModel)] = "i.relationType">
-                  <mat-option value="Son">
-                    Son
-                  </mat-option>
-                  <mat-option value="Daughter">
-                    Daughter
-                  </mat-option>
-                  <mat-option value="Spouse">
-                    Spouse
-                  </mat-option>
-                  <mat-option value="Father">
-                    Father
-                  </mat-option>
-                  <mat-option value="Mother">
-                    Mother
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder = "Name" formControlName="relativeName" [(ngModel)]="i.relativeName">
-              </mat-form-field>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-              <mat-form-field>
-                <input matInput [matDatepicker]="dateOfBirth" placeholder="Date of Birth"  [(ngModel)]="i.dateOfBirth">
-                <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
-                <mat-datepicker #dateOfBirth></mat-datepicker>
-              </mat-form-field>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-              <mat-form-field>
-                <input matInput placeholder="Pan Number" formControlName="panNumber" [(ngModel)]="i.panNumber">
-              </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <mat-form-field>
-                <input matInput placeholder="Adhaar Number" formControlName="adhaarNo" [(ngModel)]="i.adhaarNo">
-              </mat-form-field>
-            </mat-grid-tile>
-          </mat-grid-list>
-          </div>
-        </div>
         </div>
         <mat-action-row>
           <button mat-raised-button color="warn" (click)="prevStep()">Previous</button>
           <button mat-raised-button color="primary" (click)="nextStep()">Next</button>
         </mat-action-row>
-    </mat-expansion-panel>
+      </mat-expansion-panel>
     </fieldset>
     <fieldset>
       <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
@@ -223,7 +223,7 @@
             </mat-form-field>
           </mat-grid-tile>
 
-        <mat-grid-tile>
+          <mat-grid-tile>
             <mat-form-field>
               <mat-label>Firm Name</mat-label>
               <mat-select formControlName="firmId" (ngModelChange)="onChange($event,'property')" [(ngModel)] = "booking.firmId">
@@ -234,21 +234,21 @@
             </mat-form-field>
           </mat-grid-tile>
 
-            <mat-grid-tile>
-               <mat-form-field>
-                <mat-label>Project Name</mat-label>
-                <mat-select formControlName="projectId" (ngModelChange)="onChange($event,'block')" [(ngModel)]="booking.projectId" >
-                  <mat-option *ngFor="let prop of propertyList" [value]="prop.code+'|'+prop.value">
-                    {{prop.value}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field>
+              <mat-label>Project Name</mat-label>
+              <mat-select formControlName="projectId" (ngModelChange)="onChange($event,'block')" [(ngModel)]="booking.projectId" >
+                <mat-option *ngFor="let prop of propertyList" [value]="prop.code+'|'+prop.value">
+                  {{prop.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
 
           <mat-grid-tile>
             <mat-form-field>
               <mat-label>Block Name</mat-label>
-              <mat-select formControlName="blockId" (ngModelChange)="onChange($event,'plot')" [(ngModel)]="booking.blockId">
+              <mat-select formControlName="blockId" (ngModelChange)="onChange($event,'availablePlot')" [(ngModel)]="booking.blockId">
                 <mat-option *ngFor="let block of blockList" [value]="block.code+'|'+block.value">
                   {{block.value}}
                 </mat-option>
@@ -286,10 +286,10 @@
           </mat-grid-tile>
 
           <mat-grid-tile>
-              <mat-radio-group  [(ngModel)]="booking.plcChargesType"   #radioGroup="matRadioGroup" formControlName = "plcChargesType">
-                <mat-radio-button value="Percent" radioGroup="matRadioGroup">Percent</mat-radio-button>
-                <mat-radio-button value="Fixed" radioGroup="matRadioGroup">Fixed</mat-radio-button>
-              </mat-radio-group>
+            <mat-radio-group  [(ngModel)]="booking.plcChargesType"   #radioGroup="matRadioGroup" formControlName = "plcChargesType">
+              <mat-radio-button value="Percent" radioGroup="matRadioGroup">Percent</mat-radio-button>
+              <mat-radio-button value="Fixed" radioGroup="matRadioGroup">Fixed</mat-radio-button>
+            </mat-radio-group>
           </mat-grid-tile>
 
           <mat-grid-tile>
@@ -317,22 +317,17 @@
             </mat-form-field>
           </mat-grid-tile>
 
-
-          <!--  <mat-grid-tile>
-
-               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Choose Associate" [matAutocomplete]="auto" formControlName='agentName'>
-              </mat-form-field>
-          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-              <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
-              <ng-container *ngIf="!isLoading">
-                <mat-option *ngFor="let user of filteredUsers" [value]="user">
-                  <span>{{ user.name }}</span>
-                  <small> | ID: {{user.id}}</small>
+          <mat-grid-tile >
+            <mat-form-field class="example-full-width">
+              <input #agentInput (keyup)="0" matInput placeholder="Agent" aria-label="Agent" [matAutocomplete]="auto" [formControl]="agentCtrl" formControlName="agentId" [(ngModel)]="booking.agentId">
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option (onSelectionChange)="agentInput.value !=undefined && onEnter($event)" *ngFor="let agent of filteredAgent | async" [value]="agent.id+'|'+agent.agentName">
+                  <span>{{ agent.agentName }}</span>
                 </mat-option>
-              </ng-container>
-            </mat-autocomplete>
-          </mat-grid-tile>-->
+              </mat-autocomplete>
+            </mat-form-field>
+          </mat-grid-tile>
+
           <mat-grid-tile >
             <mat-form-field>
               <input type = number matInput placeholder="Booking Amount" formControlName="bookingAmount" [(ngModel)]="booking.bookingAmount" (blur)="calculateInstallment()">
@@ -399,28 +394,18 @@
               <input  matInput placeholder="Bank" formControlName="bank" [(ngModel)]="booking.bank">
             </mat-form-field>
           </mat-grid-tile>
-          <mat-grid-tile *ngIf = "booking.paymentMode == 'Cheque' || booking.paymentMode == 'DD'">
-            <mat-form-field>
-              <input matInput placeholder="Cheque/DD Number" formControlName="chequeNumber" [(ngModel)]="booking.chequeNumber">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile *ngIf = "booking.paymentMode == 'Cheque' || booking.paymentMode == 'DD'">
-            <mat-form-field >
-              <input  matInput placeholder="Cheque/DD Date" formControlName="chequeDate" [(ngModel)]="booking.chequeDate">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile *ngIf = "booking.paymentMode == 'NEFT'">
+
+
+          <mat-grid-tile *ngIf = "booking.paymentMode == 'Cheque' || booking.paymentMode == 'DD' || booking.paymentMode == 'NEFT'">
             <mat-form-field>
               <input  matInput placeholder="TransactionId" formControlName="transactionId" [(ngModel)]="booking.transactionId">
             </mat-form-field>
           </mat-grid-tile>
-          <mat-grid-tile *ngIf = "booking.paymentMode == 'NEFT'">
-
-
+          <mat-grid-tile *ngIf = "booking.paymentMode == 'Cheque' || booking.paymentMode == 'DD' || booking.paymentMode == 'NEFT'">
             <mat-form-field>
               <input matInput  formControlName="transactionDate" [matDatepicker]="transactionDate"  placeholder="Transaction Date" [(ngModel)] = "booking.transactionDate">
               <mat-datepicker-toggle matSuffix [for]="transactionDate"></mat-datepicker-toggle>
-              <mat-datepicker #bookingDate></mat-datepicker>
+              <mat-datepicker #transactionDate></mat-datepicker>
             </mat-form-field>
           </mat-grid-tile>
 

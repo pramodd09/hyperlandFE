@@ -14,9 +14,12 @@ import { FarmerPaymentDetailsComponent } from './farmer-payment-details/farmer-p
 import { FarmerPaymentDetailsDialog } from './farmer-payment-details/create-farmer-payment.component';
 import { AssociatePaymentDetailsComponent } from './associate-payment-details/associate-payment-details.component';
 import { AssociatePaymentDetailsDialog } from './associate-payment-details/create-associate-payment.component';
-
 import { FarmerPaymentTableComponent } from './farmer-payment-details/farmer-payment-table/farmer-payment-table.component';
+import { AgentPaymentTableComponent } from './associate-payment-details/agent-payment-table/agent-payment-table.component';
 
+import { CustomerInstallmentDetailsComponent } from './customer-installment-details/customer-installment-details.component';
+import { CustomerInstallmentDetailsDialog } from './customer-installment-details/create-customer-installment.component';
+import { CustomerInstallmentTableComponent } from './customer-installment-details/customer-payment-table/customer-installment-table.component';
 
 
 export function highlightJsFactory(): any {
@@ -58,14 +61,19 @@ export function highlightJsFactory(): any {
   ],
   entryComponents: [
     FarmerPaymentDetailsDialog,
-    AssociatePaymentDetailsDialog
+    AssociatePaymentDetailsDialog,
+    CustomerInstallmentDetailsDialog,
                     ],
   declarations: [
     FarmerPaymentDetailsComponent,
     FarmerPaymentDetailsDialog,
     AssociatePaymentDetailsComponent,
     AssociatePaymentDetailsDialog,
-    FarmerPaymentTableComponent
+    FarmerPaymentTableComponent,
+    AgentPaymentTableComponent,
+    CustomerInstallmentDetailsDialog,
+    CustomerInstallmentDetailsComponent,
+    CustomerInstallmentTableComponent
 
 ],
 

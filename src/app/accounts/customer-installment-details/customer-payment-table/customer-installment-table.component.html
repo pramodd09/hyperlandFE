@@ -1,0 +1,79 @@
+
+<div class="example-container " #TABLE>
+  <!--  <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>-->
+   <!-- <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                        [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container> -->
+    <table mat-table [dataSource]="reportDataSource" matSort #table class="mat-elevation-z8" id="toPDF">
+      <ng-container matColumnDef="bookingId" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Booking Id</th>
+        <td mat-cell *matCellDef="let element" (click)="cellClicked(element)">{{element.bookingId}} </td>
+      </ng-container>
+
+
+     <ng-container matColumnDef="installmentAmount" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Installment</th>
+      <td mat-cell *matCellDef="let element">{{element.installmentAmount}} </td>
+     </ng-container>
+
+     <ng-container matColumnDef="status" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let element">{{element.status}} </td>
+       </ng-container>
+
+      <ng-container matColumnDef="amountPaid" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Paid Amount</th>
+        <td mat-cell *matCellDef="let element">{{element.amountPaid}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalInterest" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Interest</th>
+        <td mat-cell *matCellDef="let element">{{element.totalInterest}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="interestWaiveOff" sticky>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Interest WaiveOff </th>
+          <td mat-cell *matCellDef="let element">{{element.interestWaiveOff}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="interestPaid" sticky>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Interest Paid </th>
+          <td mat-cell *matCellDef="let element">{{element.interestPaid}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="totalAmountPaid" sticky>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Amount Paid </th>
+          <td mat-cell *matCellDef="let element">{{element.totalAmountPaid}} </td>
+      </ng-container> 
+
+      <ng-container matColumnDef="pendingAmount" sticky>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Pending Amount</th>
+          <td mat-cell *matCellDef="let element">{{element.pendingAmount}} </td>
+      </ng-container>   
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+        <button mat-raised-button color="primary" (click)="exportAsExcel()">Export as Excel</button>
+        <button mat-raised-button color="primary" (click)="generatePDF()">Generate PDF</button>
+</div>

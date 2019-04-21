@@ -32,6 +32,7 @@ installmentAmount:number;
 transactionDate :any;
 discount:number;
 discountType:string;
+plotId:string;
 }
 
 export class CoApplicant {

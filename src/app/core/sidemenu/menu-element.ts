@@ -464,15 +464,21 @@ export const menus = [
         'link': false,
         'sub': [
             {
-                'name': 'farmer-payment-deatils',
+                'name': 'Farmer Payment',
                 'icon': 'widgets',
                 'link': 'accounts/farmer-payment-details',
                 'open': false,
             },
             {
-                'name': 'associate-payment-details',
+                'name': 'Agent Payment',
                 'icon': 'widgets',
                 'link': 'accounts/associate-payment-details',
+                'open': false,
+            },
+            {
+                'name': 'Customer Installment',
+                'icon': 'widgets',
+                'link': 'accounts/customer-installment-details',
                 'open': false,
             }
            

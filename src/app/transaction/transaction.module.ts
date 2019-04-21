@@ -73,10 +73,17 @@ export function highlightJsFactory(): any {
                     ],
   declarations: [
 
+<<<<<<< HEAD
       BookingFormComponent,
       ViewtransactionComponent,
       ExpensecategoryComponent,
       RegistryComponent
+=======
+                          BookingFormComponent,
+                          ViewtransactionComponent,
+                          ExpensecategoryComponent
+     
+>>>>>>> ab247c30bd05533ad7b74847e8a0ffce86e2733e
 
 ],
 
