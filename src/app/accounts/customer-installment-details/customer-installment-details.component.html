@@ -1,9 +1,11 @@
+<div class="scrollbar scrollbar-primary">
 <mat-card>
     <button tpye = "button" mat-raised-button (click)="openDialog()" color="primary" >Installment</button>
       <div mat-dialog-content>
     <form (ngSubmit)="onFormSubmit(reportForm.value)" [formGroup]="reportForm">
       <div class="example-container">
-          <mat-grid-list cols="2" rowHeight="4em">
+          <mat-grid-list cols="2" rowHeight="3em">
+        
         <mat-grid-tile>
           <mat-form-field>
             <mat-label>Firm Name</mat-label>
@@ -69,3 +71,4 @@
 <mat-card>
  <app-customer-installment-table [reportData]="reportData" [columns]="columns"></app-customer-installment-table>
 </mat-card>
+</div>

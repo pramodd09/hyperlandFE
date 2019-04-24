@@ -4,6 +4,9 @@ import { SelectorService } from '../../../services/selector.service';
 import * as XLSX from 'xlsx';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas'; 
+import { SelectionModel } from '@angular/cdk/collections';
+import { CustomerInstallmentDetails } from '../../../model/CustomerInstallmentDetails';
+import { CustomerInstallmentDetailsDialog } from '../create-customer-installment.component';
 
 
 
@@ -17,15 +20,18 @@ export class CustomerInstallmentTableComponent implements OnChanges {
   @ViewChild('TABLE') table: ElementRef;
   reportDataSource: any;
   displayedColumns: string[];
+  selectedRow:any;
+  customerInstallmentData: CustomerInstallmentDetails
   @Input() reportData;
   @Input() columns;
 
-  constructor(private selectorService: SelectorService,
+  constructor(public dialog: MatDialog,
+              private selectorService: SelectorService
   ) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  
+  selection = new SelectionModel(true, []);
   ngOnInit() {
     this.displayedColumns = this.columns;
     this.reportDataSource = new MatTableDataSource();
@@ -34,10 +40,16 @@ export class CustomerInstallmentTableComponent implements OnChanges {
     this.reportDataSource.sort = this.sort;
   }
 
- cellClicked(element) {
-    console.dir(element);
-    console.log(element.id + ' cell clicked');
-    // fetch farmers payment
+  onChange(rowData) {
+    console.dir(rowData);  
+   const dialogRef = this.dialog.open(CustomerInstallmentDetailsDialog, {
+     width: '400px',
+     data : rowData
+   });
+
+   dialogRef.afterClosed().subscribe(result => {
+     console.log('The dialog was closed');
+   });
   }
 
   exportAsExcel() {
@@ -79,7 +91,7 @@ export class CustomerInstallmentTableComponent implements OnChanges {
 
     }
   }
-  /*masterToggle() {
+  masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
         this.reportDataSource.data.forEach(row => this.selection.select(row));
@@ -96,6 +108,6 @@ export class CustomerInstallmentTableComponent implements OnChanges {
     const numSelected = this.selection.selected.length;
     const numRows = this.reportDataSource.data.length;
     return numSelected === numRows;
-  }*/
+  }
 }
 

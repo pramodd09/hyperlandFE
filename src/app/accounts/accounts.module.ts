@@ -7,7 +7,7 @@ import { AgmCoreModule } from '@agm/core';
 import * as hljs from 'highlight.js';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import * as hljsTypescript from 'highlight.js/lib/languages/typescript';
-import { MatButtonModule, MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatNativeDateModule,  MatAutocompleteModule, } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule , MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatNativeDateModule,  MatAutocompleteModule, MatRadioButton, MatRadioModule, } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AccountsRouterModule } from './accounts.router';
 import { FarmerPaymentDetailsComponent } from './farmer-payment-details/farmer-payment-details.component';
@@ -37,6 +37,8 @@ export function highlightJsFactory(): any {
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
+    MatCheckboxModule,
+    MatRadioModule, 
     MatCardModule,
     MatPaginatorModule,
     MatSortModule,
