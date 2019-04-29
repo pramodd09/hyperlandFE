@@ -72,7 +72,7 @@ export class CustomerInstallmentDetailsComponent implements OnInit {
       error => {
         console.log('There was an error while retrieving Albums !!!' + error);
       }
-    )
+    );
    
    }
   }
@@ -107,8 +107,22 @@ export class CustomerInstallmentDetailsComponent implements OnInit {
     }
     this.selectorService.getReportDataByType(form,'customerPaymentDetails').subscribe(
       res => {
-        console.log(res);
         this.reportData = res;
+        console.log("this.reportData.result.length--"+this.reportData.result.length);      
+        var disableFlag = false;
+       for (var i = 0 ; i < this.reportData.result.length;i++)
+       {
+         if(this.reportData.result[i].status == 'Completed' || disableFlag == true){ 
+            this.reportData.result[i].isDisabled = true;
+         }
+         else{
+          this.reportData.result[i].isDisabled = false;
+          disableFlag = true;        
+         }
+
+       }
+        
+       
       },
       error => {
         console.log('There was an error while retrieving report data' + error);

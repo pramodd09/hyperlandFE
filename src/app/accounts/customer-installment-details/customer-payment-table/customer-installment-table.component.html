@@ -3,28 +3,21 @@
   <!--  <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>-->
-   <!-- <ng-container matColumnDef="select">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-checkbox (change)="$event ? masterToggle() : null"
-                        [checked]="selection.hasValue() && isAllSelected()"
-                        [indeterminate]="selection.hasValue() && !isAllSelected()"
-                        [aria-label]="checkboxLabel()">
-          </mat-checkbox>
-        </th>
-        <td mat-cell *matCellDef="let row">
-          <mat-checkbox (click)="$event.stopPropagation()"
-                        (change)="$event ? selection.toggle(row) : null"
-                        [checked]="selection.isSelected(row)"
-                        [aria-label]="checkboxLabel(row)">
-          </mat-checkbox>
-        </td>
-      </ng-container> -->
+    
     <table mat-table [dataSource]="reportDataSource" matSort #table class="mat-elevation-z8" id="toPDF">
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+            </th>
+            <td mat-cell *matCellDef="let row" >
+                <mat-radio-group [(ngModel)] = "selectedRow" (change) = "onChange(row)" ng-disabled="true"> 
+                    <mat-radio-button [value]="row" [disabled]= row.isDisabled ></mat-radio-button>
+                  </mat-radio-group>
+            </td>
+          </ng-container> 
       <ng-container matColumnDef="bookingId" sticky>
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Booking Id</th>
         <td mat-cell *matCellDef="let element" (click)="cellClicked(element)">{{element.bookingId}} </td>
       </ng-container>
-
 
      <ng-container matColumnDef="installmentAmount" sticky>
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Installment</th>
@@ -41,9 +34,9 @@
         <td mat-cell *matCellDef="let element">{{element.amountPaid}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="totalInterest" sticky>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Interest</th>
-        <td mat-cell *matCellDef="let element">{{element.totalInterest}} </td>
+      <ng-container matColumnDef="interest" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Interest</th>
+        <td mat-cell *matCellDef="let element">{{element.interest}} </td>
       </ng-container>
 
       <ng-container matColumnDef="interestWaiveOff" sticky>

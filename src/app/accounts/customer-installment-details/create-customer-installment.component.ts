@@ -19,16 +19,17 @@ import { CustomerInstallmentDetailsService } from "../../services/customer-insta
   
     constructor(
       public dialogRef: MatDialogRef<CustomerInstallmentDetailsDialog>,
-      @Inject(MAT_DIALOG_DATA) public data: CustomerInstallmentDetails,
+      @Inject(MAT_DIALOG_DATA) 
+      public data: CustomerInstallmentDetails,
       private fb: FormBuilder,      
-      private farmerPaymentDetailsService: CustomerInstallmentDetailsService,
+      private customerInstallmentDetailsService: CustomerInstallmentDetailsService,
       private selectorService : SelectorService,
-      private snackBar : MatSnackBar) {
+      private snackBar : MatSnackBar
+      ) {
   
         this.customerInstallmentDetailsForm= this.fb.group({
           'installmentAmount': [null,Validators.required],
-          'totalPayment' : [],         
-          'amountPaid': [null , Validators.required],
+          'totalPayment' : [],                   
           'interest' : [],
           'waiveOff':[],
           'interestPaid':[],
@@ -52,11 +53,23 @@ import { CustomerInstallmentDetailsService } from "../../services/customer-insta
       bankList: Bank[];
   
       ngOnInit() {
-
+        //fetch receipt number
+        //calculate interest
         if(this.data!=null || this.data!==undefined)
         {
           this.customerInstallment = new CustomerInstallmentDetails();
           this.customerInstallment = this.data;
+          this.customerInstallment.paymentDate = new Date();
+          this.customerInstallment.receiptNo = 12345;
+          this.customerInstallment.interestWaiveOff = 0.00;
+          this.customerInstallment.interest = 0.00;
+         if(this.customerInstallment.pendingAmount > 0.00)
+         {
+          this.customerInstallment.totalAmount = this.customerInstallment.interest + this.customerInstallment.pendingAmount
+         }
+         else{
+          this.customerInstallment.totalAmount = this.customerInstallment.interest + this.customerInstallment.installmentAmount;
+         }
         }
         else{
           this.customerInstallment = new CustomerInstallmentDetails();
@@ -75,7 +88,28 @@ import { CustomerInstallmentDetailsService } from "../../services/customer-insta
   
       onFormSubmit(form: NgForm)  
       {  
-        console.log(form);  
+        
+        this.customerInstallment.interestPaid = this.customerInstallment.interest - this.customerInstallment.interestWaiveOff;
+        this.customerInstallment.pendingAmount = this.customerInstallment.totalAmount - this.customerInstallment.totalAmountPaid;
+        if(this.customerInstallment.pendingAmount>0)
+        {
+            this.customerInstallment.status = 'Pending';
+        }
+        else
+        {
+            this.customerInstallment.status = 'Completed';
+        }
+        this.customerInstallmentDetailsService.updateCustomerInstallmentDetails(this.customerInstallment).subscribe(
+          
+          res => {
+            console.log(res);
+            this.openSnackBar('Associate Payment Details Created Successfully','');
+            this.closePopup();
+          },
+          error => {
+            console.log('There was an error while creating Farmer Payment Details !!!' + error);
+            this.openSnackBar('Error while creating Farmer Payment Details, Please contact your adminstrator','');
+          });
       }
   
       openSnackBar(message: string, action: string) {
@@ -89,19 +123,5 @@ import { CustomerInstallmentDetailsService } from "../../services/customer-insta
         {
   
       }
-    }
-      submitForm() {
-
-           this.farmerPaymentDetailsService.updateCustomerInstallmentDetails(this.customerInstallment).subscribe(  
-            res => {  
-              console.log(res);
-              this.openSnackBar('Farmer Payment Details Updated Successfully','');
-              this.closePopup();
-            },  
-            error => {  
-              console.log('There was an error while updating Farmer Payment Details !!!' + error);  
-              this.openSnackBar('Error while updating Farmer Payment Details, Please contact your adminstrator','');
-            });
-          }
-      
+    }     
   }

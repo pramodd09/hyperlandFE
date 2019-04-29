@@ -16,23 +16,23 @@ export class CustomerInstallmentDetailsService {
   }
 
   createCustomerInstallmentDetails(customerInstallmentRequest : CustomerInstallmentDetails) : Observable<any>{
-    var baseURL = 'transaction/add/customerInstallment';
+    var baseURL = 'transaction/add/installment';
     return this.http.post(baseURL,customerInstallmentRequest);
   }
 
   updateCustomerInstallmentDetails(customerInstallmentIdRequest: CustomerInstallmentDetails) : Observable<any> {
     // to do url fix (remove .id)
-    var  baseURL = 'master/update/customerInstallment/'+ customerInstallmentIdRequest; 
+    var  baseURL = 'transaction/update/installment/'+ customerInstallmentIdRequest.id; 
     return this.http.post(baseURL,customerInstallmentIdRequest);
   } 
 
   getCustomerInstallmentDetailsById(customerInstallmentId : any) : Observable<any>{
-    var  baseURL = 'master/get/customerInstallment/'+customerInstallmentId; 
+    var  baseURL = 'transaction/get/installment/'+customerInstallmentId; 
     return this.http.get(baseURL);
   }
 
   deleteCustomerInstallmentDetails(customerInstallmentId) : Observable<any> {
-    var  baseURL = 'master/delete/customerInstallment/'+customerInstallmentId; 
+    var  baseURL = 'transaction/delete/customerInstallment/'+customerInstallmentId; 
     return this.http.post(baseURL,{});
   }
 }

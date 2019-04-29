@@ -1,9 +1,8 @@
 export class CustomerInstallmentDetails {
    installmentAmount:number;
-   totalPayment:number;
-   amountPaid:number;
+   totalAmount:number;
    interest:number;
-   waiveOff:number;
+   interestWaiveOff:number;
    interestPaid:number;
    totalAmountPaid:number;
    pendingAmount:number;
@@ -11,9 +10,12 @@ export class CustomerInstallmentDetails {
    bankName:string;
    transactionId:string;
    transactionDate:any;
-   bookingId:number;
+   bookingId:number; 
    customerId:string;
    paymentMode:string;
    paymentDate:any;
+   dueDate:any;
+   status:string;
+   id:number;
   }
   
