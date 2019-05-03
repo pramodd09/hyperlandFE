@@ -1,7 +1,7 @@
 .example-container {
   // height: 400px;
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 
 table {
@@ -30,3 +30,10 @@ th.mat-column-customerName, td.mat-column-customerName {
 th[class*='mat-column-'], td[class*='mat-column-']{
 padding: 20px 20px;
 }
+ .mat-row:nth-child(even){
+          background-color:red;
+          }
+
+   .mat-row:nth-child(odd){
+          background-color:grey;
+          }

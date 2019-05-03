@@ -311,6 +311,12 @@ export const menus = [
                     'link': 'user/useragent',
                     'open': false
                 },
+                {
+                    'name': 'Daily Expenses',
+                    'icon': 'widgets',
+                    'link': 'user/daily-expenses',
+                    'open': false
+                },
                  {
                                     'name': 'Booking',
                                     'icon': 'widgets',
@@ -458,13 +464,13 @@ export const menus = [
         'link': false,
         'sub': [
             {
-                'name': 'farmer-payment-deatils',
+                'name': 'Farmer Payment',
                 'icon': 'widgets',
                 'link': 'accounts/farmer-payment-details',
                 'open': false,
             },
             {
-                'name': 'associate-payment-details',
+                'name': 'Agent Payment',
                 'icon': 'widgets',
                 'link': 'accounts/associate-payment-details',
                 'open': false,
@@ -473,10 +479,28 @@ export const menus = [
                 'name': 'daily-expense-details',
                 'icon': 'widgets',
                 'link': 'accounts/daily-expense',
+                'name': 'Customer Installment',
+                'icon': 'widgets',
+                'link': 'accounts/customer-installment-details',
                 'open': false,
             }
            
 
+        ]
+    },
+    {
+        'name': 'Transaction',
+        'icon': 'widgets',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'registry-form',
+                'icon': 'widgets',
+                'link': 'transaction/registryform',
+                'open': false,
+            }
+           
         ]
     }
 

@@ -30,5 +30,10 @@
     .logo{
         font-size: 26px;font-family: Roboto;color:white;margin-top: 8px;
     }
+    #theCalcDiv {
+        height: -moz-calc(100% - (20px + 30px));
+        height: -webkit-calc(100% - (20px + 30px));
+        height: 650px;
+    }
 }
 

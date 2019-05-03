@@ -1,0 +1,10 @@
+.example-viewport {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+  }
+
+  .make-scrollable {
+    height: 800px; //Or any other height you wish
+    overflow-y: scroll;
+}

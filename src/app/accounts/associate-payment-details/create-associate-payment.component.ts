@@ -162,4 +162,11 @@ import { AssociatePaymentDetailsService } from "../../services/associate-payment
             });
         }
       } */
+
+displayFn(agent: string) {
+   if(agent)
+   {
+     return agent ? agent.split("|")[1] : undefined;
+    }
+  }
   }

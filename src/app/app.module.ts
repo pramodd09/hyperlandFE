@@ -9,7 +9,7 @@ import { FirmService } from './services/firm.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material';
-
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material';
     CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    PerfectScrollbarModule
   ],
   providers: [ 
     { provide: LocationStrategy, useClass: HashLocationStrategy },

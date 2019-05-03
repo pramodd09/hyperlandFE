@@ -16,7 +16,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { appRoutes } from './lazyloader.routes';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-    suppressScrollX: true
+    suppressScrollX: false
 };
 
 import { DashboardCrmModule } from '../dashboard-crm/dashboard-crm.module';

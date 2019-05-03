@@ -22,6 +22,8 @@ import { AgentPaymentDetailsComponent } from './agent-payment-details/agent-paym
 import { FarmerPaymentDetailsComponent } from './farmer-payment-details/farmer-payment-details.component';
 import { ExpenseDetailsComponent } from './expense-details/expense-details.component';
 import { OrgChartModule } from 'ng2-org-chart';
+import { RegistryComponent } from './registry/registry.component';
+
 
 
 
@@ -79,9 +81,13 @@ export function highlightJsFactory(): any {
       BookingFormComponent,
       ViewtransactionComponent,
       ExpensecategoryComponent,
+<<<<<<< HEAD
       AgentPaymentDetailsComponent,
       FarmerPaymentDetailsComponent,
       ExpenseDetailsComponent
+=======
+      RegistryComponent
+>>>>>>> 0b2e602697bc8300088a6d691f67106f1a841cca
 
 ],
 

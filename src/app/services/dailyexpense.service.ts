@@ -13,27 +13,27 @@ export class DailyExpenseService {
   bankDataSource: any;
 
   getAllDailyExpenses():Observable<any>{
-    var  baseURL = 'master/getAll/dailyexpense';
+    var  baseURL = 'transaction/getAll/dailyExpense';
     return this.http.get(baseURL);
   }
 
   createDailyExpense(expenseRequest : DailyExpense) : Observable<any>{
-    var baseURL = 'master/add/dailyexpense';
+    var baseURL = 'transaction/add/dailyExpense';
     return this.http.post(baseURL,expenseRequest);
   }
 
   updateDailyExpense(expenseRequest: DailyExpense) : Observable<any> {
-    var  baseURL = 'master/update/dailyexpense/'+ expenseRequest.id;
+    var  baseURL = 'transaction/update/dailyExpense/'+ expenseRequest.id;
     return this.http.post(baseURL,expenseRequest);
   }
 
   getExpenseById(expenseId : any) : Observable<any>{
-    var  baseURL = 'master/get/dailyexpense/'+expenseId;
+    var  baseURL = 'transaction/get/dailyExpense/'+expenseId;
     return this.http.get(baseURL);
   }
 
   deleteExpense(dailyexpenseId) : Observable<any> {
-    var  baseURL = 'master/delete/bank/'+dailyexpenseId;
+    var  baseURL = 'transaction/delete/dailyExpense/'+dailyexpenseId;
     return this.http.post(baseURL,{});
   }
 }

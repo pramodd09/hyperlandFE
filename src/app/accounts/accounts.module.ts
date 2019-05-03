@@ -7,16 +7,19 @@ import { AgmCoreModule } from '@agm/core';
 import * as hljs from 'highlight.js';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import * as hljsTypescript from 'highlight.js/lib/languages/typescript';
-import { MatButtonModule, MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatNativeDateModule,  MatAutocompleteModule, } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule , MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatNativeDateModule,  MatAutocompleteModule, MatRadioButton, MatRadioModule, } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AccountsRouterModule } from './accounts.router';
 import { FarmerPaymentDetailsComponent } from './farmer-payment-details/farmer-payment-details.component';
 import { FarmerPaymentDetailsDialog } from './farmer-payment-details/create-farmer-payment.component';
 import { AssociatePaymentDetailsComponent } from './associate-payment-details/associate-payment-details.component';
 import { AssociatePaymentDetailsDialog } from './associate-payment-details/create-associate-payment.component';
-
 import { FarmerPaymentTableComponent } from './farmer-payment-details/farmer-payment-table/farmer-payment-table.component';
+import { AgentPaymentTableComponent } from './associate-payment-details/agent-payment-table/agent-payment-table.component';
 
+import { CustomerInstallmentDetailsComponent } from './customer-installment-details/customer-installment-details.component';
+import { CustomerInstallmentDetailsDialog } from './customer-installment-details/create-customer-installment.component';
+import { CustomerInstallmentTableComponent } from './customer-installment-details/customer-payment-table/customer-installment-table.component';
 
 
 export function highlightJsFactory(): any {
@@ -34,6 +37,8 @@ export function highlightJsFactory(): any {
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
+    MatCheckboxModule,
+    MatRadioModule, 
     MatCardModule,
     MatPaginatorModule,
     MatSortModule,
@@ -58,14 +63,19 @@ export function highlightJsFactory(): any {
   ],
   entryComponents: [
     FarmerPaymentDetailsDialog,
-    AssociatePaymentDetailsDialog
+    AssociatePaymentDetailsDialog,
+    CustomerInstallmentDetailsDialog,
                     ],
   declarations: [
     FarmerPaymentDetailsComponent,
     FarmerPaymentDetailsDialog,
     AssociatePaymentDetailsComponent,
     AssociatePaymentDetailsDialog,
-    FarmerPaymentTableComponent
+    FarmerPaymentTableComponent,
+    AgentPaymentTableComponent,
+    CustomerInstallmentDetailsDialog,
+    CustomerInstallmentDetailsComponent,
+    CustomerInstallmentTableComponent
 
 ],
 

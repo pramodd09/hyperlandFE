@@ -6,6 +6,8 @@ import { DailyExpense } from '../../model/DailyExpense';
 import { DailyExpenseService } from '../../services/dailyexpense.service';
 import { Firm } from '../../model/Firm';
 import { SelectorService } from '../../services/selector.service';
+import { ExpenseCategory } from '../../model/ExpenseCategory';
+import { Bank } from '../../model/Bank';
 
 @Component({
   selector: 'dialog-overview-example-dialog',
@@ -13,6 +15,11 @@ import { SelectorService } from '../../services/selector.service';
   styleUrls: [ './create-dailyexpense.component.scss']
 })
 export class DialogOverviewDailyExpenseDialog  implements OnInit {
+
+  bankList : Bank[];
+  firmList : Firm[];
+  categoryList : ExpenseCategory[];
+
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewDailyExpenseDialog>,
@@ -22,19 +29,28 @@ export class DialogOverviewDailyExpenseDialog  implements OnInit {
     private snackBar : MatSnackBar) {
         this.dailyExpenseForm = this.fb.group({
         'firmId':[null],
-        'categoryId':[null],
-        'dateFrom':[null],
-        'dateTo':[null],
-        'expense':[null]
+        'expenseCategory':[null],
+        'expenseName':[null],
+        'amount':[null],
+        'paidTo':[null],
+        'paymentMode':[null],
+        'bankName':[null],
+        'chequeNo':[null],
+        'chequeDate':[null],
+        'expenseDate':[null],
+        'narration' : [null]
       });
     }
 
     dailyExpenseForm: FormGroup;
     dailyExpense : DailyExpense;
-    firmList : Firm[];
 
     ngOnInit() {
+    
       this.firmList = this.data.firmList;
+      this.bankList = this.data.bankList;
+      this.categoryList = this.data.categoryList;
+
      if(this.data.dailyExpense !=null || this.data.dailyExpense!==undefined)
       {
         this.dailyExpense = new DailyExpense();
@@ -65,6 +81,12 @@ export class DialogOverviewDailyExpenseDialog  implements OnInit {
     }
 
     submitForm() {
+
+      var code =  this.dailyExpense.firmId.split('|')[0];
+      var value1 = this.dailyExpense.firmId.split('|')[1];
+      this.dailyExpense.firmId = code;
+      this.dailyExpense.firmName = value1;
+
       if(this.dailyExpense.id==undefined || this.dailyExpense.id==null) {
         // create new daily expense
         
@@ -107,6 +129,8 @@ export class MasterDailyExpenseComponent implements OnInit {
 
   expenseList : DailyExpense[];
   firmList : Firm[];
+  categoryList : ExpenseCategory[];
+  bankList : Bank[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -120,9 +144,13 @@ export class MasterDailyExpenseComponent implements OnInit {
     this.dailyExpenseData = new DailyExpense();
     const dialogRef = this.dialog.open(DialogOverviewDailyExpenseDialog, {
       width: '600px',
+      disableClose: true,
       data: {
         'dailyExpenseData': this.dailyExpenseData,
         'firmList' : this.firmList,
+        'categoryList' : this.categoryList,
+        'bankList' : this.bankList,
+        
       }
     });
 
@@ -136,10 +164,23 @@ export class MasterDailyExpenseComponent implements OnInit {
 
       this.selectorService.getData("firm").subscribe(
         res => {
-        console.log("dsdsds");
-          console.dir(res);
-
           this.firmList=res.result;
+        },
+        error => {
+          console.log('There was an error while retrieving Albums !!!' + error);
+        }
+      );
+      this.selectorService.getData("expenseCategory").subscribe(
+        res => {
+          this.categoryList=res.result;
+        },
+        error => {
+          console.log('There was an error while retrieving Albums !!!' + error);
+        }
+      );
+      this.selectorService.getData("bank").subscribe(
+        res => {
+          this.bankList=res.result;
         },
         error => {
           console.log('There was an error while retrieving Albums !!!' + error);
