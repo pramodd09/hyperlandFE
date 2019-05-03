@@ -1,22 +1,25 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ExpenseCategoryService } from '../../services/expenseCategory.service';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { ViewtransactionService } from '../../services/viewtransaction.service';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
-  selector: 'app-expensecategory',
-  templateUrl: './expensecategory.component.html',
-  styleUrls: ['./expensecategory.component.scss']
+  selector: 'app-expense-details',
+  templateUrl: './expense-details.component.html',
+  styleUrls: ['./expense-details.component.scss']
 })
-export class ExpensecategoryComponent implements OnInit {
+export class ExpenseDetailsComponent implements OnInit {
 
-  constructor(private expenseCategoryService : ExpenseCategoryService) { }
-  loading : Boolean =false;
+  constructor(private viewTransactionService : ViewtransactionService) { }
+
+  details : any;
   paymentDetailDataSource : any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  expenseCategoryList : any;
-  displayedColumns = ['select','farmerName', 'paymentMode','bankName','paymentAmount','transactionDate','khasraNumber','landAmount','paidAmount','actions'];
+
+  loading : Boolean =false;
+
+  displayedColumns = ['select','farmerName','bankName','khasraNumber','landAmount','paidAmount','actions'];
 
   selection = new SelectionModel<any>(true, []);
 
@@ -42,22 +45,40 @@ export class ExpensecategoryComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 
-  ngOnInit() {
 
+  ngOnInit() {
+    this.getData();
+  }
+
+  acceptPaymentDetail(id:string) {
+      
+    this.viewTransactionService.approveTransaction(id,"dailyExpense").subscribe(  
+      res => {  
+        this.getData();
+      },  
+      error => {  
+        console.log('There was an error while retrieving !!!' + error);  
+      });
+  }
+
+  getData() {
     this.paymentDetailDataSource = new MatTableDataSource();
     this.loading = true;
-    this.expenseCategoryService.getAllCategories().subscribe(  
+    this.viewTransactionService.getData("expenseDetails").subscribe(  
       res => {  
-        this.expenseCategoryList = res.result;
-        this.paymentDetailDataSource.data = this.expenseCategoryList;
+        this.details = res.result;
+        this.paymentDetailDataSource.data = res.result;
         this.paymentDetailDataSource.paginator = this.paginator;
         this.paymentDetailDataSource.sort = this.sort;
         this.loading = false;
       },  
       error => {  
-        console.log('There was an error while retrieving Expense categoreis !!!' + error);  
+        console.log('There was an error while retrieving !!!' + error);  
         this.loading= false;
       });
   }
 
+  rejectPaymentDetail(id:string) {
+
+  }
 }

@@ -9,7 +9,6 @@ const accountsRoutes: Routes = [
     //{path: 'masterfirm', component: MasterFirmComponent , data: { animation: 'masterfirm' }},
     {path: 'farmer-payment-details', component: FarmerPaymentDetailsComponent , data: { animation: 'farmer-payment-details' }},
     {path: 'associate-payment-details', component: AssociatePaymentDetailsComponent , data: { animation: 'associate-payment-details' }},
-    
 ];
 
 @NgModule({

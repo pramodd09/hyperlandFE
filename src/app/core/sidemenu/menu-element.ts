@@ -468,6 +468,12 @@ export const menus = [
                 'icon': 'widgets',
                 'link': 'accounts/associate-payment-details',
                 'open': false,
+            },
+            {
+                'name': 'daily-expense-details',
+                'icon': 'widgets',
+                'link': 'accounts/daily-expense',
+                'open': false,
             }
            
 

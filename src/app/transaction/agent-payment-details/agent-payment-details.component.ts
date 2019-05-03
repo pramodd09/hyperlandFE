@@ -1,22 +1,25 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ExpenseCategoryService } from '../../services/expenseCategory.service';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { ViewtransactionService } from '../../services/viewtransaction.service';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
-  selector: 'app-expensecategory',
-  templateUrl: './expensecategory.component.html',
-  styleUrls: ['./expensecategory.component.scss']
+  selector: 'app-agent-payment-details',
+  templateUrl: './agent-payment-details.component.html',
+  styleUrls: ['./agent-payment-details.component.scss']
 })
-export class ExpensecategoryComponent implements OnInit {
+export class AgentPaymentDetailsComponent implements OnInit {
 
-  constructor(private expenseCategoryService : ExpenseCategoryService) { }
-  loading : Boolean =false;
+  constructor(private viewTransactionService : ViewtransactionService) { }
+
+  details : any;
   paymentDetailDataSource : any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  expenseCategoryList : any;
-  displayedColumns = ['select','farmerName', 'paymentMode','bankName','paymentAmount','transactionDate','khasraNumber','landAmount','paidAmount','actions'];
+
+  loading : Boolean =false;
+
+  displayedColumns = ['select','agentName', 'paymentAmount','bank','transactionDate','actions'];
 
   selection = new SelectionModel<any>(true, []);
 
@@ -43,21 +46,38 @@ export class ExpensecategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getData();
+  }
 
+  getData() {
     this.paymentDetailDataSource = new MatTableDataSource();
     this.loading = true;
-    this.expenseCategoryService.getAllCategories().subscribe(  
+    this.viewTransactionService.getData("agentPaymentDetails").subscribe(  
       res => {  
-        this.expenseCategoryList = res.result;
-        this.paymentDetailDataSource.data = this.expenseCategoryList;
+        this.details = res.result;
+        this.paymentDetailDataSource.data = res.result;
         this.paymentDetailDataSource.paginator = this.paginator;
         this.paymentDetailDataSource.sort = this.sort;
         this.loading = false;
       },  
       error => {  
-        console.log('There was an error while retrieving Expense categoreis !!!' + error);  
+        console.log('There was an error while retrieving !!!' + error);  
         this.loading= false;
       });
   }
 
+  acceptPaymentDetail(id:string) {
+      
+    this.viewTransactionService.approveTransaction(id,"agentPayment").subscribe(  
+      res => {  
+        this.getData();
+      },  
+      error => {  
+        console.log('There was an error while retrieving !!!' + error);  
+      });
+  }
+
+  rejectPaymentDetail(id:string) {
+
+  }
 }
