@@ -10,7 +10,6 @@ import { TransactionReportComponent } from './transaction-report/transaction-rep
 import { CustomerTableComponent } from './customer-report/customer-report-table/customer-table.component';
 import { TransactionTableComponent } from './transaction-report/transaction-report-table/transaction-table.component';
 import { BookingTableComponent } from './booking-report/booking-report-table/booking-table.component';
-import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { NetworkReport } from './network-leg-report/network-report.component';
 import { OrgChartModule } from 'ng2-org-chart';
 
@@ -38,7 +37,7 @@ import { OrgChartModule } from 'ng2-org-chart';
       MatDatepickerModule,
       MatNativeDateModule ,
       MatProgressBarModule,
-      Ng2GoogleChartsModule,
+      //Ng2GoogleChartsModule,
       OrgChartModule,
       MatAutocompleteModule
       
