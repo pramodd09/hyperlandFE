@@ -11,6 +11,7 @@ import { LandService } from "../../services/land.service";
 import { SelectorService } from "../../services/selector.service";
 import { Land } from "../../model/land";
 import { FarmerPaymentDetailsService } from "../../services/farmer-payment-details.service";
+import { TransactionService } from "../../services/transaction.service";
 
 @Component({
     selector: 'farmer-payment-details-dialog',
@@ -27,6 +28,7 @@ import { FarmerPaymentDetailsService } from "../../services/farmer-payment-detai
       private farmerPaymentDetailsService: FarmerPaymentDetailsService,
       private landService : LandService,
        private selectorService : SelectorService,
+       private transactionService: TransactionService,
       private snackBar : MatSnackBar) {
   
         this.farmerPaymentDetailsForm= this.fb.group({
@@ -42,7 +44,8 @@ import { FarmerPaymentDetailsService } from "../../services/farmer-payment-detai
           'chequeDate': [],
            'paidAmount':[null],
           'landAmount':[null],
-            'farmerPaidAmount':[null]
+            'farmerPaidAmount':[null],
+            'receiptNo':[null]
           /* 'chequeNo' : [], */
         });
       }
@@ -67,6 +70,14 @@ import { FarmerPaymentDetailsService } from "../../services/farmer-payment-detai
         this.landService.getAllLands().subscribe(
           res => {  
             this.landList = res.result;
+          },  
+          error => {  
+            console.log('There was an error while retrieving Albums !!!' + error);  
+          }
+        );
+        this.transactionService.getReceiptNumber().subscribe(
+          res => {  
+            this.farmerPayment.receiptNo = res.result;
           },  
           error => {  
             console.log('There was an error while retrieving Albums !!!' + error);  

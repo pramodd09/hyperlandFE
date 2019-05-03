@@ -9,6 +9,7 @@ import { LandService } from "../../services/land.service";
 import { SelectorService } from "../../services/selector.service";
 import { Land } from "../../model/land";
 import { CustomerInstallmentDetailsService } from "../../services/customer-installment-details.service";
+import { TransactionService } from "../../services/transaction.service";
 
 @Component({
     selector: 'customer-installment-details-dialog',
@@ -23,6 +24,7 @@ import { CustomerInstallmentDetailsService } from "../../services/customer-insta
       public data: CustomerInstallmentDetails,
       private fb: FormBuilder,      
       private customerInstallmentDetailsService: CustomerInstallmentDetailsService,
+      private transactionService : TransactionService,
       private selectorService : SelectorService,
       private snackBar : MatSnackBar
       ) {
@@ -33,7 +35,7 @@ import { CustomerInstallmentDetailsService } from "../../services/customer-insta
           'interest' : [],
           'waiveOff':[],
           'interestPaid':[],
-          'totalAmountPaid':[],
+          'amount':[],
           'pendingAmount':[],
           'receiptNo':[],
           'bankName':[],
@@ -57,10 +59,17 @@ import { CustomerInstallmentDetailsService } from "../../services/customer-insta
         //calculate interest
         if(this.data!=null || this.data!==undefined)
         {
-          this.customerInstallment = new CustomerInstallmentDetails();
           this.customerInstallment = this.data;
           this.customerInstallment.paymentDate = new Date();
-          this.customerInstallment.receiptNo = 12345;
+          this.transactionService.getReceiptNumber().subscribe(
+            res => {
+            console.log("dsdsds");  
+              this.customerInstallment.receiptNo=res.result;              
+            },
+            error => {
+              console.log('There was an error while retrieving Albums !!!' + error);
+            });
+       
           this.customerInstallment.interestWaiveOff = 0.00;
           this.customerInstallment.interest = 0.00;
          if(this.customerInstallment.pendingAmount > 0.00)
@@ -90,7 +99,7 @@ import { CustomerInstallmentDetailsService } from "../../services/customer-insta
       {  
         
         this.customerInstallment.interestPaid = this.customerInstallment.interest - this.customerInstallment.interestWaiveOff;
-        this.customerInstallment.pendingAmount = this.customerInstallment.totalAmount - this.customerInstallment.totalAmountPaid;
+        this.customerInstallment.pendingAmount = this.customerInstallment.totalAmount - this.customerInstallment.amount;
         if(this.customerInstallment.pendingAmount>0)
         {
             this.customerInstallment.status = 'Pending';

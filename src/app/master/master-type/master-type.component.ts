@@ -109,7 +109,9 @@ export class MasterTypeComponent implements OnInit {
     this.propertyData = new PropertyType();
     const dialogRef = this.dialog.open(DialogOverviewTypeDialog, {
       width: '350px',
-      data : this.propertyData
+     
+      data : this.propertyData,
+      disableClose: true 
     });
 
     dialogRef.afterClosed().subscribe(result => {

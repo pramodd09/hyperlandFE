@@ -48,7 +48,8 @@ export class ChatComponent {
   onNoticeTriggered() {
     const dialogRef = this.dialog.open(NoticeComponent, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
+      data: {name: this.name, animal: this.animal},
+      disableClose: true 
     });
 
     dialogRef.afterClosed().subscribe(result => {

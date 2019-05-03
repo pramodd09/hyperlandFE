@@ -52,6 +52,7 @@ export class MasterCityComponent implements OnInit {
     this.cityData = new City();
     const dialogRef = this.dialog.open(CityDialog, {
       width: '400px',
+      disableClose: true ,
       data : this.cityData
     });
 
@@ -69,6 +70,7 @@ export class MasterCityComponent implements OnInit {
       console.log("Result:"+res);
       this.cityData =  res.result;
       const dialogRef = this.dialog.open(CityDialog, {
+        disableClose: true ,
         width: '350px',
         data : this.cityData
       });
@@ -87,6 +89,7 @@ export class MasterCityComponent implements OnInit {
   openConfirmDeleteDialog(cityId : any): void {
     const confirmDeleteCityDialog = this.dialog.open(DeleteCityConfirmBoxDialog, {
       width: '400px',
+      disableClose: true ,
       data : cityId
     });
 

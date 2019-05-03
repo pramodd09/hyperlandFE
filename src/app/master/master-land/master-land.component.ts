@@ -50,6 +50,7 @@ export class MasterLandComponent implements OnInit {
     this.landData = new Land();
     const dialogRef = this.dialog.open(LandDialog, {
       width: '400px',
+      disableClose: true ,
       data : this.landData
     });
 

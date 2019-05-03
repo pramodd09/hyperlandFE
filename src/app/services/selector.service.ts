@@ -17,13 +17,20 @@ export class SelectorService {
   }
   getDependentData(type,id):Observable<any>{
     var  baseURL = 'selector/get/'+type+"/"+id; 
-    return this.http.get(baseURL);
+    return this.http.get(baseURL); 
   }
+
+ 
   getReportData(form):Observable<any>{
     var  baseURL = 'search/booking';
     return this.http.post(baseURL,form);
   }
 
+  getAgentLegReport(id):Observable<any>
+  {
+    var  baseURL = 'search/agent/legreport/'+id;
+    return this.http.get(baseURL);
+  }
   getReportDataByType(form,type):Observable<any>{
     var  baseURL = 'search/'+type;
     return this.http.post(baseURL,form);

@@ -8,6 +8,12 @@
     </nav>
   </mat-card-content>
   <div *ngIf="activeLink=='Expenses'">
-    <app-expensecategory></app-expensecategory>
+    <app-expense-details></app-expense-details>
+  </div>
+  <div *ngIf="activeLink=='Farmer Payment'">
+    <app-farmer-payment-details></app-farmer-payment-details>
+  </div>
+  <div *ngIf="activeLink=='Associate Payment'">
+    <app-agent-payment-details></app-agent-payment-details>
   </div>
 </mat-card>
