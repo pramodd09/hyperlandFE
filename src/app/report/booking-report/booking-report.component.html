@@ -26,7 +26,7 @@
         <mat-form-field>
           <mat-label>Block Name</mat-label>
           <mat-select formControlName="blockId" (selectionChange)="onChange($event,'plot')">
-            <mat-option *ngFor="let block of blocks" [value]="block.value">
+            <mat-option *ngFor="let block of blocks" [value]="block.code">
               {{block.value}}
             </mat-option>
           </mat-select>
