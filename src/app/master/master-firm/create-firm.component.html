@@ -10,17 +10,6 @@
                 <span *ngIf="!firmForm.get('firmName').valid && firmForm.get('firmName').touched">Please enter firm name</span>  
               </mat-error>
       
-              <!-- <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Address" formControlName="address" [(ngModel)]="firm.address"></textarea>
-              </mat-form-field>
-              <mat-error>  
-                <span *ngIf="!firmForm.get('address').valid && firmForm.get('address').touched">Please enter firm address</span>  
-              </mat-error> -->
-      
-              <!-- <mat-form-field>
-                <input matInput placeholder="Select File"><br><br>
-              </mat-form-field> -->
-      
               <mat-grid-list cols="3" rowHeight="10em">
                   <mat-grid-tile>
                     <button type="button" mat-raised-button color="primary" [disabled]="!firmForm.dirty || !firmForm.valid" (click)="submitForm();">Submit</button>

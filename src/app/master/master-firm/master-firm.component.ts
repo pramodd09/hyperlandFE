@@ -20,8 +20,7 @@ export class DialogOverviewExampleDialog  implements OnInit {
     private snackBar : MatSnackBar) {
 
       this.firmForm= this.fb.group({
-        'firmName': [null , Validators.required ],
-        //'address' : [null ,Validators.required ]
+        'firmName': [null , Validators.required ]
       });
     }
     

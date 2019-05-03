@@ -17,7 +17,7 @@ export class ExpenseCategoryComponent implements OnInit {
   categoryDataSource: any;
   constructor(private categoryService : ExpenseCategoryService,
     public dialog: MatDialog) { }
-
+    loading : boolean =false;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -25,7 +25,12 @@ export class ExpenseCategoryComponent implements OnInit {
     displayedColumns = ['id', 'categoryName','actions'];
 
   ngOnInit() {
+    this.referesh();
 
+  }
+
+  referesh(){
+    this.loading = true;
     this.categoryService.getAllCategories().subscribe(
       res => {  
         this.categoryList = res.result;
@@ -34,13 +39,14 @@ export class ExpenseCategoryComponent implements OnInit {
         this.categoryDataSource.data = res.result;
         this.categoryDataSource.paginator = this.paginator;
         this.categoryDataSource.sort = this.sort;
+        this.loading = false;
       },  
       error => {  
         console.log('There was an error while retrieving Albums !!!' + error);  
+        this.loading = false;
       }
     );
   }
-
   openDialog(): void {
     this.categoryData = new ExpenseCategory();
     const dialogRef = this.dialog.open(ExpenseCategoryDialog, {

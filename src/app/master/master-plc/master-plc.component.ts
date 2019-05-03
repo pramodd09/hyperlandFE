@@ -19,7 +19,7 @@ export class DialogOverviewPlcDialog implements OnInit {
   chargingTypeList = ['Fixed','Percentage'];
   propertyList : any;
   plc : PLC;
-
+  loading: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewPlcDialog>,
     private fb : FormBuilder,
@@ -48,20 +48,25 @@ export class DialogOverviewPlcDialog implements OnInit {
   }
 
   onFirmChange(event,type){
-    console.log(event.value);
+    if(event!=undefined)
+    {
+      this.loading = true;
     var value = event;
     var code =  value.split('|')[0];
     var value1 = value.split('|')[1];
     console.log(value1+"  -- >"+code);
     this.selectorService.getDependentData(type,code).subscribe(
       res => {
+        this.loading = false;
          this.propertyList=res.result;
-        console.log(this.propertyList);
+
       },
       error => {
         console.log('There was an error while retrieving Albums !!!' + error);
+        this.loading = false;
       }
     );
+    }
   }
 
   onFormSubmit(form: NgForm)  

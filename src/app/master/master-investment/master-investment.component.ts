@@ -17,7 +17,7 @@ export class DialogOverviewInvestmentDialog implements OnInit{
   firmList : any;
   investorList : any;
   propertyList: any;
-
+  loading: boolean = false;
   investment : Investment;
 
   constructor(
@@ -28,11 +28,11 @@ export class DialogOverviewInvestmentDialog implements OnInit{
     private selectorService: SelectorService,
     private investmentService : InvestmentService) {
       this.investmentForm = this.fb.group({
-        'investorId' : [ ],
-        'firmId': [ ],
-        'propertyId': [ ],
-        'investmentDate': [ ],
-        'amount': [ ],
+        'investorId' : [ null , Validators.required],
+        'firmId': [ null , Validators.required ],
+        'propertyId': [  , Validators.required ],
+        'investmentDate': [ null , Validators.required],
+        'amount': [ null , Validators.required ],
       });
     }
 
@@ -55,7 +55,6 @@ export class DialogOverviewInvestmentDialog implements OnInit{
 
     this.selectorService.getData("firm").subscribe(
       res => {
-        console.dir(res);
         this.firmList=res.result;
       },
       error => {
@@ -63,7 +62,7 @@ export class DialogOverviewInvestmentDialog implements OnInit{
       }
     );
 
-    this.selectorService.getData("invester").subscribe(
+    this.selectorService.getData("investor").subscribe(
       res => {
         console.dir(res);
         this.investorList=res.result;
@@ -91,19 +90,23 @@ export class DialogOverviewInvestmentDialog implements OnInit{
   }
   onChange(event,type){
   // console.log(event)
+  if(event!=undefined)
+  {
+    this.loading = true;
   var value = event;
   var code =  value.split('|')[0];
   var value1 = value.split('|')[1];
-  console.log(value1+"  -- >"+code);
   this.selectorService.getDependentData(type,code).subscribe(
     res => {
+      this.loading = false;
        this.propertyList=res.result;
-      console.dir(this.propertyList);
     },
     error => {
       console.log('There was an error while retrieving Albums !!!' + error);
+      this.loading = false;
     }
   )
+ }
 }
   submitForm() {
     if(this.investment.id==undefined || this.investment.id==null) {

@@ -25,7 +25,7 @@ export class DialogOverviewBlockDialog implements OnInit {
   block : Block;
   option : any;
   propertyList : any;
-
+  loading: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewBlockDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any,private fb: FormBuilder,
@@ -108,20 +108,23 @@ export class DialogOverviewBlockDialog implements OnInit {
   }
 
   onChange(event,type){
-    console.log(event.value);
+    if(event!=undefined)
+    {
+      this.loading = true;
     var value = event;
     var code =  value.split('|')[0];
     var value1 = value.split('|')[1];
-    console.log(value1+"  -- >"+code);
     this.selectorService.getDependentData(type,code).subscribe(
       res => {
          this.propertyList=res.result;
-        console.dir(this.propertyList);
+        this.loading = false;
       },
       error => {
         console.log('There was an error while retrieving Albums !!!' + error);
+        this.loading = false;
       }
     );
+    }
   }
 
   ngOnInit() {

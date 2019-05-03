@@ -28,7 +28,7 @@ export class DialogOverviewLocationDialog  implements OnInit {
 
       this.locationForm= this.fb.group({
         'location': [null , Validators.required ],
-        //'cityName' : [null ,Validators.required ]
+        'cityName' : [null ,Validators.required ]
       });
     }
     
