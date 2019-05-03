@@ -11,83 +11,106 @@ import { columnList } from '../report-column-list';
   encapsulation: ViewEncapsulation.None
 })
 export class TransactionReportComponent implements OnInit {
-  property:any[];
+  property: any[];
   firms: any[];
-  locations:any[];
-  blocks:any[];
-  plots:any[];
-  products:any[];
-  units:any[];
-  loading : boolean=false;
+  locations: any[];
+  blocks: any[];
+  plots: any[];
+  products: any[];
+  units: any[];
+  loading: boolean = false;
   reportForm: FormGroup;
   reportData;
-  columns=columnList["transaction"];
+  columns = columnList["transaction"];
+  undefinedVal = undefined;
+
   constructor(
     private selectorService: SelectorService,
     private fb: FormBuilder
-  ) { 
-    this.reportForm= this.fb.group({
-      'firmId':[null],
-      'blockId':[null],
-      'projectId':[null],
-      'plotId':[null],
-      'unitId':[null],
-      'productId':[null],
-      'bookingDateFrom':[null],
-      'bookingDateTo':[null],
+  ) {
+    this.reportForm = this.fb.group({
+      'firmId': [null],
+      'blockId': [null],
+      'projectId': [null],
+      'plotId': [null],
+      'unitId': [null],
+      'productId': [null],
+      'bookingDateFrom': [null],
+      'bookingDateTo': [null],
     });
   }
   ngOnInit() {
     this.selectorService.getData("firm").subscribe(
-      res => {  
-        this.firms=res.result;
-      },  
-      error => {  
+      res => {
+        this.firms = res.result;
+      },
+      error => {
         console.log('There was an error while retrieving firm' + error);
       }
     )
   }
-  onChange(event,type){
-    this.loading = true;    
-    this.selectorService.getDependentData(type,event.value).subscribe(
-      res => {  
-        console.dir(res);
-        this.loading = false;
-        switch (type) {
-          case 'project':
-          this.property=res.result;        
-          this.blocks=[];
-          this.plots=[];
-            break;
-          case 'block':
-          this.blocks=res.result;
-          this.plots=[];
-          break;
-          case 'plot':
-          this.plots=res.result;                    
-          break;
-       
-          default:
-            console.log('Sorry, we are out of ' + '.');
-        }       
-        
-      },  
-      error => {  
-        console.log('There was an error while retrieving Albums !!!' + error);
-      }
-    )
+  onChange(event, type) {
+    // console.log("event.value "+event.value)
+    this.loading = true;
+    // console.log(res);
+    this.loading = false;
+    switch (type) {
+      case 'project':
+      this.reportForm.controls['projectId'].setValue(undefined)
+      this.reportForm.controls['blockId'].setValue(undefined)
+      this.reportForm.controls['plotId'].setValue(undefined)
+      this.selectorService.getDependentData(type, event.value).subscribe(
+          res => {
+            this.property = res.result;
+            console.log(this.property)
+            this.blocks = [];
+            this.plots = [];
+          },
+          error => {
+            console.log('There was an error while retrieving data' + error);
+          }
+        )
+        break;
+      case 'block':
+      this.reportForm.controls['blockId'].setValue(undefined)
+      this.reportForm.controls['plotId'].setValue(undefined)
+        this.selectorService.getDependentData(type, event.value).subscribe(
+          res => {
+            this.blocks = res.result;
+            console.log(this.blocks)
+            this.plots = [];
+          },
+          error => {
+            console.log('There was an error while retrieving data' + error);
+          }
+        )
+        break;
+      case 'plot':
+      this.reportForm.controls['plotId'].setValue(undefined)
+      console.log('block changed')
+        this.selectorService.getDependentData(type, event.value).subscribe(
+          res => {
+            console.log(res.result)
+            this.plots = res.result;
+            console.log(this.plots)
+          },
+          error => {
+            console.log('There was an error while retrieving data' + error);
+          }
+        )
+        break;
+      default:
+        console.log('Sorry, we are out of ' + '.');
+    }
   }
-  onFormSubmit(form: NgForm){
+  onFormSubmit(form: NgForm) {
     console.log(form);
-    var type = 'propertyAvailableStatus';
-    if(form.status=='Booked'){type='propertyBookedStatus'}
-    else if(form.status=='Hold'){type='propertyHoldStatus'}
-    this.selectorService.getReportData(form,type).subscribe(
-      res => {  
-        console.log(res);  
-        this.reportData=res;      
-      },  
-      error => {  
+    this.selectorService.getReportData(form,'propertyAvailableStatus').subscribe( // TODO: make this transaction
+      res => {
+        console.log(res);
+        this.reportData = res;
+      },
+      error => {
         console.log('There was an error while retrieving report data' + error);
       }
     )

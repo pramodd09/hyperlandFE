@@ -4,20 +4,19 @@ import { SelectorService } from '../../../services/selector.service';
 import * as XLSX from 'xlsx';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas'; 
+import { columnList } from '../../report-column-list';
 
 
 @Component({
   selector: 'app-booking-table',
   templateUrl: './booking-table.component.html',
   styleUrls: ['./booking-table.component.scss'],
-  // encapsulation:ViewEncapsulation.None
 })
 export class BookingTableComponent implements OnChanges {
   @ViewChild('TABLE') table: ElementRef;
   reportDataSource: any;
   displayedColumns: string[];
   @Input() reportData;
-  @Input() columns;
 
   constructor(private selectorService: SelectorService,
   ) { }
@@ -25,10 +24,8 @@ export class BookingTableComponent implements OnChanges {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit() {
-    this.displayedColumns = this.columns;
+  ngOnInit() {    
     this.reportDataSource = new MatTableDataSource();
-    // this.reportDataSource.data = ELEMENT_DATA;
     this.reportDataSource.paginator = this.paginator;
     this.reportDataSource.sort = this.sort;
   }
@@ -68,18 +65,9 @@ export class BookingTableComponent implements OnChanges {
     if (this.reportData) {
       console.log('ngOnchanges in child');
       console.log(this.reportData);
+      this.displayedColumns = columnList["booking"];  //TODO : make this booking 
       this.reportDataSource.data = this.reportData.result;
 
     }
   }
 }
-
-const ELEMENT_DATA: any[] = [
-  { customerName: "Mustafa", agentName: 'Hydrogen', projectName: "Developers", firmName: 'Alphabet', block: "C-Block", block1: "C-Block", block2: "C-Block", block3: "C-Block" },
-  { customerName: "Pankaj", agentName: 'Oxygen', projectName: "Developers", firmName: 'Alphabet', block: "C-Block", block1: "C-Block", block2: "C-Block", block3: "C-Block" },
-  { customerName: "Mayur", agentName: 'Boron', projectName: "Hyperland", firmName: 'Alphabet', block: "C-Block", block1: "C-Block", block2: "C-Block", block3: "C-Block" },
-  { customerName: "Pramod", agentName: 'Lithium', projectName: "Developers", firmName: 'Alphabet', block: "C-Block", block1: "C-Block", block2: "C-Block", block3: "C-Block" },
-  { customerName: "Mustafa", agentName: 'Beryllium', projectName: "BrainTech", firmName: 'Alphabet', block: "C-Block", block1: "C-Block", block2: "C-Block", block3: "C-Block" },
-  { customerName: "Mustafa", agentName: 'Fluorine ', projectName: "BrainDrain", firmName: 'Alphabet', block: "C-Block", block1: "C-Block", block2: "C-Block", block3: "C-Block" },
-  { customerName: "Mustafa", agentName: 'Hydrogen', projectName: "Developers", firmName: 'Alphabet', block: "C-Block", block1: "C-Block", block2: "C-Block", block3: "C-Block" },
-];

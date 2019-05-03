@@ -1,10 +1,11 @@
-<mat-card>
+<mat-card>    
   <form (ngSubmit)="onFormSubmit(reportForm.value)" [formGroup]="reportForm">
     <div fxLayout="row wrap" fxLayoutGap="22px" fxLayoutAlign="flex-start">
       <div fxFlex="0 1 calc(33.3% - 32px)">
         <mat-form-field>
           <mat-label>Firm Name</mat-label>
-          <mat-select panelClass="myselect" formControlName="firmId" (selectionChange)="onChange($event,'project')">
+          <mat-select panelClass="" formControlName="firmId" (selectionChange)="onChange($event,'project')">
+              <mat-option [value]="undefinedVal">None</mat-option>
             <mat-option *ngFor="let firm of firms" [value]="firm.code">
               {{firm.value}}
             </mat-option>
@@ -13,9 +14,10 @@
       </div>
       <div fxFlex="0 1 calc(33.3% - 32px)">
         <mat-form-field>
-          <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+            <mat-progress-spinner *ngIf="loading1" mode="indeterminate"></mat-progress-spinner>
           <mat-label>Project Name</mat-label>
           <mat-select formControlName="projectId" (selectionChange)="onChange($event,'block')">
+              <mat-option [value]="undefinedVal">None</mat-option>
             <mat-option *ngFor="let prop of property" [value]="prop.code">
               {{prop.value}}
             </mat-option>
@@ -24,9 +26,11 @@
       </div>
       <div fxFlex="0 1 calc(33.3% - 32px)">
         <mat-form-field>
+            <mat-progress-bar *ngIf="loading2" mode="indeterminate"></mat-progress-bar>
           <mat-label>Block Name</mat-label>
           <mat-select formControlName="blockId" (selectionChange)="onChange($event,'plot')">
-            <mat-option *ngFor="let block of blocks" [value]="block.value">
+              <mat-option [value]="undefinedVal">None</mat-option>
+            <mat-option *ngFor="let block of blocks" [value]="block.code">
               {{block.value}}
             </mat-option>
           </mat-select>
@@ -34,9 +38,11 @@
       </div>
       <div fxFlex="0 1 calc(33.3% - 32px)">
         <mat-form-field>
+            <mat-progress-bar *ngIf="loading3" mode="indeterminate"></mat-progress-bar>
           <mat-label>Plot</mat-label>
           <mat-select formControlName="plotId">
-            <mat-option *ngFor="let plot of plots" [value]="plot.value">
+              <mat-option [value]="undefinedVal">None</mat-option>
+            <mat-option *ngFor="let plot of plots" [value]="plot.code">
               {{plot.value}}
             </mat-option>
           </mat-select>
@@ -64,5 +70,5 @@
   </form>
 </mat-card>
 <mat-card>
-  <app-booking-table [reportData]="reportData" [columns]="columns"></app-booking-table>
+  <app-booking-table [reportData]="reportData"></app-booking-table>
 </mat-card>

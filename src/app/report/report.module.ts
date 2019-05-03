@@ -3,23 +3,19 @@ import { CommonModule } from '@angular/common';
 import { BookingReportComponent } from './booking-report/booking-report.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatButtonModule, MatDialogModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatGridListModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule, MatAutocompleteModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatGridListModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule, MatAutocompleteModule, MatCheckboxModule, MatProgressSpinnerModule } from '@angular/material';
 import { ReportRouterModule } from './report.router';
 import { CustomerReportComponent } from './customer-report/customer-report.component';
 import { TransactionReportComponent } from './transaction-report/transaction-report.component';
 import { CustomerTableComponent } from './customer-report/customer-report-table/customer-table.component';
 import { TransactionTableComponent } from './transaction-report/transaction-report-table/transaction-table.component';
 import { BookingTableComponent } from './booking-report/booking-report-table/booking-table.component';
-import { Ng2GoogleChartsModule } from 'ng2-google-charts';
-import { NetworkReport } from './network-leg-report/network-report.component';
-import { OrgChartModule } from 'ng2-org-chart';
-
-@NgModule({
-  imports: [
 import { PropertyReportComponent } from './property-report/property-report.component';
 import { PropertyTableComponent } from './property-report/property-report-table/property-table.component';
 import { HoldReportComponent } from './hold-report/hold-report.component';
 import { HoldTableComponent } from './hold-report/hold-report-table/hold-table.component';
+import { NetworkReport } from './network-leg-report/network-report.component';
+import { OrgChartModule } from 'ng2-org-chart';
 
 @NgModule({
   imports: [
@@ -45,11 +41,10 @@ import { HoldTableComponent } from './hold-report/hold-report-table/hold-table.c
       MatDatepickerModule,
       MatNativeDateModule ,
       MatProgressBarModule,
-      MatCheckboxModule
-      Ng2GoogleChartsModule,
+      MatCheckboxModule,      
       OrgChartModule,
-      MatAutocompleteModule
-
+      MatAutocompleteModule,
+      MatProgressSpinnerModule
 
     ],
     entryComponents: [],
@@ -63,7 +58,7 @@ import { HoldTableComponent } from './hold-report/hold-report-table/hold-table.c
       PropertyReportComponent,
       PropertyTableComponent,
       HoldReportComponent,
-      HoldTableComponent
+      HoldTableComponent,
       NetworkReport
 
 

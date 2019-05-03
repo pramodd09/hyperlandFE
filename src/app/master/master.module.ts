@@ -43,7 +43,7 @@ import { LandDialog } from './master-land/create-land.component';
 import { DeleteLandConfirmBoxDialog } from './master-land/master-delete-confirm-box.component';
 import { DeleteInvestorMasterConfirmBoxDialog } from './master-investor/master-delete-investor-confirm-box.component';
 import { DeleteInvestmentMasterConfirmBoxDialog } from './master-investment/master-investment-delete-confirm-box.component';
-import { TreeChecklistExample } from './master-role-configuration/role-configuration.component';
+// import { TreeChecklistExample } from './master-role-configuration/role-configuration.component';
 
 //8import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 
@@ -163,8 +163,8 @@ export function highlightJsFactory(): any {
     DeleteFarmerConfirmBoxDialog,
     MasterLandComponent,
     LandDialog,
-    DeleteLandConfirmBoxDialog,
-    TreeChecklistExample
+    DeleteLandConfirmBoxDialog
+    // TreeChecklistExample
 
    // LeafletMapComponent
 ],

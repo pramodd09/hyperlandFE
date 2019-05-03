@@ -23,6 +23,7 @@ export class CustomerReportComponent {
   reportData;
  
   columns=columnList["customer"];
+  undefinedVal = undefined;
 
   constructor(
     private selectorService: SelectorService,
@@ -51,36 +52,58 @@ export class CustomerReportComponent {
     )
   }
   onChange(event,type){
-    this.loading = true;    
-    this.selectorService.getDependentData(type,event.value).subscribe(
-      res => {  
-        // console.dir(res);
-        this.loading = false;
-        switch (type) {
-          case 'project':
-          this.property=res.result;        
-          this.blocks=[];
-          this.plots=[];
-            break;
-          case 'block':
-          this.blocks=res.result;
-          this.plots=[];
-          break;
-          case 'plot':
-          this.plots=res.result;  
-          case 'client':
-          this.clients=res.result;                    
-          break;
-       
-          default:
-            console.log('Sorry, we are out of ' + '.');
-        }       
-        
-      },  
-      error => {  
-        console.log('There was an error while retrieving Albums !!!' + error);
-      }
-    )
+    // console.log("event.value "+event.value)
+    this.loading = true;
+    // console.log(res);
+    this.loading = false;
+    switch (type) {
+      case 'project':
+      this.reportForm.controls['projectId'].setValue(undefined)
+      this.reportForm.controls['blockId'].setValue(undefined)
+      this.reportForm.controls['plotId'].setValue(undefined)
+      this.selectorService.getDependentData(type, event.value).subscribe(
+          res => {
+            this.property = res.result;
+            console.log(this.property)
+            this.blocks = [];
+            this.plots = [];
+          },
+          error => {
+            console.log('There was an error while retrieving data' + error);
+          }
+        )
+        break;
+      case 'block':
+      this.reportForm.controls['blockId'].setValue(undefined)
+      this.reportForm.controls['plotId'].setValue(undefined)
+        this.selectorService.getDependentData(type, event.value).subscribe(
+          res => {
+            this.blocks = res.result;
+            console.log(this.blocks)
+            this.plots = [];
+          },
+          error => {
+            console.log('There was an error while retrieving data' + error);
+          }
+        )
+        break;
+      case 'plot':
+      this.reportForm.controls['plotId'].setValue(undefined)
+      console.log('block changed')
+        this.selectorService.getDependentData(type, event.value).subscribe(
+          res => {
+            console.log(res.result)
+            this.plots = res.result;
+            console.log(this.plots)
+          },
+          error => {
+            console.log('There was an error while retrieving data' + error);
+          }
+        )
+        break;
+      default:
+        console.log('Sorry, we are out of ' + '.');
+    }
   }
 
   onFormSubmit(form: NgForm){

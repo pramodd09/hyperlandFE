@@ -71,7 +71,7 @@ export class HoldReportComponent {
         if (event.value == 'Hold') this.action = 'Available';
         else if (event.value == 'UnHold') this.action = 'Hold';        
         break;
-      case 'property':
+      case 'project':
       this.reportForm.controls['projectId'].setValue(undefined)
       this.reportForm.controls['blockId'].setValue(undefined)
       this.reportForm.controls['plotId'].setValue(undefined)

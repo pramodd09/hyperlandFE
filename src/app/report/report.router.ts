@@ -11,9 +11,7 @@ const reportRoutes: Routes = [
     {path: 'bookingreport', component: BookingReportComponent , data: { animation: 'masterfirm' }},
     {path: 'customerreport', component: CustomerReportComponent , data: { animation: 'masterfirm' }},
     {path: 'transactionreport', component: TransactionReportComponent , data: { animation: 'masterfirm' }},
-    {path: 'networkreport', component: NetworkReport , data: { animation: 'networkreport' }}
-
-]
+    {path: 'networkreport', component: NetworkReport , data: { animation: 'networkreport' }},
     {path: 'propertyreport', component: PropertyReportComponent , data: { animation: 'masterfirm' }},
     {path: 'holdreport', component: HoldReportComponent , data: { animation: 'masterfirm' }}
 

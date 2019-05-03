@@ -4,6 +4,7 @@ import { SelectorService } from '../../../services/selector.service';
 import * as XLSX from 'xlsx';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas'; 
+import { columnList } from '../../report-column-list';
 
 @Component({
   selector: 'app-transaction-table',
@@ -15,7 +16,6 @@ export class TransactionTableComponent implements OnChanges {
   reportDataSource: any;
   displayedColumns: string[];
   @Input() reportData;
-  @Input() columns;
 
   constructor(private selectorService: SelectorService,
   ) {}
@@ -24,7 +24,6 @@ export class TransactionTableComponent implements OnChanges {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
-    this.displayedColumns = this.columns;
     this.reportDataSource = new MatTableDataSource();
     this.reportDataSource.paginator = this.paginator;
     this.reportDataSource.sort = this.sort;
@@ -64,9 +63,8 @@ ngOnChanges():void{
   if(this.reportData){
     console.log('ngOnchanges in child');
     console.log(this.reportData);
+    this.displayedColumns = columnList["booking"];  //TODO : make this transaction 
     this.reportDataSource.data = this.reportData.result;
-    this.reportDataSource.paginator = this.paginator;
-    this.reportDataSource.sort = this.sort;
   }
   }
 }

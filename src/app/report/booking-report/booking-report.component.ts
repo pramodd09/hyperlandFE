@@ -18,10 +18,13 @@ export class BookingReportComponent {
   locations: any[];
   blocks: any[];
   plots: any[];
-  loading: boolean = false;
+  loading1: boolean = false;
+  loading2: boolean = false;
+  loading3: boolean = false;
   reportForm: FormGroup;
   reportData;
 columns=columnList["booking"];
+undefinedVal = undefined;
 
   constructor(
     private selectorService: SelectorService,
@@ -48,40 +51,72 @@ columns=columnList["booking"];
     )
   }
   onChange(event, type) {
-    this.loading = true;
-    this.selectorService.getDependentData(type, event.value).subscribe(
-      res => {
-        // console.dir(res);
-        this.loading = false;
-        switch (type) {
-          case 'project':
+    // console.log("event.value "+event.value)
+    
+    // console.log(res);
+  
+    switch (type) {
+      case 'project':
+      this.loading1 = true;
+      this.reportForm.controls['projectId'].setValue(undefined)
+      this.reportForm.controls['blockId'].setValue(undefined)
+      this.reportForm.controls['plotId'].setValue(undefined)
+      this.selectorService.getDependentData(type, event.value).subscribe(
+          res => {
+            this.loading1 = false;
             this.property = res.result;
+            console.log(this.property)
             this.blocks = [];
             this.plots = [];
-            break;
-          case 'block':
+          },
+          error => {
+            console.log('There was an error while retrieving data' + error);
+            this.loading1 = false;
+          }
+        )
+        break;
+      case 'block':
+      this.loading2 = true;
+      this.reportForm.controls['blockId'].setValue(undefined)
+      this.reportForm.controls['plotId'].setValue(undefined)
+        this.selectorService.getDependentData(type, event.value).subscribe(
+          res => {
+            this.loading2 = false;
             this.blocks = res.result;
+            console.log(this.blocks)
             this.plots = [];
-            break;
-          case 'plot':
+          },
+          error => {
+            this.loading2 = false;
+            console.log('There was an error while retrieving data' + error);
+          }
+        )
+        break;
+      case 'plot':
+      this.loading3 = true;
+      this.reportForm.controls['plotId'].setValue(undefined)
+      console.log('block changed')
+        this.selectorService.getDependentData(type, event.value).subscribe(
+          res => {
+            this.loading3 = false;
+            console.log(res.result)
             this.plots = res.result;
-            break;
-
-          default:
-            console.log('Sorry, we are out of ' + '.');
-        }
-
-      },
-      error => {
-        console.log('There was an error while retrieving data' + error);
-      }
-    )
+            console.log(this.plots)
+          },
+          error => {
+            this.loading3 = false;
+            console.log('There was an error while retrieving data' + error);
+          }
+        )
+        break;
+      default:
+        console.log('Sorry, we are out of ' + '.');
+    }
   }
 
   onFormSubmit(form: NgForm) {
     console.log(form);
-
-    this.selectorService.getReportData(form).subscribe(
+    this.selectorService.getReportData(form,'propertyAvailableStatus').subscribe( // TODO: make this booking
       res => {
         console.log(res);
         this.reportData = res;
@@ -89,7 +124,6 @@ columns=columnList["booking"];
       error => {
         console.log('There was an error while retrieving report data' + error);
       }
-    )
-    // console.log(form)    
+    ) 
   }
 }

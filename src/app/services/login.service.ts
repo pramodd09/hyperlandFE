@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Cookie } from 'ng2-cookies';
+// import { Cookie } from 'ng2-cookies';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,14 +13,14 @@ export class LoginService {
   public clientId = 'fooClientId';
    public redirectUri = 'http://localhost:4200/';
 
-  checkCredentials(){
-    return Cookie.check('access_token');
-  } 
+  // checkCredentials(){
+  //   return Cookie.check('access_token');
+  // } 
  
-  logout() {
-    Cookie.delete('access_token');
-    window.location.reload();
-  }
+  // logout() {
+  //   Cookie.delete('access_token');
+  //   window.location.reload();
+  // }
 
 
   authenticate(username, password) {

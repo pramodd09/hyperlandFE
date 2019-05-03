@@ -15,7 +15,7 @@
       <div fxFlex="0 1 calc(33.3% - 32px)">
         <mat-form-field>
           <mat-label>Firm Name</mat-label>
-          <mat-select panelClass="myselect" formControlName="firmId" (selectionChange)="onChange($event,'property')">
+          <mat-select panelClass="myselect" formControlName="firmId" (selectionChange)="onChange($event,'project')">
               <mat-option [value]="undefinedVal">None</mat-option>
             <mat-option *ngFor="let firm of firms" [value]="firm.code">
               {{firm.value}}
