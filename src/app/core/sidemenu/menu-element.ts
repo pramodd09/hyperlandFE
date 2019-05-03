@@ -476,11 +476,8 @@ export const menus = [
                 'open': false,
             },
             {
-                'name': 'daily-expense-details',
                 'icon': 'widgets',
-                'link': 'accounts/daily-expense',
                 'name': 'Customer Installment',
-                'icon': 'widgets',
                 'link': 'accounts/customer-installment-details',
                 'open': false,
             }
