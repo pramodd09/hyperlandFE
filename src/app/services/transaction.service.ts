@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, ObservableLike } from 'rxjs';
 import { Booking } from '../model/Booking';
 import { MatTableDataSource } from '@angular/material';
 
@@ -36,5 +36,10 @@ export class TransactionService {
   deleteBooking(bookingId) : Observable<any> {
     var  baseURL = 'master/delete/agent/'+bookingId;
     return this.http.post(baseURL,{});
+  }
+
+  getReceiptNumber():Observable<any>{
+    var  baseURL = 'transaction/get/receiptNumber/';
+    return this.http.get(baseURL,{});  
   }
 }

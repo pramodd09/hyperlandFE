@@ -55,20 +55,22 @@
         </mat-grid-tile>
 
 
-        <mat-grid-tile>
-          <mat-form-field>
-            <input matInput placeholder="Sponsor Id" formControlName="sponsorId" [(ngModel)]="agent.sponsorId">
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field>
-            <input matInput placeholder="Sponsor Name" formControlName="sponsorName" [(ngModel)]="agent.sponsorName">
+
+        <mat-grid-tile >
+          <mat-form-field class="example-full-width">
+            <input #agentInput (keyup)="0" matInput placeholder="Sponsor Agent" aria-label="Agent" [matAutocomplete]="auto" [formControl]="agentCtrl"  [(ngModel)]="agent.sponsorId">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option (onSelectionChange)="agentInput.value !=undefined && onEnter($event)" *ngFor="let agent of filteredAgent | async" [value]="agent">
+                <span>{{ agent.agentName }}</span>
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
         </mat-grid-tile>
 
+        
         <mat-grid-tile>
           <mat-form-field>
-            <input matInput placeholder="Stage" formControlName="designation" [(ngModel)]="agent.designation">
+            <input matInput placeholder="Stage" formControlName="sponsorDesignation" [(ngModel)]="agent.sponsorDesignation">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
@@ -80,14 +82,14 @@
 
         <mat-grid-tile>
           <mat-form-field>
-            <input matInput [matDatepicker]="dateOfBirth"  placeholder="Date of Birth" >
+            <input matInput [matDatepicker]="dateOfBirth"  formControlName = "dateOfBirth" placeholder="Date of Birth"  [(ngModel)]= "agent.dateOfBirth" >
             <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
             <mat-datepicker #dateOfBirth></mat-datepicker>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field>
-            <input matInput [matDatepicker]="dateOfJoining" placeholder="Date of Joining" >
+            <input matInput [matDatepicker]="dateOfJoining"  placeholder="Date of Joining" formControlName = "dateOfJoining" [(ngModel)]= "agent.dateOfJoining">
             <mat-datepicker-toggle matSuffix [for]="dateOfJoining"></mat-datepicker-toggle>
             <mat-datepicker #dateOfJoining></mat-datepicker>
           </mat-form-field>
@@ -133,7 +135,7 @@
 
       <mat-action-row>
         <button mat-button color="warn" (click)="prevStep()">Previous</button>
-        <button mat-button color="primary" (click)="nextStep()">Next</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button> 
       </mat-action-row>
     </mat-expansion-panel>
 

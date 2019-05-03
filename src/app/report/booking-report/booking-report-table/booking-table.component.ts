@@ -28,7 +28,7 @@ export class BookingTableComponent implements OnChanges {
   ngOnInit() {
     this.displayedColumns = this.columns;
     this.reportDataSource = new MatTableDataSource();
-    this.reportDataSource.data = ELEMENT_DATA;
+    // this.reportDataSource.data = ELEMENT_DATA;
     this.reportDataSource.paginator = this.paginator;
     this.reportDataSource.sort = this.sort;
   }

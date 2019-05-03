@@ -19,18 +19,8 @@ export class SelectorService {
     var  baseURL = 'selector/get/'+type+"/"+id; 
     return this.http.get(baseURL);
   }
-  getDependentDataPlotByAction(action,id):Observable<any>{
-    console.log('inByAction')
-    console.log(action)
-    if(action=='Available')
-    var  baseURL = 'selector/get/availablePlot/'+id;
-    else
-    var  baseURL = 'selector/get/bookedPlot/'+id;
-    return this.http.get(baseURL);
-  }
-  getReportData(form,type):Observable<any>{
-    console.log(form)
-    var  baseURL = 'search/'+type;
+  getReportData(form):Observable<any>{
+    var  baseURL = 'search/booking';
     return this.http.post(baseURL,form);
   }
 
@@ -42,5 +32,15 @@ export class SelectorService {
   holdUnholdProperty(action,rows){
     var  baseURL = 'searchRows/'+action;
     return this.http.post(baseURL,rows);
+  }
+
+  getAgentLegReport(id):Observable<any>
+  {
+    var  baseURL = 'search/agent/legreport/'+id;
+    return this.http.get(baseURL);
+  }
+  getReportDataByType(form,type):Observable<any>{
+    var  baseURL = 'search/'+type;
+    return this.http.post(baseURL,form);
   }
 }

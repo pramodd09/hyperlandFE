@@ -17,7 +17,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
-    RouterModule.forChild(appRoutes),
+    RouterModule.forChild(appRoutes)
   ],
   declarations: [LoginComponent]
 })

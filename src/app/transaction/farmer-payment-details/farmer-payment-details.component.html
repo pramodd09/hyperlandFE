@@ -1,0 +1,92 @@
+<mat-card>
+  <div class="example-container mat-elevation-z8">
+      <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>  
+      <mat-table #Table [dataSource]="paymentDetailDataSource" matSort>  
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()"
+                              [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)"
+                              [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+              </td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="id" sticky>  
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>  
+            <mat-cell *matCellDef="let detail"> {{detail.id}} </mat-cell>  
+        </ng-container> -->
+
+          <ng-container matColumnDef="farmerName" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> FARMER NAME </mat-header-cell>  
+              <mat-cell *matCellDef="let detail"> {{detail.farmerName}} </mat-cell>  
+          </ng-container>  
+    
+          <ng-container matColumnDef="paymentMode" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> PAYMENT MODE </mat-header-cell>  
+              <mat-cell *matCellDef="let detail"> {{detail.paymentMode}} </mat-cell>  
+          </ng-container>
+          
+          <ng-container matColumnDef="bankName" sticky>  
+            <mat-header-cell *matHeaderCellDef mat-sort-header> BANK NAME </mat-header-cell>  
+            <mat-cell *matCellDef="let detail"> {{detail.bankName}} </mat-cell>  
+          </ng-container>
+          
+          <ng-container matColumnDef="paymentAmount" sticky>  
+            <mat-header-cell *matHeaderCellDef mat-sort-header> PAYMENT AMOUNT </mat-header-cell>  
+            <mat-cell *matCellDef="let detail"> {{detail.paymentAmount}} </mat-cell>  
+          </ng-container>
+
+          <ng-container matColumnDef="transactionDate" sticky>  
+            <mat-header-cell *matHeaderCellDef mat-sort-header> TRANSACTION DATE </mat-header-cell>  
+            <mat-cell *matCellDef="let detail"> {{detail.transactionDate}} </mat-cell>  
+          </ng-container>
+
+          <ng-container matColumnDef="khasraNumber" sticky>  
+            <mat-header-cell *matHeaderCellDef mat-sort-header> KHASRA NUMBER </mat-header-cell>  
+            <mat-cell *matCellDef="let detail"> {{detail.khasraNumber}} </mat-cell>  
+          </ng-container>
+
+          <ng-container matColumnDef="landAmount" sticky>  
+            <mat-header-cell *matHeaderCellDef mat-sort-header> LAND AMOUNT </mat-header-cell>  
+            <mat-cell *matCellDef="let detail"> {{detail.landAmount}} </mat-cell>  
+          </ng-container>
+
+          <ng-container matColumnDef="paidAmount" sticky>  
+            <mat-header-cell *matHeaderCellDef mat-sort-header> PAID AMOUNT </mat-header-cell>  
+            <mat-cell *matCellDef="let detail"> {{detail.paidAmount}} </mat-cell>  
+          </ng-container>
+
+          <ng-container matColumnDef="actions" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
+              <mat-cell *matCellDef="let paymentDetail"> 
+                <button mat-raised-button color="primary"
+                  matTooltip="Accept Payment Detail"
+                  (click)="acceptPaymentDetail(paymentDetail.id)">
+                  <i class="material-icons">done</i>
+                </button>
+  
+                <button mat-raised-button color="warn" 
+                  matTooltip="Reject Payment Detail"
+                  style="margin-left: 10px"
+                  (click)="rejectPaymentDetail(paymentDetail.id)">
+                  <i class="material-icons">close</i>
+                </button>
+              </mat-cell>  
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>  
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>  
+      </mat-table>  
+  
+      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">  
+      </mat-paginator> 
+  </div>
+</mat-card>    

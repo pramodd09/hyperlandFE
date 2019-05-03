@@ -78,7 +78,7 @@ export class TransactionReportComponent implements OnInit {
     )
   }
   onFormSubmit(form: NgForm){
-    console.log(form);    
+    console.log(form);
     var type = 'propertyAvailableStatus';
     if(form.status=='Booked'){type='propertyBookedStatus'}
     else if(form.status=='Hold'){type='propertyHoldStatus'}

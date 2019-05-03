@@ -1,5 +1,5 @@
 export class Customer {
-  customerName    : "string";
+customerName    : "string";
 panNumber      : "string";
 adhaarNo       : "string";
 address        : "string";

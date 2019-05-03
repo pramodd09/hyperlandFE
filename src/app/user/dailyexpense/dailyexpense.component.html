@@ -1,16 +1,16 @@
 <mat-card>
-<button mat-raised-button (click)="openDialog()" color="primary">Add Agent</button>
+<button mat-raised-button (click)="openDialog()" color="primary">Add New</button>
 </mat-card>
-<mat-card>
+<!--<mat-card>
     <div class="example-container mat-elevation-z8">
         <mat-table #Table [dataSource]="agentDataSource" matSort>
-            <!-- For ID -->
+           
             <ng-container matColumnDef="id" sticky>
                 <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
                 <mat-cell *matCellDef="let agent"> {{agent.id}} </mat-cell>
             </ng-container>
 
-            <!-- For agent name -->
+          
             <ng-container matColumnDef="agentName" sticky>
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Agent Name </mat-header-cell>
                 <mat-cell *matCellDef="let agent"> {{agent.agentName}} </mat-cell>
@@ -58,5 +58,5 @@
         <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">
         </mat-paginator>
     </div>
-    </mat-card>
+    </mat-card>-->
 

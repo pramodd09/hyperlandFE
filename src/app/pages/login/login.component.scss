@@ -14,7 +14,7 @@ $prefix: 'sigin';
   &-main {
     position: relative;
     margin: 0 auto;
-    width: 500px;
+    width: 600px;
   }
 }
 
@@ -27,7 +27,8 @@ $prefix: 'sigin';
 }
 
 .is-danger {
-
+  color:red;
+  font-size: 10px;
 }
 
 .redirect {

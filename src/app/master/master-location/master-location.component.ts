@@ -157,10 +157,12 @@ export class MasterLocationComponent implements OnInit {
     this.locationData = new Location();
     const dialogRef = this.dialog.open(DialogOverviewLocationDialog, {
       width: '400px',
+  
       data : {
         'locationData': this.locationData,
         'cityList': this.cityList
-      }
+      },
+      disableClose: true ,
     });
 
     dialogRef.afterClosed().subscribe(result => {

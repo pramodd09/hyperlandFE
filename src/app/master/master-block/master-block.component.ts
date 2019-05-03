@@ -182,7 +182,8 @@ export class MasterBlockComponent implements OnInit {
         'firmList': this.firmList,
         'projectList':this.projectList,
         'propertyTypeList': this.propertyTypeList
-      }
+      },
+      disableClose: true 
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -252,7 +253,8 @@ export class MasterBlockComponent implements OnInit {
       console.log("blockId:",blockId);
       const confirmDeleteBlockDialog = this.dialog.open(DeleteBlockConfirmBoxDialog, {
         width: '400px',
-        data : blockId
+        data : blockId,
+        disableClose: true 
       });
   
       confirmDeleteBlockDialog.afterClosed().subscribe(result => {
@@ -270,6 +272,7 @@ export class MasterBlockComponent implements OnInit {
 
       const dialogRef = this.dialog.open(DialogOverviewBlockDialog, {
         width: '350px',
+        disableClose: true ,
         data: {
           'blockData' : this.blockData,
           'firmList': this.firmList,

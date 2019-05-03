@@ -9,7 +9,7 @@ export const columnList = {
     "transaction":["customerName","projectName", "agentName", "firmName", "block"],
 
     "propertyAvailable":["select","firmName","projectName","block","plotNo","plotSize","sqftRate","facing"],
-    "propertyBooked":["select","firmName","projectName","block","plotNo","plotSize","sqftRate","bookedBy","bookedOn"],    
-    "propertyHold":["select","firmName","projectName","block","plotNo","plotSize","sqftRate","holdBy","holdOn"],  
+    "propertyBooked":["select","firmName","projectName","block","plotNo","plotSize","sqftRate","bookedBy","bookedOn"],
+    "propertyHold":["select","firmName","projectName","block","plotNo","plotSize","sqftRate","holdBy","holdOn"],
 
 }

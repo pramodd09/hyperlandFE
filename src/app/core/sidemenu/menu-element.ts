@@ -311,6 +311,12 @@ export const menus = [
                     'link': 'user/useragent',
                     'open': false
                 },
+                {
+                    'name': 'Daily Expenses',
+                    'icon': 'widgets',
+                    'link': 'user/daily-expenses',
+                    'open': false
+                },
                  {
                                     'name': 'Booking',
                                     'icon': 'widgets',
@@ -421,11 +427,11 @@ export const menus = [
                 'icon': 'widgets',
                 'link': 'master/land',
                 'open': false,
-            }    
+            }
 
         ]
     },
-    {        
+    {
         'name': 'Report',
         'icon': 'widgets',
         'open': false,
@@ -480,8 +486,106 @@ export const menus = [
                 'icon': 'widgets',
                 'link': 'accounts/associate-payment-details',
                 'open': false,
+            },
+			 {
+                'name': 'Investor-master',
+                'icon': 'widgets',
+                'link': 'master/masterinvestor',
+                'open': false,
+            },
+            {
+                'name': 'Investment-master',
+                'icon': 'widgets',
+                'link': 'master/masterinvestment',
+                'open': false,
+            },
+            {
+                'name': 'Expense-Category',
+                'icon': 'widgets',
+                'link': 'master/expensecategory',
+                'open': false,
+            },
+            {
+                'name': 'Farmer-master',
+                'icon': 'widgets',
+                'link': 'master/farmer',
+                'open': false,
+            },
+            {
+                'name': 'Land-master',
+                'icon': 'widgets',
+                'link': 'master/land',
+                'open': false,
             }
-           
+
+        ]
+    },
+    {
+        'name': 'Report',
+        'icon': 'widgets',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'Booking Report',
+                'icon': 'widgets',
+                'link': 'report/bookingreport',
+                'open': false,
+            },
+            {
+                'name': 'Customer Report',
+                'icon': 'widgets',
+                'link': 'report/customerreport',
+                'open': false,
+            },
+            {
+                'name': 'Transaction Report',
+                'icon': 'widgets',
+                'link': 'report/transactionreport',
+                'open': false,
+            }
+        ]
+	},
+	 {
+        'name': 'Accounts',
+        'icon': 'widgets',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'Farmer Payment',
+                'icon': 'widgets',
+                'link': 'accounts/farmer-payment-details',
+                'open': false,
+            },
+            {
+                'name': 'Agent Payment',
+                'icon': 'widgets',
+                'link': 'accounts/associate-payment-details',
+                'open': false,
+            },
+            {
+                'name': 'daily-expense-details',
+                'icon': 'widgets',
+                'link': 'accounts/daily-expense',
+                'open': false,
+            }
+
+
+        ]
+    },
+    {
+        'name': 'Transaction',
+        'icon': 'widgets',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'registry-form',
+                'icon': 'widgets',
+                'link': 'transaction/registryform',
+                'open': false,
+            }
 
         ]
     }

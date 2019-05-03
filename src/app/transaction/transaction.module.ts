@@ -18,6 +18,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import { ExpensecategoryComponent } from './expensecategory/expensecategory.component';
+import { AgentPaymentDetailsComponent } from './agent-payment-details/agent-payment-details.component';
+import { FarmerPaymentDetailsComponent } from './farmer-payment-details/farmer-payment-details.component';
+import { ExpenseDetailsComponent } from './expense-details/expense-details.component';
+import { OrgChartModule } from 'ng2-org-chart';
+import { RegistryComponent } from './registry/registry.component';
 
 
 
@@ -57,6 +62,7 @@ export function highlightJsFactory(): any {
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatTabsModule,
+    OrgChartModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAXTJwhYqJ6Pc7VXGRMTv40N1WRLqzuSNs'
     }),
@@ -74,7 +80,11 @@ export function highlightJsFactory(): any {
 
       BookingFormComponent,
       ViewtransactionComponent,
-      ExpensecategoryComponent
+      ExpensecategoryComponent,
+      AgentPaymentDetailsComponent,
+      FarmerPaymentDetailsComponent,
+      ExpenseDetailsComponent,
+      RegistryComponent
 
 ],
 

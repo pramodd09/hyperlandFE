@@ -4,9 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 //import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 import { BookingFormComponent } from './booking-form/booking-form.component';
 import { ViewtransactionComponent } from './viewtransaction/viewtransaction.component';
+import { RegisterComponent } from '../register/register.component';
+import { RegistryComponent } from './registry/registry.component';
 const transactionRoutes: Routes = [
     {path: 'bookingform', component: BookingFormComponent , data: { animation: 'bookingForm' }},
+    {path: 'registryform', component: RegistryComponent , data: { animation: 'registryform' }},
     {path: 'verifytransaction', component: ViewtransactionComponent , data: { animation: 'verifytransaction' }}
+
 ];
 
 @NgModule({

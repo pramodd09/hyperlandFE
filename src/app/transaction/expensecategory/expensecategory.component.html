@@ -1,7 +1,7 @@
 <mat-card>
     <div class="example-container mat-elevation-z8">
         <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>  
-        <mat-table #Table [dataSource]="expenseCategoryDataSource" matSort>  
+        <mat-table #Table [dataSource]="paymentDetailDataSource" matSort>  
               <ng-container matColumnDef="select">
                 <th mat-header-cell *matHeaderCellDef>
                   <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -18,20 +18,47 @@
                   </mat-checkbox>
                 </td>
             </ng-container>
-            
-
-            <!-- For ID -->  
-            <ng-container matColumnDef="id" sticky>  
-                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>  
-                <mat-cell *matCellDef="let expenseCategory"> {{expenseCategory.id}} </mat-cell>  
-            </ng-container>  
     
-            <!-- For Firm name -->  
-            <ng-container matColumnDef="expenseCategory" sticky>  
-                <mat-header-cell *matHeaderCellDef mat-sort-header> EXPENSE CATEGORY </mat-header-cell>  
-                <mat-cell *matCellDef="let expenseCategory"> {{expenseCategory.expenseCategory}} </mat-cell>  
+            <ng-container matColumnDef="farmerName" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> FARMER NAME </mat-header-cell>  
+                <mat-cell *matCellDef="let detail"> {{detail.farmerName}} </mat-cell>  
             </ng-container>  
+      
+            <ng-container matColumnDef="paymentMode" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> PAYMENT MODE </mat-header-cell>  
+                <mat-cell *matCellDef="let detail"> {{detail.paymentMode}} </mat-cell>  
+            </ng-container>
             
+            <ng-container matColumnDef="bankName" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> BANK NAME </mat-header-cell>  
+              <mat-cell *matCellDef="let detail"> {{detail.bankName}} </mat-cell>  
+            </ng-container>
+            
+            <ng-container matColumnDef="paymentAmount" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> PAYMENT AMOUNT </mat-header-cell>  
+              <mat-cell *matCellDef="let detail"> {{detail.paymentAmount}} </mat-cell>  
+            </ng-container>
+
+            <ng-container matColumnDef="transactionDate" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> TRANSACTION DATE </mat-header-cell>  
+              <mat-cell *matCellDef="let detail"> {{detail.transactionDate}} </mat-cell>  
+            </ng-container>
+
+            <ng-container matColumnDef="khasraNumber" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> KHASRA NUMBER </mat-header-cell>  
+              <mat-cell *matCellDef="let detail"> {{detail.khasraNumber}} </mat-cell>  
+            </ng-container>
+
+            <ng-container matColumnDef="landAmount" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> LAND AMOUNT </mat-header-cell>  
+              <mat-cell *matCellDef="let detail"> {{detail.landAmount}} </mat-cell>  
+            </ng-container>
+
+            <ng-container matColumnDef="paidAmount" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> PAID AMOUNT </mat-header-cell>  
+              <mat-cell *matCellDef="let detail"> {{detail.paidAmount}} </mat-cell>  
+            </ng-container>
+
             <ng-container matColumnDef="actions" sticky>  
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
                 <mat-cell *matCellDef="let expenseCategory"> 

@@ -12,18 +12,18 @@ export class ExpensecategoryComponent implements OnInit {
 
   constructor(private expenseCategoryService : ExpenseCategoryService) { }
   loading : Boolean =false;
-  expenseCategoryDataSource : any;
+  paymentDetailDataSource : any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   expenseCategoryList : any;
-  displayedColumns = ['select','id', 'expenseCategory','actions'];
+  displayedColumns = ['select','farmerName', 'paymentMode','bankName','paymentAmount','transactionDate','khasraNumber','landAmount','paidAmount','actions'];
 
   selection = new SelectionModel<any>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.expenseCategoryDataSource.data.length;
+    const numRows = this.paymentDetailDataSource.data.length;
     return numSelected === numRows;
   }
 
@@ -31,7 +31,7 @@ export class ExpensecategoryComponent implements OnInit {
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
-        this.expenseCategoryDataSource.data.forEach(row => this.selection.select(row));
+        this.paymentDetailDataSource.data.forEach(row => this.selection.select(row));
   }
 
   /** The label for the checkbox on the passed row */
@@ -44,14 +44,14 @@ export class ExpensecategoryComponent implements OnInit {
 
   ngOnInit() {
 
-    this.expenseCategoryDataSource = new MatTableDataSource();
+    this.paymentDetailDataSource = new MatTableDataSource();
     this.loading = true;
     this.expenseCategoryService.getAllCategories().subscribe(  
       res => {  
         this.expenseCategoryList = res.result;
-        this.expenseCategoryDataSource.data = this.expenseCategoryList;
-        this.expenseCategoryDataSource.paginator = this.paginator;
-        this.expenseCategoryDataSource.sort = this.sort;
+        this.paymentDetailDataSource.data = this.expenseCategoryList;
+        this.paymentDetailDataSource.paginator = this.paginator;
+        this.paymentDetailDataSource.sort = this.sort;
         this.loading = false;
       },  
       error => {  

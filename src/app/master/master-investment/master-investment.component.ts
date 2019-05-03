@@ -198,8 +198,10 @@ export class MasterInvestmentComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogOverviewInvestmentDialog, {
       width: '350px',
       data : {
+       
         "investmentData" : this.investmentData
-      }
+      },
+      disableClose: true 
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -2,10 +2,12 @@
   <div mat-dialog-content>
       <form class="example-form"[formGroup]="associatePaymentDetailsForm" (ngSubmit)="onFormSubmit(associatePaymentDetailsForm.value)">
       <div class="example-container">
-
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Receipt Number" formControlName="receiptNo" [(ngModel)]="assocaitePayment.receiptNo">
+            </mat-form-field>
         <mat-form-field class="example-full-width">
           <input #agentInput (keyup)="0" matInput placeholder="Agent" aria-label="Agent" [matAutocomplete]="auto" [formControl]="agentCtrl" formControlName="agentId" [(ngModel)]="assocaitePayment.agentId">
-          <mat-autocomplete #auto="matAutocomplete">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option (onSelectionChange)="agentInput.value !=undefined && onEnter($event)" *ngFor="let agent of filteredAgent | async" [value]="agent.id+'|'+agent.agentName">
               <span>{{ agent.agentName }}</span>
             </mat-option>
