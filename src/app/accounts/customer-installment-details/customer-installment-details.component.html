@@ -31,7 +31,7 @@
         <mat-grid-tile>
           <mat-form-field>
             <mat-label>Block Name</mat-label>
-            <mat-select formControlName="blockId" (ngModelChange)="onChange($event,'availablePlot')" [(ngModel)]="reportForm.blockId">
+            <mat-select formControlName="blockId" (ngModelChange)="onChange($event,'bookedPlot')" [(ngModel)]="reportForm.blockId">
               <mat-option *ngFor="let block of blockList" [value]="block.code+'|'+block.value">
                 {{block.value}}
               </mat-option>

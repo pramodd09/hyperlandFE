@@ -157,7 +157,8 @@ export class MasterAdditionalChargesComponent implements OnInit {
       width: '400px',
       data: {
             "firmList": this.firmList
-           }
+           },
+           disableClose: true 
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -209,7 +210,8 @@ refresh() {
       data: {
                 "firmList": this.firmList,
                  "additionalCharges": this.additionalChargesData
-            }
+            },
+            disableClose: true 
      });
 
       dialogRef.afterClosed().subscribe(result => {
@@ -226,7 +228,8 @@ refresh() {
   openConfirmDeleteDialog(additionalChargesId : any): void {
     const confirmDeleteAdditionalChargesDialog = this.dialog.open(DeleteAdditionalChargesConfirmBoxDialog, {
       width: '400px',
-      data : additionalChargesId
+      data : additionalChargesId,
+      disableClose: true 
     });
 
     confirmDeleteAdditionalChargesDialog.afterClosed().subscribe(result => {

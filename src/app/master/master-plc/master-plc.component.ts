@@ -141,8 +141,10 @@ export class MasterPlcComponent implements OnInit {
     console.log(this.plcList);
     const dialogRef = this.dialog.open(DialogOverviewPlcDialog, {
       width: '350px',
+      disableClose: true ,
       data: {
-        'firmList': this.firmList,
+        'firmList': this.firmList
+      
       }
     });
 

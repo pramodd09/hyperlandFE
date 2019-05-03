@@ -117,7 +117,8 @@ export class MasterBankComponent implements OnInit {
     this.bankData = new Bank();
     const dialogRef = this.dialog.open(DialogOverviewBankDialog, {
       width: '400px',
-      data : this.bankData
+      data : this.bankData,
+      disableClose: true 
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -156,7 +157,8 @@ refresh() {
       this.bankData =  res.result;
       const dialogRef = this.dialog.open(DialogOverviewBankDialog, {
         width: '350px',
-        data : this.bankData
+        data : this.bankData,
+        disableClose: true 
       });
   
       dialogRef.afterClosed().subscribe(result => {
@@ -173,7 +175,8 @@ refresh() {
   openConfirmDeleteDialog(bankId : any): void {
     const confirmDeleteBankDialog = this.dialog.open(DeleteBankConfirmBoxDialog, {
       width: '400px',
-      data : bankId
+      data : bankId,
+      disableClose: true ,
     });
 
     confirmDeleteBankDialog.afterClosed().subscribe(result => {

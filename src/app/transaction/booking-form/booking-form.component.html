@@ -321,7 +321,7 @@
             <mat-form-field class="example-full-width">
               <input #agentInput (keyup)="0" matInput placeholder="Agent" aria-label="Agent" [matAutocomplete]="auto" [formControl]="agentCtrl" formControlName="agentId" [(ngModel)]="booking.agentId">
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option (onSelectionChange)="agentInput.value !=undefined && onEnter($event)" *ngFor="let agent of filteredAgent | async" [value]="agent.id+'|'+agent.agentName">
+                <mat-option (onSelectionChange)="agentInput.value !=undefined" *ngFor="let agent of filteredAgent | async" [value]="agent.id+'|'+agent.agentName">
                   <span>{{ agent.agentName }}</span>
                 </mat-option>
               </mat-autocomplete>
@@ -357,7 +357,7 @@
 
           <mat-grid-tile *ngIf = "booking.paymentType == 'Installment'">
             <mat-form-field>
-              <input matInput [matDatepicker]="installmentStartDate" placeholder="Installment start Date">
+              <input matInput [matDatepicker]="installmentStartDate" placeholder="Installment start Date"  formControlName="installmentStartDate" [(ngModel)]="booking.installmentStartDate"> 
               <mat-datepicker-toggle matSuffix [for]="installmentStartDate"></mat-datepicker-toggle>
               <mat-datepicker #installmentStartDate></mat-datepicker>
             </mat-form-field>

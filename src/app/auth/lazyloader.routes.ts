@@ -1,15 +1,17 @@
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { DashboardCrmComponent } from '../dashboard-crm/dashboard-crm.component';
+import { LoginService } from '../services/login.service';
+import { AuthGaurdService } from '../services/authguard.service';
 
 export const appRoutes: Routes = [{
     path: '', component: AuthComponent, children: [
-        { path: 'master', loadChildren: '../master/master.module#MasterModule' },
-		{ path: 'accounts', loadChildren: '../accounts/accounts.module#AccountsModule' },
-        { path: 'report', loadChildren: '../report/report.module#ReportModule' },
-        { path: 'user', loadChildren: '../user/user.module#UserModule' },
-        { path: 'transaction', loadChildren: '../transaction/transaction.module#TransactionModule' },
-        { path: 'dashboard', component: DashboardCrmComponent },
+        { path: 'master', loadChildren: '../master/master.module#MasterModule' ,canActivate:[AuthGaurdService]},
+		{ path: 'accounts', loadChildren: '../accounts/accounts.module#AccountsModule',canActivate:[AuthGaurdService] },
+        { path: 'report', loadChildren: '../report/report.module#ReportModule',canActivate:[AuthGaurdService] },
+        { path: 'user', loadChildren: '../user/user.module#UserModule',canActivate:[AuthGaurdService] },
+        { path: 'transaction', loadChildren: '../transaction/transaction.module#TransactionModule',canActivate:[AuthGaurdService] },
+        { path: 'dashboard', component: DashboardCrmComponent ,canActivate:[AuthGaurdService]},
         { path: 'material-widgets', loadChildren: '../material-widgets/material-widgets.module#MaterialWidgetsModule' },
         { path: 'tables', loadChildren: '../tables/tables.module#TablesModule' },
         { path: 'maps', loadChildren: '../maps/maps.module#MapsModule' },

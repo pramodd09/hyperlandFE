@@ -1,0 +1,24 @@
+<mat-card>
+  
+<div mat-dialog-content>
+    <form (ngSubmit)="onFormSubmit(reportForm.value)" [formGroup]="reportForm">
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+          <input #agentInput (keyup)="0" matInput placeholder="Agent" aria-label="Agent"  [matAutocomplete]="auto" [formControl]="agentCtrl"  formControlName="agentId" [(ngModel)]="reportForm.agentId">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option (onSelectionChange)="agentInput.value !=undefined" *ngFor="let agent of filteredAgent | async" [value]="agent.id+'|'+agent.agentName">
+              <span>{{ agent.agentName }}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>        
+           <button type="submit" mat-raised-button color="primary">Submit</button>
+           
+        </div>
+      
+        </form>
+        <div>
+          <ng2-org-chart [topEmployee]="topEmployee"></ng2-org-chart>
+        </div>
+        </div>
+        
+        </mat-card>

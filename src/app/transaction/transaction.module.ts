@@ -83,7 +83,8 @@ export function highlightJsFactory(): any {
       ExpensecategoryComponent,
       AgentPaymentDetailsComponent,
       FarmerPaymentDetailsComponent,
-      ExpenseDetailsComponent
+      ExpenseDetailsComponent,
+      RegistryComponent
 
 ],
 

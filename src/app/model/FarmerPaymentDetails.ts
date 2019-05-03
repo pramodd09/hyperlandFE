@@ -14,5 +14,6 @@ export class FarmerPaymentDetails {
     landAmount:number;
     paidAmount:number;
     farmerPaidAmount : number;
+    receiptNo:number;
 
 }

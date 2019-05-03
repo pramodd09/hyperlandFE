@@ -45,7 +45,8 @@ export class ExpenseCategoryComponent implements OnInit {
     this.categoryData = new ExpenseCategory();
     const dialogRef = this.dialog.open(ExpenseCategoryDialog, {
       width: '400px',
-      data : this.categoryData
+      data : this.categoryData,
+      disableClose: true 
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -62,7 +63,8 @@ export class ExpenseCategoryComponent implements OnInit {
       this.categoryData =  res.result;
       const dialogRef = this.dialog.open(ExpenseCategoryDialog, {
         width: '350px',
-        data : this.categoryData
+        data : this.categoryData,
+        disableClose: true 
       });
   
       dialogRef.afterClosed().subscribe(result => {
