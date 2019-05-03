@@ -214,6 +214,7 @@ export class MasterProjectComponent implements OnInit {
     console.log(this.firmList);
     const dialogRef = this.dialog.open(DialogOverviewEProjectDialog, {
       width: '450px',
+      disableClose: true ,
       data: {
        "projectData" : this.projectData,
        "projectId": projectid,

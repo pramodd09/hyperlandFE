@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Routes } from '@angular/router';
 // import { AuthService } from '../../core/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from '../../services/login.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +14,8 @@ export class LoginComponent implements OnInit {
   userForm: FormGroup;
   formErrors = {
     'email': '',
-    'password': ''
+    'password': '',
+    'incorrecrpassword':''
   };
   validationMessages = {
     'email': {
@@ -28,26 +31,20 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(private router: Router,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private loginService: LoginService) {
   }
 
   ngOnInit() {
+    window.sessionStorage.removeItem('token');
     this.buildForm();
   }
 
   buildForm() {
     this.userForm = this.fb.group({
-      'email': ['', [
-        Validators.required,
-        Validators.email
-      ]
+      'email': ['', [Validators.required]
       ],
-      'password': ['', [
-        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-        Validators.minLength(6),
-        Validators.maxLength(25)
-      ]
-      ],
+      'password': ['',[Validators.required]],
     });
 
     this.userForm.valueChanges.subscribe(data => this.onValueChanged(data));
@@ -74,8 +71,29 @@ export class LoginComponent implements OnInit {
     //   }
     // }
   }
+
+  invalidLogin = false
+
+ 
+  
+
+
   login() {
-    this.router.navigate(['/']);
+   
+    this.loginService.authenticate(this.userForm.value.email, this.userForm.value.password).subscribe(data => {
+      console.dir(data);
+      window.sessionStorage.setItem('token', JSON.stringify(data));
+      console.log(window.sessionStorage.getItem('token'));
+      this.router.navigate(['dashboard']);
+    }, error => { 
+        alert(error.error.error_description)
+    });
+   
+    
   }
-}
+
+  logout() {
+      this.loginService.logout();
+ }
+} 
 

@@ -4,7 +4,7 @@ export class CustomerInstallmentDetails {
    interest:number;
    interestWaiveOff:number;
    interestPaid:number;
-   totalAmountPaid:number;
+   amount:number;
    pendingAmount:number;
    receiptNo:number;
    bankName:string;

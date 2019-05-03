@@ -10,7 +10,7 @@ import * as hljs from 'highlight.js';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import * as hljsTypescript from 'highlight.js/lib/languages/typescript';
 import { MasterFirmComponent, DialogOverviewExampleDialog } from './master-firm/master-firm.component';
-import { MatButtonModule, MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatProgressBarModule, MatProgressSpinnerModule, MatDatepicker, MatDatepickerModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatProgressBarModule, MatProgressSpinnerModule, MatDatepicker, MatDatepickerModule, MatTreeModule, MatCheckboxModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MasterCityComponent } from './master-city/master-city.component';
 import { MasterProjectComponent, DialogOverviewEProjectDialog } from './master-project/master-project.component';
@@ -43,6 +43,8 @@ import { LandDialog } from './master-land/create-land.component';
 import { DeleteLandConfirmBoxDialog } from './master-land/master-delete-confirm-box.component';
 import { DeleteInvestorMasterConfirmBoxDialog } from './master-investor/master-delete-investor-confirm-box.component';
 import { DeleteInvestmentMasterConfirmBoxDialog } from './master-investment/master-investment-delete-confirm-box.component';
+import { TreeChecklistExample } from './master-role-configuration/role-configuration.component';
+
 //8import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 
 
@@ -75,6 +77,8 @@ export function highlightJsFactory(): any {
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatDatepickerModule,
+    MatTreeModule,
+    MatCheckboxModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAXTJwhYqJ6Pc7VXGRMTv40N1WRLqzuSNs'
     }),
@@ -159,7 +163,9 @@ export function highlightJsFactory(): any {
     DeleteFarmerConfirmBoxDialog,
     MasterLandComponent,
     LandDialog,
-    DeleteLandConfirmBoxDialog
+    DeleteLandConfirmBoxDialog,
+    TreeChecklistExample
+    
    // LeafletMapComponent
 ],
 

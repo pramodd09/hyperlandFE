@@ -10,6 +10,7 @@ import { AgentService } from '../../services/agent.service';
 import { Agent } from '../../model/Agent';
 import { columnList } from '../report-column-list';
 import { AssociatePaymentDetailsService } from "../../services/associate-payment-details.service";
+import { TransactionService } from "../../services/transaction.service";
 @Component({
     selector: 'associate-payment-details-dialog',
     templateUrl: './create-associate-payment.component.html',
@@ -23,6 +24,7 @@ import { AssociatePaymentDetailsService } from "../../services/associate-payment
       private selectorService: SelectorService,
       private associatePaymentDetailsService: AssociatePaymentDetailsService,
       private agentService: AgentService,
+      private transactionService: TransactionService,
       private snackBar : MatSnackBar) {
       this.agentCtrl = new FormControl();
 
@@ -38,6 +40,7 @@ import { AssociatePaymentDetailsService } from "../../services/associate-payment
           'agentId' :[],
           'totalAmount':[],
           'paymentAmount':[],
+          'receiptNo':[]
 
         });
       }
@@ -52,6 +55,14 @@ import { AssociatePaymentDetailsService } from "../../services/associate-payment
         this.assocaitePayment = new AssociatePaymentDetails();
         this.assocaitePayment.paymentDate = new Date();
         var me = this;
+        this.transactionService.getReceiptNumber().subscribe(
+          res => {  
+            this.assocaitePayment.receiptNo = res.result;
+          },  
+          error => {  
+            console.log('There was an error while retrieving Albums !!!' + error);  
+          }
+        );
         this.agentService.getAllAgent().subscribe(
         res => {
           console.log(res);

@@ -104,6 +104,8 @@ setStep(index: number) {
         error => {
           console.log('There was an error while retrieving Albums !!!' + error);
         }
+
+        
   )
         this.agentService.getAllAgent().subscribe(
         res => {
@@ -119,6 +121,16 @@ setStep(index: number) {
         error => {
           console.log('There was an error while retrieving report data' + error);
         });
+
+        this.transactionService.getReceiptNumber().subscribe(
+          res => {
+          console.log("dsdsds");  
+            this.booking.receiptNo=res.result;
+            console.dir(this.firmList);
+          },
+          error => {
+            console.log('There was an error while retrieving Albums !!!' + error);
+          });
      /* this.bookingForm.get('agentName')
             .valueChanges
             .pipe(

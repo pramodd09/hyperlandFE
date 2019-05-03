@@ -62,7 +62,9 @@ export class AssociatePaymentDetailsComponent implements OnInit {
     this.associatePaymentData = new AssociatePaymentDetails();
     const dialogRef = this.dialog.open(AssociatePaymentDetailsDialog, {
       width: '400px',
+      disableClose: true ,
       data : this.associatePaymentData
+      
     });
 
     dialogRef.afterClosed().subscribe(result => {

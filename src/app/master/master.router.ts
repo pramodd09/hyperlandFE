@@ -17,6 +17,8 @@ import { ExpenseCategoryComponent } from './expense-category/expense-category.co
 import { MasterFarmerComponent } from './master-farmer/master-farmer.component';
 import { MasterLandComponent } from './master-land/master-land.component';
 
+import { TreeChecklistExample } from './master-role-configuration/role-configuration.component';
+
 const masterRoutes: Routes = [
     {path: 'masterfirm', component: MasterFirmComponent , data: { animation: 'masterfirm' }},
     {path: 'mastercity', component: MasterCityComponent , data: { animation: 'mastercity' }},
@@ -31,7 +33,8 @@ const masterRoutes: Routes = [
     {path: 'masterinvestment', component: MasterInvestmentComponent , data: { animation: 'masterinvestment' }},
     {path: 'expensecategory', component: ExpenseCategoryComponent , data: { animation: 'expensecategory' }},
     {path: 'farmer', component: MasterFarmerComponent , data: { animation: 'farmer' }},
-    {path: 'land', component: MasterLandComponent , data: { animation: 'land' }}
+    {path: 'land', component: MasterLandComponent , data: { animation: 'land' }},
+    {path: 'role', component: TreeChecklistExample , data: { animation: 'role' }}
     
 ];
 

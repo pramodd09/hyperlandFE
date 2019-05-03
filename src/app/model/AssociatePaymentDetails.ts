@@ -11,5 +11,6 @@ export class AssociatePaymentDetails {
     totalAmount:number;
      agentId:string;
     agentName:string;
+    receiptNo:number;
 
 }

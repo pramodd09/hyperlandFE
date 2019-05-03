@@ -10,7 +10,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-
+import { Interceptor } from './core/interceptor';
+import { TokenStorage } from './core/token.storage';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,13 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     MatNativeDateModule,
     PerfectScrollbarModule
   ],
-  providers: [ 
+  providers: [
+    TokenStorage,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
+    {provide: HTTP_INTERCEPTORS,
+    useClass: Interceptor,
+    multi : true}
   ],
   bootstrap: [AppComponent]
 })

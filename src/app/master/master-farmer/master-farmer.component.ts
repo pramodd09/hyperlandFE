@@ -46,6 +46,7 @@ export class MasterFarmerComponent implements OnInit {
   openDialog(): void {
     this.farmerData = new Farmer();
     const dialogRef = this.dialog.open(FarmerDialog, {
+      disableClose: true ,
       width: '400px',
       data : this.farmerData
     });
@@ -63,6 +64,7 @@ export class MasterFarmerComponent implements OnInit {
       console.log("Result:"+res);
       this.farmerData =  res.result;
       const dialogRef = this.dialog.open(FarmerDialog, {
+        disableClose: true ,
         width: '350px',
         data : this.farmerData
       });
@@ -80,6 +82,7 @@ export class MasterFarmerComponent implements OnInit {
   openConfirmDeleteDialog(farmerId : any): void {
     const confirmDeleteFarmerDialog = this.dialog.open(DeleteFarmerConfirmBoxDialog, {
       width: '400px',
+      disableClose: true ,
       data : farmerId
     });
 

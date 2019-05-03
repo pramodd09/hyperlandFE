@@ -80,7 +80,8 @@ export class CustomerInstallmentDetailsComponent implements OnInit {
     this.customerInstallmentData = new CustomerInstallmentDetails();
     const dialogRef = this.dialog.open(CustomerInstallmentDetailsDialog, {
       width: '400px',
-      data : this.customerInstallmentData
+      data : this.customerInstallmentData,
+      disableClose: true 
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -105,7 +106,7 @@ export class CustomerInstallmentDetailsComponent implements OnInit {
     {
        form.plotNumber = form.plotNumber.split("|")[1];
     }
-    this.selectorService.getReportDataByType(form,'customerPaymentDetails').subscribe(
+    this.selectorService.getReportDataByType(form,'customerInstallmentDetails').subscribe(
       res => {
         this.reportData = res;
         console.log("this.reportData.result.length--"+this.reportData.result.length);      

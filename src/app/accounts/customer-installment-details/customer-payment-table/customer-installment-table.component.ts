@@ -44,7 +44,8 @@ export class CustomerInstallmentTableComponent implements OnChanges {
     console.dir(rowData);  
    const dialogRef = this.dialog.open(CustomerInstallmentDetailsDialog, {
      width: '400px',
-     data : rowData
+     data : rowData,
+     disableClose: true 
    });
 
    dialogRef.afterClosed().subscribe(result => {

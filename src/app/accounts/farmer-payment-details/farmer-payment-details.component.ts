@@ -41,7 +41,8 @@ export class FarmerPaymentDetailsComponent implements OnInit {
     this.farmerPaymentData = new FarmerPaymentDetails();
     const dialogRef = this.dialog.open(FarmerPaymentDetailsDialog, {
       width: '400px',
-      data : this.farmerPaymentData
+      data : this.farmerPaymentData,
+      disableClose: true 
     });
 
     dialogRef.afterClosed().subscribe(result => {
