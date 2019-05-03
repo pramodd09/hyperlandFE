@@ -1,8 +1,8 @@
-exportconstmenus = [
+export const menus = [
 
 {
 
-            'name': 'User',
+'name': 'User',
 'icon': 'widgets',
 'open': false,
 'link': false,
