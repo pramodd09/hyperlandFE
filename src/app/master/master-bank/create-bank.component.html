@@ -5,19 +5,30 @@
             <mat-form-field>
                 <input matInput placeholder="Bank Name" formControlName="bankName" [(ngModel)]="bank.bankName">
             </mat-form-field>
+            <mat-error>  
+                <span *ngIf="!bankForm.get('bankName').valid && bankForm.get('bankName').touched">Please enter bank name</span>  
+            </mat-error>
 
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="Branch" formControlName="branch" [(ngModel)]="bank.branch">               
             </mat-form-field>
+            <mat-error>  
+                <span *ngIf="!bankForm.get('branch').valid && bankForm.get('branch').touched">Please enter branch</span>  
+            </mat-error>
 
             <mat-form-field>
                 <input matInput placeholder="Account Number" formControlName="accountNumber" [(ngModel)]="bank.accountNumber">
             </mat-form-field>
+            <mat-error>  
+                <span *ngIf="!bankForm.get('accountNumber').valid && bankForm.get('accountNumber').touched">Please enter account number</span>  
+            </mat-error>
 
             <mat-form-field>
                 <input matInput placeholder="IFSC Code" formControlName="ifscCode" [(ngModel)]="bank.ifscCode">
             </mat-form-field>
-
+            <mat-error>  
+                <span *ngIf="!bankForm.get('ifscCode').valid && bankForm.get('ifscCode').touched">Please enter ifsc code</span>  
+            </mat-error>
           
             <mat-grid-list cols="3" rowHeight="10em">
                 <mat-grid-tile>

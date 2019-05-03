@@ -26,6 +26,8 @@ export class DialogOverviewEProjectDialog implements OnInit{
   propertyTypeList : any;
   project : Project;
   projectForm: FormGroup;
+  loading: boolean = false;
+  loading1: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewEProjectDialog>,private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -36,9 +38,6 @@ export class DialogOverviewEProjectDialog implements OnInit{
       this.firmList = data.firmList;
       this.cityList = data.cityList;
       this.propertyTypeList=data.propertyTypeList;
-      //this.locationList = data.locationList;
-      console.log("Firm List:",this.firmList);
-      console.log("City List:",this.cityList);
       this.projectForm= this.fb.group({
         'firmName': [null , Validators.required ],
         'address' : [null ,Validators.required ],
@@ -61,30 +60,36 @@ export class DialogOverviewEProjectDialog implements OnInit{
   }
 
   onFirmChange(event,type){
-    console.log(event.value);
-    var value = event;
-    var code =  value.split('|')[0];
-    var value1 = value.split('|')[1];
-    console.log(value1+"  -- >"+code);
-    this.selectorService.getDependentData(type,code).subscribe(
-      res => {
-         this.propertyList=res.result;
-        console.log(this.propertyList);
-      },
-      error => {
-        console.log('There was an error while retrieving Albums !!!' + error);
-      }
-    );
+    if(event!=undefined)
+    {
+      this.loading = true;
+      var value = event;
+      var code =  value.split('|')[0];
+      var value1 = value.split('|')[1];
+      console.log(value1+"  -- >"+code);
+      this.selectorService.getDependentData(type,code).subscribe(
+        res => {
+          this.loading = false;
+           this.propertyList=res.result;
+        },
+        error => {
+          console.log('There was an error while retrieving Albums !!!' + error);
+        }
+      );
+    }
   }
 
   onChange(event,type){
-    // console.log(event)
+    if(event!=undefined)
+    {
+    this.loading1 = true;
     var value = event;
     var code =  value.split('|')[0];
     var value1 = value.split('|')[1];
     console.log(value1+"  -- >"+code);
     this.selectorService.getDependentData(type,code).subscribe(
       res => {
+        this.loading1 = false;
          this.locationList=res.result;
         console.dir(this.locationList);
       },
@@ -92,6 +97,7 @@ export class DialogOverviewEProjectDialog implements OnInit{
         console.log('There was an error while retrieving Albums !!!' + error);
       }
     )
+    }
   }
 
   setLocation(location : any)  : void {

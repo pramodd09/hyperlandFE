@@ -15,6 +15,7 @@
       </mat-error>
 
       <mat-form-field class="example-full-width">
+          <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
         <mat-label>Property</mat-label>
         <mat-select formControlName="propertyId" [(ngModel)] = "project.propertyId">
           <mat-option *ngFor="let property of propertyList" [value]="property.code+'|'+property.value">
@@ -58,6 +59,7 @@
     </mat-error>
 
     <mat-form-field class="example-full-width">
+        <mat-progress-bar *ngIf="loading1" mode="indeterminate"></mat-progress-bar>
         <mat-label>Loaction</mat-label>
         <mat-select [(ngModel)]="project.locationId" formControlName="location" >
           <mat-option *ngFor="let location of locationList" [value]="location.code+'|'+location.value">

@@ -15,6 +15,7 @@
       </mat-error>
 
     <mat-form-field class="example-full-width">
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
         <mat-label>Property Name</mat-label>
         <mat-select formControlName="propertyId" [(ngModel)] = "block.propertyId">
           <mat-option *ngFor="let property of propertyList" [value]="property.code+'|'+property.value">

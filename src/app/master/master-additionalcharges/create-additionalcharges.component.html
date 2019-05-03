@@ -10,7 +10,12 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-error>  
+        <span *ngIf="!additionalChargesForm.get('firmId').valid && additionalChargesForm.get('firmId').touched">Please enter firm name</span>  
+      </mat-error>
+
       <mat-form-field>
+          <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
         <mat-label>Project Name</mat-label>
         <mat-select formControlName="propertyId" [(ngModel)]="additionalCharges.propertyId">
           <mat-option *ngFor="let prop of propertyList" [value]="prop.code+'|'+prop.value">
@@ -18,21 +23,32 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-
+      <mat-error>  
+        <span *ngIf="!additionalChargesForm.get('propertyId').valid && additionalChargesForm.get('propertyId').touched">Please enter property name</span>  
+      </mat-error>
 
       <mat-form-field>
         <input matInput placeholder="Additional Charges Type" formControlName="additionalCharges"
                [(ngModel)]="additionalCharges.additionalCharges">
       </mat-form-field>
+      <mat-error>  
+        <span *ngIf="!additionalChargesForm.get('additionalCharges').valid && additionalChargesForm.get('additionalCharges').touched">Please enter additional Charges</span>  
+      </mat-error>
 
       <mat-form-field>
         <input matInput placeholder="Rate" formControlName="rate" [(ngModel)]="additionalCharges.rate">
       </mat-form-field>
+      <mat-error>  
+        <span *ngIf="!additionalChargesForm.get('rate').valid && additionalChargesForm.get('rate').touched">Please enter rate</span>  
+      </mat-error>
+
       <mat-form-field>
         <input matInput placeholder="Charge Type" formControlName="chargesType"
                [(ngModel)]="additionalCharges.chargesType">
       </mat-form-field>
-
+      <mat-error>  
+        <span *ngIf="!additionalChargesForm.get('chargesType').valid && additionalChargesForm.get('chargesType').touched">Please enter charge type</span>  
+      </mat-error>
 
       <mat-grid-list cols="3" rowHeight="10em">
         <mat-grid-tile>

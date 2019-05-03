@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   validationMessages = {
     'email': {
       'required': 'Please enter your email',
-      'email': 'please enter your vaild email'
+      //'email': 'please enter your vaild email'
     },
     'password': {
       'required': 'please enter your password',

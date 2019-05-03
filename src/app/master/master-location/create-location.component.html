@@ -9,9 +9,6 @@
           <span *ngIf="!locationForm.get('location').valid && locationForm.get('location').touched">Please enter location name</span>  
         </mat-error>
 
-        <!-- <mat-form-field>
-          <input matInput placeholder="Select File"><br><br>
-        </mat-form-field> -->
         <mat-form-field class="example-full-width">
             <mat-label>City</mat-label>
             <mat-select  [(value)]= "location.cityId"  (selectionChange)="setCity($event.value)">
@@ -20,9 +17,9 @@
               </mat-option>
             </mat-select>
         </mat-form-field>
-        <!-- <mat-error>  
+        <mat-error>  
           <span *ngIf="!locationForm.get('cityName').valid && locationForm.get('cityName').touched">Please Select City</span>  
-        </mat-error> -->
+        </mat-error>
 
 
         <mat-grid-list cols="3" rowHeight="10em">

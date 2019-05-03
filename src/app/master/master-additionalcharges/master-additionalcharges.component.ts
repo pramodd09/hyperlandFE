@@ -14,6 +14,7 @@ import { SelectorService } from '../../services/selector.service';
 export class DialogOverviewAdditionalChargesDialog  implements OnInit {
   firmList : any[];
   propertyList: any[];
+  loading: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewAdditionalChargesDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -66,20 +67,23 @@ export class DialogOverviewAdditionalChargesDialog  implements OnInit {
       });
     }
     onChange(event,type){
-    // console.log(event)
+      if(event!=undefined)
+      {
+        this.loading = true;
     var value = event;
     var code =  value.split('|')[0];
     var value1 = value.split('|')[1];
-    console.log(value1+"  -- >"+code);
     this.selectorService.getDependentData(type,code).subscribe(
       res => {
+        this.loading = false;
          this.propertyList=res.result;
-        console.dir(this.propertyList);
       },
       error => {
+        this.loading = false;
         console.log('There was an error while retrieving Albums !!!' + error);
       }
     )
+      }
   }
     submitForm() {
       if(this.additionalCharges.id==undefined || this.additionalCharges.id==null) {
@@ -139,7 +143,7 @@ export class MasterAdditionalChargesComponent implements OnInit {
   constructor(public dialog: MatDialog,public additionalChargesService : AdditionalChargesService,
       private selectorService: SelectorService,
     private changeDetectorRefs: ChangeDetectorRef) {}
-
+    loading : boolean =false;
   additionalChargesList : AdditionalCharges[];
   firmList:any[];
   property:any[];
@@ -182,7 +186,7 @@ export class MasterAdditionalChargesComponent implements OnInit {
 
 refresh() {
   this.additionalChargesDataSource = new MatTableDataSource();
-    //this.additionalChargesService.get();
+  this.loading = true;
 
     console.log("Getting all additionalCharges");
  this.additionalChargesService.getAllAdditionalCharges().subscribe(
@@ -191,9 +195,11 @@ refresh() {
         this.additionalChargesDataSource.data = this.additionalChargesList;
         this.additionalChargesDataSource.paginator = this.paginator;
         this.additionalChargesDataSource.sort = this.sort;
+        this.loading = false;
       },
       error => {
         console.log('There was an error while retrieving additionalCharges !!!' + error);
+        this.loading = false;
       });
 }
 

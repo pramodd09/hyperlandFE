@@ -19,7 +19,7 @@ export class MasterLandComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: any;
 
-  
+  loading : boolean =false;
   landList : Land[];
   landData : Land;
 
@@ -29,7 +29,13 @@ export class MasterLandComponent implements OnInit {
 
 
   ngOnInit() {
+this.refresh();
 
+
+  }
+
+  refresh(){
+    this.loading = true;
     this.landService.getAllLands().subscribe(
       res => {  
         this.landList = res.result;
@@ -37,13 +43,13 @@ export class MasterLandComponent implements OnInit {
         this.landDataSource.data = res.result;
         this.landDataSource.paginator = this.paginator;
         this.landDataSource.sort = this.sort;
+        this.loading = false;
       },  
       error => {  
-        console.log('There was an error while retrieving Albums !!!' + error);  
+        console.log('There was an error while retrieving Albums !!!' + error); 
+        this.loading = false; 
       }
     );
-
-
   }
 
   openDialog(): void {

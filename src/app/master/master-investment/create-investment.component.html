@@ -11,6 +11,9 @@
           </mat-option>
         </mat-select>
     </mat-form-field>
+    <mat-error>  
+        <span *ngIf="!investmentForm.get('investorId').valid && investmentForm.get('investorId').touched">Please enter investor name</span>  
+    </mat-error>
     
     <mat-form-field class="example-full-width">
         <mat-label>Firm Name</mat-label>
@@ -20,8 +23,13 @@
           </mat-option>
         </mat-select>
     </mat-form-field>
+    <mat-error>  
+        <span *ngIf="!investmentForm.get('firmId').valid && investmentForm.get('firmId').touched">Please enter firm name</span>  
+    </mat-error>
+    
 
-    <mat-form-field class="example-full-width"> 
+    <mat-form-field class="example-full-width">
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar> 
         <mat-label>Property Name</mat-label>
         <mat-select formControlName="propertyId" [(ngModel)]="investment.propertyId">
           <mat-option *ngFor="let prop of propertyList" [value]="prop.code+'|'+prop.value">
@@ -29,16 +37,25 @@
           </mat-option>
         </mat-select>
     </mat-form-field>
+    <mat-error>  
+        <span *ngIf="!investmentForm.get('firmId').valid && investmentForm.get('firmId').touched">Please enter firm name</span>  
+    </mat-error>
 
     <mat-form-field class="example-full-width">
         <input matInput formControlName="amount" placeholder="Amount" [(ngModel)]="investment.amount">
     </mat-form-field>
+    <mat-error>  
+        <span *ngIf="!investmentForm.get('amount').valid && investmentForm.get('amount').touched">Please enter amount</span>  
+    </mat-error>
 
     <mat-form-field class="example-full-width">
       <input matInput formControlName="investmentDate" [matDatepicker]="picker" placeholder="Investment Date" [(ngModel)]="investment.investmentDate" >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+    <mat-error>  
+        <span *ngIf="!investmentForm.get('investmentDate').valid && investmentForm.get('investmentDate').touched">Please enter investment date</span>  
+    </mat-error>
 
     <mat-grid-list cols="3" rowHeight="10em">
         <mat-grid-tile>

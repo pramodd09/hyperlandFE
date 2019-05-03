@@ -102,6 +102,7 @@ export class MasterBankComponent implements OnInit {
     private changeDetectorRefs: ChangeDetectorRef) {}
 
   bankList : Bank[];
+  loading : boolean =false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -133,18 +134,18 @@ export class MasterBankComponent implements OnInit {
 
 refresh() {
   this.bankDataSource = new MatTableDataSource();
-    //this.bankService.get();
-
-    console.log("Getting all banks");
+  this.loading = true;
  this.bankService.getAllBanks().subscribe(
       res => {
         this.bankList = res.result;
         this.bankDataSource.data = this.bankList;
         this.bankDataSource.paginator = this.paginator;
         this.bankDataSource.sort = this.sort;
+        this.loading = false;
       },
       error => {
         console.log('There was an error while retrieving bank !!!' + error);
+        this.loading = false;
       });
 }
 

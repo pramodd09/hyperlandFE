@@ -41,7 +41,7 @@ import { OrgChartModule } from 'ng2-org-chart';
       MatDatepickerModule,
       MatNativeDateModule ,
       MatProgressBarModule,
-      MatCheckboxModule,      
+      MatCheckboxModule,
       OrgChartModule,
       MatAutocompleteModule,
       MatProgressSpinnerModule
@@ -60,8 +60,8 @@ import { OrgChartModule } from 'ng2-org-chart';
       HoldReportComponent,
       HoldTableComponent,
       NetworkReport
-
-
+      
+     
   ],
   providers:[
     MatDatepickerModule
