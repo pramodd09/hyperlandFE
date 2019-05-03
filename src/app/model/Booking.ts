@@ -1,5 +1,5 @@
 export class Booking {
-"id" :"string";
+id :string;
 customerDetails : Customer;
 coApplicantDetails : CoApplicant[];
 firmId: "string";
@@ -9,7 +9,6 @@ blockId: "string";
 agentId:"string";
 plotNumber:"string";
 paymentType:string;
-receiptNumber:"string";
 bookingDate:any;
 baseSellingPrice:number;
 plcChargesType:string;
@@ -31,9 +30,10 @@ transactionId : string;
 chequeDate : any;
 installmentAmount:number;
 transactionDate :any;
-
-
+discount:number;
+discountType:string;
 }
+
 export class CoApplicant {
 customerName    : "string";
 dateOfBirth     : any;
@@ -53,7 +53,6 @@ state          : "string";
 pinCode        : "string";
 emailId        : "string";
 phoneNo        : "string";
-dateOfJoining  : any;
 dateOfBirth    : any;
 occupation     : "string";
 relationType   :"string";

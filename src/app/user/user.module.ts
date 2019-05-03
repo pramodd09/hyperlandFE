@@ -17,6 +17,8 @@ import { DeleteAgentConfirmBoxDialog } from './user-agent/user-delete-confirm-bo
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { DeleteDailyExpenseConfirmBoxDialog } from './dailyexpense/dailyexpense-delete-confirm-box.component';
+import { DialogOverviewDailyExpenseDialog, MasterDailyExpenseComponent } from './dailyexpense/dailyexpense.component';
 
 
 
@@ -62,12 +64,17 @@ export function highlightJsFactory(): any {
   entryComponents: [
 
                       DeleteAgentConfirmBoxDialog,
-                      DialogOverviewAgentDialog
+                      DialogOverviewAgentDialog,
+                      DialogOverviewDailyExpenseDialog,
+                      DeleteDailyExpenseConfirmBoxDialog,
                     ],
   declarations: [
                           DeleteAgentConfirmBoxDialog,
                           DialogOverviewAgentDialog,
-                          MasterAgentComponent
+                          MasterAgentComponent,
+                          DialogOverviewDailyExpenseDialog,
+                          DeleteDailyExpenseConfirmBoxDialog,
+                          MasterDailyExpenseComponent,
 ],
 
   exports: [

@@ -23,9 +23,9 @@ loginId        : "string";
 designation    : "string";
 selfBusiness   : "string";
 chainBusiness  : "string";
-tds            : "string";
-serviceCharge  : "string";
-totalAmount    : "string";
-grandTotal     : "string";
-paidAmount     : "string";;
+tds            : number;
+serviceCharge  : number;
+totalAmount    : number;
+grandTotal     : number;
+paidAmount     : number;
 }

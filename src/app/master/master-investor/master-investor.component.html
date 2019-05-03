@@ -1,0 +1,48 @@
+<mat-card>
+  <button mat-raised-button (click)="openDialog()" color="primary">Create Investor</button>
+  </mat-card>
+  <mat-card>
+    <div class="example-container mat-elevation-z8"> 
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+        <mat-table #Table [dataSource]="investorDataSource" matSort> 
+            <ng-container matColumnDef="investorName" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Investor NAME </mat-header-cell>  
+                <mat-cell *matCellDef="let investor"> {{investor.investorName}} </mat-cell>  
+            </ng-container>  
+            
+            <ng-container matColumnDef="conatct" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Contact </mat-header-cell>  
+              <mat-cell *matCellDef="let investor"> {{investor.phoneNumber}} </mat-cell> 
+            </ng-container>  
+
+             <ng-container matColumnDef="address" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>  
+             <mat-cell *matCellDef="let investor"> {{investor.address}} </mat-cell>
+            </ng-container>  
+
+            <ng-container matColumnDef="actions" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
+                 <mat-cell *matCellDef="let investor">  
+                  <button mat-raised-button color="primary"
+                    matTooltip="Edit Investor"
+                    (click)="editFirmDetails(investor.id)">
+                    <i class="material-icons">create</i>
+                  </button>
+    
+                  <button mat-raised-button color="warn" 
+                    matTooltip="Delete Investor"
+                    (click)="openConfirmDeleteDialog(investor.id)"
+                    style="margin-left: 10px">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </mat-cell>  
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>  
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>  
+        </mat-table>  
+    
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">  
+        </mat-paginator> 
+    </div>
+    </mat-card>

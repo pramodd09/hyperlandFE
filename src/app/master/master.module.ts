@@ -10,7 +10,7 @@ import * as hljs from 'highlight.js';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import * as hljsTypescript from 'highlight.js/lib/languages/typescript';
 import { MasterFirmComponent, DialogOverviewExampleDialog } from './master-firm/master-firm.component';
-import { MatButtonModule, MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatProgressBarModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatProgressBarModule, MatProgressSpinnerModule, MatDatepicker, MatDatepickerModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MasterCityComponent } from './master-city/master-city.component';
 import { MasterProjectComponent, DialogOverviewEProjectDialog } from './master-project/master-project.component';
@@ -30,6 +30,19 @@ import { MasterAdditionalChargesComponent, DialogOverviewAdditionalChargesDialog
 import { DeleteAdditionalChargesConfirmBoxDialog } from './master-additionalcharges/master-delete-confirm-box.component';
 import { MasterBankComponent, DialogOverviewBankDialog } from './master-bank/master-bank.component';
 import { DeleteBankConfirmBoxDialog } from './master-bank/master-delete-confirm-box.component';
+import { MasterInvestorComponent, DialogOverviewInvestorDialog } from './master-investor/master-investor.component';
+import { MasterInvestmentComponent, DialogOverviewInvestmentDialog } from './master-investment/master-investment.component';
+import { ExpenseCategoryComponent } from './expense-category/expense-category.component';
+import { ExpenseCategoryDialog } from './expense-category/create-expense-category.component';
+import { DeleteCategoryConfirmBoxDialog } from './expense-category/master-delete-confirm-box.component';
+import { MasterFarmerComponent } from './master-farmer/master-farmer.component';
+import { FarmerDialog } from './master-farmer/create-farmer.component';
+import { DeleteFarmerConfirmBoxDialog } from './master-farmer/master-delete-confirm-box.component';
+import { MasterLandComponent } from './master-land/master-land.component';
+import { LandDialog } from './master-land/create-land.component';
+import { DeleteLandConfirmBoxDialog } from './master-land/master-delete-confirm-box.component';
+import { DeleteInvestorMasterConfirmBoxDialog } from './master-investor/master-delete-investor-confirm-box.component';
+import { DeleteInvestmentMasterConfirmBoxDialog } from './master-investment/master-investment-delete-confirm-box.component';
 //8import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 
 
@@ -61,6 +74,7 @@ export function highlightJsFactory(): any {
     MatSelectModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatDatepickerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAXTJwhYqJ6Pc7VXGRMTv40N1WRLqzuSNs'
     }),
@@ -77,6 +91,8 @@ export function highlightJsFactory(): any {
                       DeleteBlockConfirmBoxDialog,
                       DeleteProjectConfirmBoxDialog,
                       DeleteAdditionalChargesConfirmBoxDialog,
+                      DeleteInvestorMasterConfirmBoxDialog,
+                      DeleteInvestmentMasterConfirmBoxDialog,
                       CityDialog,
                       DeleteCityConfirmBoxDialog,
                       DeletePropertyTypeConfirmBoxDialog,
@@ -87,12 +103,23 @@ export function highlightJsFactory(): any {
                       DialogOverviewLocationDialog,
                       DeletePLCConfirmBoxDialog,
                       DialogOverviewAdditionalChargesDialog,
-                       DialogOverviewBankDialog,
-                        DeleteBankConfirmBoxDialog
+                      DialogOverviewBankDialog,
+                      DeleteBankConfirmBoxDialog,
+                      DialogOverviewInvestorDialog,
+                      DialogOverviewInvestmentDialog,
+                      ExpenseCategoryComponent,
+                      ExpenseCategoryDialog,
+                      DeleteCategoryConfirmBoxDialog,
+                      FarmerDialog,
+                      DeleteFarmerConfirmBoxDialog,
+                      LandDialog,
+                      DeleteLandConfirmBoxDialog
                     ],
   declarations: [
     DialogOverviewExampleDialog,
     DeleteMasterConfirmBoxDialog,
+    DeleteInvestorMasterConfirmBoxDialog,
+    DeleteInvestmentMasterConfirmBoxDialog,
     CityDialog,
     DeleteCityConfirmBoxDialog,
     DeleteLocationConfirmBoxDialog,
@@ -114,12 +141,25 @@ export function highlightJsFactory(): any {
     MasterLocationComponent,
     DeletePLCConfirmBoxDialog,
     DeleteProjectConfirmBoxDialog,
-     DialogOverviewAdditionalChargesDialog,
-         MasterAdditionalChargesComponent,
-         DeleteAdditionalChargesConfirmBoxDialog,
-           DeleteBankConfirmBoxDialog,
-            MasterBankComponent,
-               DialogOverviewBankDialog
+    DialogOverviewAdditionalChargesDialog,
+    MasterAdditionalChargesComponent,
+    DeleteAdditionalChargesConfirmBoxDialog,
+    DeleteBankConfirmBoxDialog,
+    MasterBankComponent,
+    DialogOverviewBankDialog,
+	  MasterInvestorComponent,
+    MasterInvestmentComponent,
+    DialogOverviewInvestorDialog,
+    DialogOverviewInvestmentDialog,
+    ExpenseCategoryComponent,
+    ExpenseCategoryDialog,
+    DeleteCategoryConfirmBoxDialog,
+    MasterFarmerComponent,
+    FarmerDialog,
+    DeleteFarmerConfirmBoxDialog,
+    MasterLandComponent,
+    LandDialog,
+    DeleteLandConfirmBoxDialog
    // LeafletMapComponent
 ],
 

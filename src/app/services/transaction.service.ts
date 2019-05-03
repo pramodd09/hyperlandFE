@@ -19,7 +19,7 @@ export class TransactionService {
   }
 
   createBooking(bookingrequest : Booking) : Observable<any>{
-    var baseURL = 'master/add/agent';
+    var baseURL = 'transaction/newBook';
     return this.http.post(baseURL,bookingrequest);
   }
 

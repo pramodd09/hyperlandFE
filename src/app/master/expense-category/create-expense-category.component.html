@@ -1,0 +1,25 @@
+<h4 mat-dialog-title>Expense Category </h4>
+  <div mat-dialog-content>
+      <form class="example-form"[formGroup]="categoryForm" (ngSubmit)="onFormSubmit(categoryForm.value)">
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Category Name" formControlName="category" [(ngModel)]="category.expenseCategory">
+        </mat-form-field>
+        <mat-error>  
+          <span *ngIf="!categoryForm.get('category').valid && categoryForm.get('category').touched">Please enter category</span>  
+        </mat-error>
+
+        <mat-grid-list cols="3" rowHeight="10em">
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="primary" [disabled]="!categoryForm.dirty || !categoryForm.valid" (click)="submitForm();">Submit</button>
+            </mat-grid-tile>
+            <mat-grid-tile>  
+              <button mat-raised-button color="warn" type="reset">Clear</button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+        </div>
+      </form>
+  </div>

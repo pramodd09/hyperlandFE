@@ -300,7 +300,7 @@ export const menus = [
         ]
     }, */
       {
-            'name': 'user',
+            'name': 'User',
             'icon': 'widgets',
             'open': false,
             'link': false,
@@ -316,36 +316,48 @@ export const menus = [
                                     'icon': 'widgets',
                                     'link': 'transaction/bookingform',
                                     'open': false
-                                }
+                },
+                /* {
+                    'name': 'Expenses',
+                    'icon': 'widgets',
+                    'link': 'user/dailyexpense',
+                    'open': false
+                }, */
+                {
+                    'name': 'Verify Transaction',
+                    'icon': 'widgets',
+                    'link': 'transaction/verifytransaction',
+                    'open': false
+                }
                 ]
          },
 
     {
-        'name': 'master',
+        'name': 'Master',
         'icon': 'widgets',
         'open': false,
         'link': false,
         'sub': [
             {
-                'name': 'firm-master',
+                'name': 'Firm-master',
                 'icon': 'widgets',
                 'link': 'master/masterfirm',
                 'open': false,
             },
             {
-                'name': 'city-master',
+                'name': 'City-master',
                 'icon': 'widgets',
                 'link': 'master/mastercity',
                 'open': false,
             },
             {
-                'name': 'project-master',
+                'name': 'Project-master',
                 'icon': 'widgets',
                 'link': 'master/masterproject',
                 'open': false,
             },
             {
-                'name': 'block-master',
+                'name': 'Block-master',
                 'icon': 'widgets',
                 'link': 'master/masterblock',
                 'open': false,
@@ -363,13 +375,13 @@ export const menus = [
                 'open': false,
             },
             {
-                'name': 'Location',
+                'name': 'Location-master',
                 'icon': 'widgets',
                 'link': 'master/masterlocation',
                 'open': false,
             } ,
             {
-                'name': 'Bank',
+                'name': 'Bank-master',
                 'icon': 'widgets',
                 'link': 'master/masterbank',
                 'open': false,
@@ -379,7 +391,97 @@ export const menus = [
                 'icon': 'widgets',
                 'link': 'master/masteradditionalcharges',
                 'open': false,
+            },
+			 {
+                'name': 'Investor-master',
+                'icon': 'widgets',
+                'link': 'master/masterinvestor',
+                'open': false,
+            },
+            {
+                'name': 'Investment-master',
+                'icon': 'widgets',
+                'link': 'master/masterinvestment',
+                'open': false,
+            },
+            {
+                'name': 'Expense-Category',
+                'icon': 'widgets',
+                'link': 'master/expensecategory',
+                'open': false,
+            },
+            {
+                'name': 'Farmer-master',
+                'icon': 'widgets',
+                'link': 'master/farmer',
+                'open': false,
+            },
+            {
+                'name': 'Land-master',
+                'icon': 'widgets',
+                'link': 'master/land',
+                'open': false,
+            }    
+
+        ]
+    },
+    {        
+        'name': 'Report',
+        'icon': 'widgets',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'Booking Report',
+                'icon': 'widgets',
+                'link': 'report/bookingreport',
+                'open': false,
+            },
+            {
+                'name': 'Customer Report',
+                'icon': 'widgets',
+                'link': 'report/customerreport',
+                'open': false,
+            },
+            {
+                'name': 'Transaction Report',
+                'icon': 'widgets',
+                'link': 'report/transactionreport',
+                'open': false,
+            },
+            {
+                'name': 'Property Report',
+                'icon': 'widgets',
+                'link': 'report/propertyreport',
+                'open': false,
+            },
+            {
+                'name': 'Hold Report',
+                'icon': 'widgets',
+                'link': 'report/holdreport',
+                'open': false,
             }
+        ]
+	},
+	 {
+        'name': 'Accounts',
+        'icon': 'widgets',
+        'open': false,
+        'link': false,
+        'sub': [
+            {
+                'name': 'farmer-payment-deatils',
+                'icon': 'widgets',
+                'link': 'accounts/farmer-payment-details',
+                'open': false,
+            },
+            {
+                'name': 'associate-payment-details',
+                'icon': 'widgets',
+                'link': 'accounts/associate-payment-details',
+                'open': false,
+            }
+           
 
         ]
     }

@@ -1,0 +1,31 @@
+<mat-card>
+  <button mat-raised-button (click)="openDialog()"color="primary" >Make Payment</button>
+   <br /><br /><br />
+    <div mat-dialog-content>
+    <form (ngSubmit)="onFormSubmit(reportForm.value)" [formGroup]="reportForm">
+      <div class="example-container">
+          <mat-form-field class="example-full-width">
+            <mat-label>Khasra number</mat-label>
+            <mat-select [(ngModel)]= "reportForm.id" formControlName="id">
+              <mat-option *ngFor="let land of landList" [value]="land.id">
+                {{land.khasraNumber}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        <mat-grid-list cols="3" rowHeight="5em">
+          <mat-grid-tile>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!reportForm.dirty || !reportForm.valid">Search</button>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <button mat-raised-button color="warn" type="reset">Reset</button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+
+    </form>
+
+  </div>
+</mat-card>
+<mat-card>
+  <app-farmer-payment-table [reportData]="reportData" [columns]="columns"></app-farmer-payment-table>
+</mat-card>

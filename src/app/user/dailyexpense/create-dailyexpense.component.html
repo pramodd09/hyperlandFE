@@ -1,0 +1,53 @@
+<mat-accordion class="mat-drawer-containe">
+
+  <form (ngSubmit)="onFormSubmit(dailyExpenseForm.value)" [formGroup]="dailyExpenseForm">
+        <mat-form-field>
+          <mat-label>Firm Name</mat-label>
+          <mat-select formControlName="firmId" [(ngModel)] = "dailyExpense.firmId">
+            <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
+              {{firm.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <mat-label>Category Name</mat-label>
+          <mat-select formControlName="categoryId" [(ngModel)] = "dailyExpense.categoryId">
+            <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
+              {{firm.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput [matDatepicker]="dateFrom" formControlName="dateFrom" placeholder="From" >
+          <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
+          <mat-datepicker #dateFrom></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="dateFrom" formControlName="dateTo"  placeholder="To" >
+          <mat-datepicker-toggle matSuffix [for]="dateTo"></mat-datepicker-toggle>
+          <mat-datepicker #dateTo></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Expense" formControlName="expense" [(ngModel)]="dailyExpense.expense">
+        </mat-form-field>
+  
+        <mat-grid-list cols="3" rowHeight="10em">
+          <mat-grid-tile>
+            <button type="button" mat-raised-button color="primary"
+                    [disabled]="!dailyExpenseForm.dirty || !dailyExpenseForm.valid" (click)="submitForm();">
+              Submit
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <button mat-raised-button color="warn" type="reset">Clear</button>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+          </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+</mat-accordion>
