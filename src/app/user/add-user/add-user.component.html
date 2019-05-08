@@ -1,0 +1,53 @@
+<mat-card>
+  <button mat-raised-button (click)="openDialog()" color="primary">Add New User</button>
+  </mat-card>
+  <mat-card>
+      <div class="example-container mat-elevation-z8">
+         <!--  <mat-progress-spinner class="loading-spinner" *ngIf="loading" mode="indeterminate" color="accent"></mat-progress-spinner> -->
+          <mat-table #Table [dataSource]="userDataSource" matSort>  
+      
+              <!-- For ID -->  
+              <ng-container matColumnDef="id" sticky>  
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>  
+                  <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>  
+              </ng-container>  
+      
+              <!-- For Firm name -->  
+              <ng-container matColumnDef="userName" sticky>  
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> USER NAME </mat-header-cell>  
+                  <mat-cell *matCellDef="let user"> {{user.userName}} </mat-cell>  
+              </ng-container>  
+
+              <ng-container matColumnDef="userRole" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> USER Role </mat-header-cell>  
+                <mat-cell *matCellDef="let user"> {{user.userRole}} </mat-cell>  
+            </ng-container>  
+              
+              <ng-container matColumnDef="actions" sticky>  
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
+                  <mat-cell *matCellDef="let user"> 
+                    <button mat-raised-button color="primary"
+                      matTooltip="Edit Firm"
+                      (click)="edituserDetails(user.id)">
+                      <i class="material-icons">create</i>
+                    </button>
+      
+                    <button mat-raised-button color="warn" 
+                      matTooltip="Delete Firm"
+                      style="margin-left: 10px"
+                      (click)="openConfirmDeleteDialog(user.id)">
+                      <i class="material-icons">delete</i>
+                    </button>
+                  </mat-cell>  
+              </ng-container>
+  
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>  
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>  
+          </mat-table>  
+      
+          <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">  
+          </mat-paginator> 
+      </div>
+      </mat-card>
+         
+      

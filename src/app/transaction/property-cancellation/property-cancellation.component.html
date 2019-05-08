@@ -1,0 +1,192 @@
+<mat-card>
+  <div mat-dialog-content>
+<form (ngSubmit)="onFormSubmit(reportForm.value)" [formGroup]="reportForm">
+  <div class="example-container">
+      <mat-grid-list cols="2" rowHeight="4em">
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Firm Name</mat-label>
+        <mat-select formControlName="firmId" (ngModelChange)="onChange($event,'property')" [(ngModel)] = "reportForm.firmId">
+          <mat-option *ngFor="let firm of firmList" [value]="firm.code+'|'+firm.value">
+            {{firm.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Project Name</mat-label>
+        <mat-select formControlName="projectId" (ngModelChange)="onChange($event,'block')" [(ngModel)]="reportForm.projectId" >
+          <mat-option *ngFor="let prop of propertyList" [value]="prop.code+'|'+prop.value">
+            {{prop.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Block Name</mat-label>
+        <mat-select formControlName="blockId" (ngModelChange)="onChange($event,'availablePlot')" [(ngModel)]="reportForm.blockId">
+          <mat-option *ngFor="let block of blockList" [value]="block.code+'|'+block.value">
+            {{block.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Plot Number</mat-label>
+        <mat-select formControlName="plotNumber"  (ngModelChange)="onChange($event,'plotdetails')" [(ngModel)]="reportForm.plotNumber">
+          <mat-option *ngFor="let plotNo of plotNumberList" [value]="plotNo.code+'|'+plotNo.value">
+            {{plotNo.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Customer Name</mat-label>
+          <mat-select formControlName="customerName"  (ngModelChange)="onChange($event,'customerdetails')" [(ngModel)]="reportForm.customerName">
+            <mat-option *ngFor="let customer of customerList" [value]="customer.code+'|'+customer.value">
+              {{customer.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      </mat-grid-list>
+        <mat-grid-list cols="6" rowHeight="3em">
+        <mat-grid-tile aria-colspan="3">               
+          </mat-grid-tile>
+      <mat-grid-tile>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!reportForm.dirty || !reportForm.valid">Search</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button color="warn" type="reset">Reset</button>
+      </mat-grid-tile>
+     
+        
+    </mat-grid-list>
+  </div>
+
+</form>
+
+</div>
+</mat-card>
+
+
+<mat-accordion class="mat-drawer-containe">
+
+<form (ngSubmit)="onpropertyCancellationFormSubmit(propertyCancellationForm.value)" [formGroup]="propertyCancellationForm">
+<fieldset>
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header style="background-color:#5c6bc0;color : #ffffff">
+      <mat-panel-title style="color : #ffffff">
+        Property Cancellation Form Details
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-grid-list cols="2" rowHeight="4em">
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput placeholder="Cancel Charges" formControlName="cancelCharges"
+                 [(ngModel)]="propertycancellation.cancelCharges">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <input matInput [matDatepicker]="cancellationDate" formControlName="cancellationDate"  placeholder="cancellationDate" [(ngModel)]="propertycancellation.cancellationDate">
+              <mat-datepicker-toggle matSuffix [for]="cancellationDate"></mat-datepicker-toggle>
+              <mat-datepicker #cancellationDate></mat-datepicker>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field>
+              <input matInput placeholder="Paid Amount" formControlName="paidAmount"
+                     [(ngModel)]="propertycancellation.paidAmount">
+            </mat-form-field>
+          </mat-grid-tile>
+      
+      <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Return Amount" formControlName="returnAmount" [(ngModel)]="propertycancellation.returnAmount">
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <mat-label>Payment Mode</mat-label>
+              <mat-select formControlName="paymentMode" [(ngModel)]="propertycancellation.paymentMode">
+                <mat-option value="Cheque">Cheque</mat-option>
+                <mat-option value="Cash">Cash</mat-option>
+                <mat-option value="DD">DD</mat-option>
+                <mat-option value="NEFT">RTGS/NEFT</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Cheque No" formControlName="chequeNo" [(ngModel)]="propertycancellation.chequeNo">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <input matInput [matDatepicker]="picker" placeholder="Cheque Date" formControlName="chequeDate" [(ngModel)]="propertycancellation.chequeDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+              <mat-label>Bank Name</mat-label>
+              <mat-select formControlName="bankName" [(ngModel)] = "propertycancellation.bankName">
+                <mat-option *ngFor="let bank of bankList" [value]="bank.value">
+                  {{bank.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile> 
+
+          <mat-grid-tile>
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Description" [(ngModel)]="propertycancellation.remark" formControlName="remark"></textarea>
+          </mat-form-field>
+        </mat-grid-tile>
+
+
+    </mat-grid-list>
+
+  </mat-expansion-panel>
+
+</fieldset>
+
+<mat-grid-list cols="3" rowHeight="10em">
+
+  <mat-grid-tile>
+    <button type="button" mat-raised-button color="primary"
+            [disabled]="!propertyCancellationForm.dirty || !propertyCancellationForm.valid" (click)="propertyCancellationSubmitForm();">
+      Submit
+    </button>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <button mat-raised-button color="warn" type="reset">Clear</button>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+</form>
+</mat-accordion>

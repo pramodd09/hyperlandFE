@@ -141,10 +141,10 @@ export class RegistryComponent implements OnInit {
       this.registryService.createRegistry(this.registry).subscribe(
         res => {
           console.log(res);
-          this.openSnackBar('Expense Created Successfully','');
+          this.openSnackBar('Registray Created Successfully','');
         },
         error => {
-          this.openSnackBar('Error while creating expense, Please contact your adminstrator','');
+          this.openSnackBar('Error while creating Registray, Please contact your adminstrator','');
         });
     }
     else {
@@ -152,10 +152,10 @@ export class RegistryComponent implements OnInit {
       this.registryService.updateRegistry(this.registry).subscribe(
         res => {
           console.log(res);
-          this.openSnackBar('Expense Updated Successfully','');
+          this.openSnackBar('Registray Updated Successfully','');
         },
         error => {
-          this.openSnackBar('Error while updating Expense, Please contact your adminstrator','');
+          this.openSnackBar('Error while updating Registray, Please contact your adminstrator','');
         });
     }
   }

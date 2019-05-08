@@ -23,6 +23,7 @@ import { FarmerPaymentDetailsComponent } from './farmer-payment-details/farmer-p
 import { ExpenseDetailsComponent } from './expense-details/expense-details.component';
 import { OrgChartModule } from 'ng2-org-chart';
 import { RegistryComponent } from './registry/registry.component';
+import { PropertyCancellationComponent } from './property-cancellation/property-cancellation.component';
 
 
 
@@ -84,7 +85,8 @@ export function highlightJsFactory(): any {
       AgentPaymentDetailsComponent,
       FarmerPaymentDetailsComponent,
       ExpenseDetailsComponent,
-      RegistryComponent
+      RegistryComponent,
+      PropertyCancellationComponent
 
 ],
 

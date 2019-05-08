@@ -1,0 +1,47 @@
+<h4 mat-dialog-title>Add User </h4>
+  <div mat-dialog-content>
+      <form class="example-form"[formGroup]="userForm" (ngSubmit)="onFormSubmit(userForm.value)">
+        <div *ngIf="!loading;else other_content">
+          <div class="example-container">
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="User Name" formControlName="userName" [(ngModel)]="user.userName">
+              </mat-form-field>
+              <mat-error>  
+                <span *ngIf="!userForm.get('userName').valid && userForm.get('userName').touched">Please enter user name</span>  
+              </mat-error>
+   
+                <mat-form-field class="example-full-width">
+                  <mat-label>Select User Role</mat-label>
+                  <mat-select formControlName="userRole" [(ngModel)]="user.userRole">
+                    <mat-option value="ROLE_ADMIN">ADMIN</mat-option>
+                    <mat-option value="ROLE_AGENT">AGENT</mat-option>
+                    <mat-option value="ROLE_OFFICE_USER">OFFICE USER</mat-option>
+                    <mat-option value="ROLE_CUSTOMER">CUSTOMER</mat-option>
+                    <mat-option value="ROLE_APPROVER">APPROVER</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error>  
+                  <span *ngIf="!userForm.get('userRole').valid && userForm.get('userRole').touched">Please select user role</span>  
+                </mat-error>
+              
+              
+      
+              <mat-grid-list cols="3" rowHeight="10em">
+                  <mat-grid-tile>
+                    <button type="button" mat-raised-button color="primary" [disabled]="!userForm.dirty || !userForm.valid" (click)="submitForm();">Submit</button>
+                  </mat-grid-tile>
+                  <mat-grid-tile>  
+                    <button mat-raised-button color="warn" type="reset">Clear</button>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+                  </mat-grid-tile>
+              </mat-grid-list>
+              </div>
+          </div>  
+        <ng-template #other_content>
+           <!--  <mat-spinner></mat-spinner> -->
+        </ng-template>
+        
+      </form>
+  </div>

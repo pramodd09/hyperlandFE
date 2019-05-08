@@ -15,7 +15,7 @@ import { TokenStorage } from './core/token.storage';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
